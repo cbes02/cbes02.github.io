@@ -4,74 +4,77 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chiara Beretta — Home</title>
-  <meta name="description" content="Portfolio di Chiara Beretta: studentessa di Intelligenza Artificiale alla IULM. Progetti universitari, esperienze, passioni e contatti." />
+  <meta name="description" content="Portfolio di Chiara Beretta: Istruzione, Progetti universitari, Esperienze lavorative, Passioni e Contatti." />
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root{
-      --bg: #d3f3ff;           /* sfondo richiesto */
-      --accent: #004994;       /* colore per testi importanti e bottoni */
+      --bg: #d3f3ff;      /* sfondo richiesto */
+      --accent: #004994;  /* colore testi importanti / bottoni */
       --text: #0f172a;
       --muted:#475569;
-      --border: rgba(15,23,42,0.10);
+      --border: rgba(15,23,42,0.12);
       --radius: 18px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{
-      margin:0; background:var(--bg);
-      color:var(--text);
+      margin:0; background:var(--bg); color:var(--text);
       font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      line-height:1.25;
+      font-size:11pt; line-height:1.25;  /* come richiesto */
     }
 
-    /* NAV */
+    /* NAVBAR (solo link alle pagine) */
     .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
       background:rgba(255,255,255,0.65); border-bottom:1px solid var(--border);}
     .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
-    .brand a{font-weight:800; text-decoration:none; color:var(--accent);}
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
     .menu{display:flex; gap:10px; flex-wrap:wrap}
     .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
-    /* HERO con montagna sfocata e avatar tondo a destra */
+    /* HERO: sfondo montagna sfocato + avatar tondo in alto a destra + testo + CV */
     .hero-wrap{position:relative; min-height:70vh; display:flex; align-items:center;}
     .bg-blur{
       position:absolute; inset:0; z-index:-1;
       background:url('/img/montagna.jpg') center/cover no-repeat;
-      filter: blur(8px);          /* sfocatura */
-      opacity:.7;                 /* “30% percepito”: l’immagine è ben visibile ma non copre i contenuti */
-      transform: scale(1.05);     /* evita bordi dopo il blur */
+      filter: blur(8px);      /* sfocatura */
+      opacity:.7;             /* ~30% percepito: si vede ma non disturba */
+      transform: scale(1.05); /* evita bordi dopo il blur */
     }
-    .hero{max-width:1100px; margin:0 auto; padding:56px 16px; display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center}
-    .hero h1{font-size:clamp(28px,5vw,48px); margin:0 0 12px; color:var(--accent)}
-    .hero p{margin:0 0 16px; font-size:clamp(14px,2.3vw,18px)}
+    .hero{max-width:1100px; margin:0 auto; padding:56px 16px;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:center}
+    .hero h1{margin:0 0 12px; color:var(--accent); font-size:clamp(28px,5vw,48px)}
+    .hero p{margin:0 0 16px}
     .cta{display:flex; gap:12px; flex-wrap:wrap}
     .btn{display:inline-block; padding:10px 16px; border-radius:12px; border:1px solid var(--accent);
-      text-decoration:none; font-weight:700; background:var(--accent); color:#fff}
+      text-decoration:none; font-weight:800; background:var(--accent); color:#fff}
     .btn.secondary{background:#fff; color:var(--accent)}
 
     .avatar-wrap{display:flex; justify-content:flex-end}
     .avatar{width:220px; height:220px; border-radius:50%; object-fit:cover; border:3px solid #fff; box-shadow:0 10px 24px rgba(0,0,0,.12)}
 
-    /* SEZIONI RIASSUNTO */
+    /* RIASSUNTI SEZIONI (4 blocchi uguali per altezza) */
     .container{max-width:1100px; margin:0 auto; padding:32px 16px}
-    .row{display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:center; margin:22px 0}
-    .row.right{grid-template-columns:1fr 80px}
-    .row.right .text{order:1}
-    .icon{width:64px; height:64px}
-    .text h3{margin:0 0 6px; color:var(--accent); font-size:22px}
-    .text p{margin:0 0 12px}
+    .teaser{display:grid; grid-template-columns:80px 1fr; gap:16px; align-items:center;
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius); padding:16px; min-height:150px}
+    .teaser h3{margin:0 0 6px; color:var(--accent); font-size:22px}
+    .teaser p{margin:0 0 12px}
     .go{display:inline-block; padding:8px 12px; border:1px solid var(--accent); border-radius:10px; text-decoration:none; color:var(--accent); font-weight:700; background:#fff}
+    .grid{display:grid; gap:16px}
+    .grid.cols-2{grid-template-columns:1fr 1fr}
+
+    .icon{width:64px; height:64px}
 
     footer{padding:28px 0; border-top:1px solid var(--border); text-align:center; color:#355}
 
     @media (max-width: 860px){
       .hero{grid-template-columns:1fr}
       .avatar-wrap{justify-content:center; margin-top:10px}
-      .row, .row.right{grid-template-columns:1fr}
+      .grid.cols-2{grid-template-columns:1fr}
     }
   </style>
 </head>
@@ -98,14 +101,13 @@
       <div>
         <h1>Ciao, sono Chiara</h1>
         <p>
-          Studentessa magistrale in <strong>Intelligenza Artificiale</strong> alla IULM. Mi appassiona la tecnologia che
-          porta <strong>efficienza</strong>: dati, automazioni, strumenti semplici che fanno la differenza.
-          Amo anche le cose semplici: natura, sci e libri. Se vuoi approfondire, esplora le pagine; se preferisci
+          Studentessa magistrale in <strong>Intelligenza Artificiale</strong> alla IULM: mi piacciono
+          le tecnologie che portano <strong>efficienza</strong>. Ma amo anche le cose semplici:
+          natura, sci e libri. Se vuoi approfondire, esplora le pagine; se preferisci
           un riassunto, scarica il mio <strong>CV</strong> qui sotto.
         </p>
         <div class="cta">
           <a class="btn" href="/docs/cv.pdf" download>CV</a>
-          <a class="btn secondary" href="/progetti-universitari.html">Vedi progetti</a>
         </div>
       </div>
       <div class="avatar-wrap">
@@ -114,81 +116,87 @@
     </section>
   </div>
 
-  <!-- RIASSUNTI SEZIONI -->
+  <!-- RIASSUNTO SEZIONI -->
   <main class="container">
+    <div class="grid cols-2">
+      <!-- ISTRUZIONE -->
+      <section class="teaser">
+        <!-- icona libro -->
+        <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H20v16H6.75A2.75 2.75 0 0 0 4 21.75V5.5Z" stroke="#004994" stroke-width="1.5"/>
+          <path d="M4 6h15" stroke="#004994" stroke-width="1.5"/>
+          <path d="M8 9h7m-7 3h7m-7 3h5" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+        <div>
+          <h3>Istruzione</h3>
+          <p>
+            Dal liceo scientifico a Milano alla magistrale in <strong>IA, impresa e società</strong> alla IULM.
+            Ho scoperto che il mio punto forte è la <strong>parte analitica</strong>: usare dati e metodo
+            per far nascere idee utili al marketing.
+          </p>
+          <a class="go" href="/istruzione.html">Scopri di più</a>
+        </div>
+      </section>
 
-    <!-- ISTRUZIONE -->
-    <section class="row">
-      <!-- icona libro -->
-      <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M3 5.5A2.5 2.5 0 0 1 5.5 3H20v16H6.75A2.75 2.75 0 0 0 4 21.75V5.5Z" stroke="#004994" stroke-width="1.5"/>
-        <path d="M4 6h15" stroke="#004994" stroke-width="1.5"/>
-        <path d="M8 9h7m-7 3h7m-7 3h5" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <div class="text">
-        <h3>Istruzione</h3>
-        <p>
-          Liceo scientifico a Milano, poi IULM: prima <strong>Comunicazione d’impresa</strong>, quindi la magistrale in
-          <strong>IA, impresa e società</strong>. Ho capito che il mio punto forte è la <strong>parte analitica</strong>:
-          usare metodo e dati per far nascere idee utili al marketing e al business.
-        </p>
-        <a class="go" href="/istruzione.html">Scopri di più</a>
-      </div>
-    </section>
+      <!-- PROGETTI UNIVERSITARI -->
+      <section class="teaser">
+        <div>
+          <!-- icona persona al PC -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 4H9v10h11V4Z" stroke="#004994" stroke-width="1.5"/>
+            <path d="M8 10a4 4 0 1 0-8 0v6h8v-6Z" stroke="#004994" stroke-width="1.5"/>
+            <path d="M7 20h12" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Progetti universitari</h3>
+          <p>
+            Percorso molto pratico: da <strong>analisi strategiche</strong> e ricerche dati a
+            <strong>segmentazioni con ML</strong> e prototipi. Progetti concreti che mi hanno dato metodo.
+          </p>
+          <a class="go" href="/progetti-universitari.html">Progetti universitari</a>
+        </div>
+      </section>
 
-    <!-- PROGETTI UNIVERSITARI (icona a destra) -->
-    <section class="row right">
-      <div class="text">
-        <h3>Progetti universitari</h3>
-        <p>
-          Percorso molto pratico: da <strong>analisi strategiche</strong> e ricerche dati, a <strong>segmentazioni con ML</strong>,
-          fino a un <strong>prototipo e-commerce B2B</strong>. Progetti concreti che mi hanno dato metodo e soddisfazione.
-        </p>
-        <a class="go" href="/progetti-universitari.html">Progetti universitari</a>
-      </div>
-      <!-- icona persona al PC -->
-      <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M20 4H9v10h11V4Z" stroke="#004994" stroke-width="1.5"/>
-        <path d="M8 10a4 4 0 1 0-8 0v6h8v-6Z" stroke="#004994" stroke-width="1.5"/>
-        <path d="M7 20h12" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </section>
+      <!-- ESPERIENZE LAVORATIVE -->
+      <section class="teaser">
+        <div>
+          <!-- icona valigetta -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="7" width="18" height="12" rx="2" stroke="#004994" stroke-width="1.5"/>
+            <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="#004994" stroke-width="1.5"/>
+            <path d="M3 12h18" stroke="#004994" stroke-width="1.5"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Esperienze lavorative</h3>
+          <p>
+            Alternanza scuola-lavoro, babysitter, cameriera, hostess e prima esperienza in azienda.
+            Entusiasmo e voglia di <strong>imparare facendo</strong>, con organizzazione e attenzione ai dati.
+          </p>
+          <a class="go" href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        </div>
+      </section>
 
-    <!-- ESPERIENZE -->
-    <section class="row">
-      <!-- icona valigetta -->
-      <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="3" y="7" width="18" height="12" rx="2" stroke="#004994" stroke-width="1.5"/>
-        <path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2" stroke="#004994" stroke-width="1.5"/>
-        <path d="M3 12h18" stroke="#004994" stroke-width="1.5"/>
-      </svg>
-      <div class="text">
-        <h3>Esperienze lavorative</h3>
-        <p>
-          Ho iniziato presto: alternanza scuola-lavoro, babysitter, cameriera, hostess e una prima esperienza in azienda.
-          Porto entusiasmo e voglia di <strong>imparare facendo</strong>, unendo organizzazione e attenzione ai dati.
-        </p>
-        <a class="go" href="/esperienze-lavorative.html">Esperienze lavorative</a>
-      </div>
-    </section>
-
-    <!-- PASSIONI (icona a destra) -->
-    <section class="row right">
-      <div class="text">
-        <h3>Passioni</h3>
-        <p>
-          Lettura, <strong>dipingere</strong>, creare piccoli <strong>gioielli</strong>, camminate all’Idroscalo e in inverno
-          <strong>montagna & sci</strong>. Mi ricaricano e influenzano il mio modo di lavorare: curiosità, pazienza, precisione.
-        </p>
-        <a class="go" href="/passioni.html">Passioni</a>
-      </div>
-      <!-- icona pennello -->
-      <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M14 4l6 6-8 8H6v-6l8-8Z" stroke="#004994" stroke-width="1.5"/>
-        <path d="M5 21c2 0 3.5-1.5 3.5-3.5" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-    </section>
-
+      <!-- PASSIONI -->
+      <section class="teaser">
+        <div>
+          <!-- icona pennello -->
+          <svg class="icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M14 4l6 6-8 8H6v-6l8-8Z" stroke="#004994" stroke-width="1.5"/>
+            <path d="M5 21c2 0 3.5-1.5 3.5-3.5" stroke="#004994" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Passioni</h3>
+          <p>
+            Lettura, <strong>dipingere</strong>, creare piccoli <strong>gioielli</strong>, camminate all’Idroscalo
+            e in inverno <strong>montagna & sci</strong>. Mi ricaricano e migliorano il mio modo di lavorare.
+          </p>
+          <a class="go" href="/passioni.html">Passioni</a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer>© <span id="year"></span> Chiara Beretta</footer>
