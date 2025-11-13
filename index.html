@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Chiara Beretta — Home</title>
   <meta name="description" content="Portfolio di Chiara Beretta: Istruzione, Progetti universitari, Esperienze lavorative, Passioni e Contatti." />
+
+  <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
@@ -24,6 +26,7 @@
       font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
       font-size:13pt; line-height:1.4;
     }
+
     /* NAVBAR */
     .nav{
       position:sticky; top:0; z-index:100;
@@ -44,48 +47,44 @@
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
     /* HERO */
-    .hero-wrap{position:relative; min-height:72vh; display:flex; align-items:center;}
-    .bg-blur{
-      position:absolute; inset:0; z-index:-2;
+    .hero-wrap{
+      position:relative; min-height:72vh; display:flex; align-items:center;
       background:url('/img/montagna.png') center/cover no-repeat;
-      filter: blur(14px);
-      opacity:.65;
-      transform: scale(1.05);
     }
-    .bg-tint{
-      position:absolute; inset:0; z-index:-1;
-      background: linear-gradient(to bottom, rgba(0,73,148,.28), rgba(0,73,148,.12) 45%, rgba(0,73,148,.06));
+    /* velo azzurrino sopra la montagna */
+    .hero-overlay{
+      position:absolute; inset:0; background:rgba(211,243,255,0.65);
+      z-index:0;
     }
     .hero{
+      position:relative; z-index:1;
       max-width:1100px; margin:0 auto; padding:64px 16px;
-      display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:center;
+      display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
     }
-    .hero-card{
-      background: rgba(211,243,255,0.85);
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 28px;
-      box-shadow: 0 12px 28px rgba(0,0,0,.10);
-      backdrop-filter: blur(4px);
-    }
-    .hero-card h1{
+    .hero h1{
       margin:0 0 12px; color:var(--accent);
       font-size:clamp(36px,5.6vw,56px);
     }
-    .hero-card p{margin:0 0 18px; max-width:70ch;}
-    .cta{display:flex; gap:12px; flex-wrap:wrap; justify-content:center;}
+    .hero p{
+      margin:0 0 18px; max-width:70ch;
+    }
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap; justify-content:center;
+    }
     .btn{
       display:inline-block; padding:12px 18px;
       border-radius:12px; border:1px solid var(--accent);
       text-decoration:none; font-weight:800;
       background:var(--accent); color:#fff;
     }
+
     .avatar-wrap{display:flex; justify-content:flex-end}
     .avatar{
       width:260px; height:260px;
       border-radius:50%; object-fit:cover;
       border:3px solid #fff; box-shadow:0 16px 36px rgba(0,0,0,.16);
     }
+
     /* SEZIONI */
     .container{max-width:1100px; margin:0 auto; padding:32px 16px}
     .teaser{
@@ -103,7 +102,11 @@
     .grid{display:grid; gap:16px}
     .grid.cols-2{grid-template-columns:1fr 1fr}
     .icon{width:64px; height:64px}
-    footer{padding:28px 0; border-top:1px solid var(--border); text-align:center; color:#355}
+    footer{
+      padding:28px 0; border-top:1px solid var(--border);
+      text-align:center; color:#355;
+    }
+
     @media (max-width: 860px){
       .hero{grid-template-columns:1fr}
       .avatar-wrap{justify-content:center; margin-top:12px}
@@ -129,10 +132,9 @@
 
   <!-- HERO -->
   <div class="hero-wrap">
-    <div class="bg-blur" aria-hidden="true"></div>
-    <div class="bg-tint" aria-hidden="true"></div>
+    <div class="hero-overlay"></div>
     <section class="hero">
-      <div class="hero-card">
+      <div>
         <h1>Ciao, sono Chiara</h1>
         <p>
           Sono una studentessa magistrale in <strong>Intelligenza Artificiale, Impresa e Società</strong> alla IULM.<br>
@@ -155,6 +157,7 @@
   <!-- SEZIONI -->
   <main class="container">
     <div class="grid cols-2">
+
       <section class="teaser">
         <img class="icon" src="/img/ic-libro.png" alt="Icona libro">
         <div>
@@ -202,6 +205,7 @@
           <a class="go" href="/passioni.html">Scopri di più</a>
         </div>
       </section>
+
     </div>
   </main>
 
