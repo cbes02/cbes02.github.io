@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Istruzione — Chiara Beretta</title>
-  <meta name="description" content="Percorso di studi di Chiara Beretta: comunicazione d'impresa e IULM, IA, impresa e società." />
+  <meta name="description" content="Percorso di studi di Chiara Beretta: comunicazione d'impresa, tesi triennale e IA, Impresa e Società alla IULM." />
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,11 +13,11 @@
 
   <style>
     :root{
-      --bg: #d3f3ff;
-      --accent: #004994;
-      --text: #0f172a;
-      --border: rgba(15,23,42,0.12);
-      --radius: 18px;
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -27,9 +27,9 @@
       font-size:13pt; line-height:1.4;
     }
 
-    /* NAVBAR (coerente con home) */
+    /* NAVBAR */
     .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
-      background:rgba(255,255,255,0.8); border-bottom:1px solid var(--border);}
+      background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
     .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
     .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
     .menu{display:flex; gap:10px; flex-wrap:wrap}
@@ -37,34 +37,40 @@
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
-
-    /* HERO titolo pagina */
     .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800}
 
-    /* CAROSELLO (Opzione A: cover centrata) */
+    /* ===== CAROSELLO “foto nitida al centro + opache sotto” ===== */
     .carousel{
-      position:relative; overflow:hidden; border-radius:var(--radius);
-      border:1px solid var(--border); background:#fff; height:55vh; min-height:320px;
+      position:relative; height:55vh; min-height:320px;
+      background:#000; border-radius:var(--radius);
+      border:1px solid var(--border); overflow:hidden;
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
-    .track{display:flex; width:max-content; height:100%; animation:scroll 28s linear infinite}
-    .slide{flex:0 0 100%; width:100%; height:100%}
-    .slide img{
+    /* tutte le foto sono impilate (stack) a pieno contenitore */
+    .carousel .photo{
+      position:absolute; inset:0;
       width:100%; height:100%;
-      object-fit:cover;           /* riempie orizzontale */
-      object-position:center top; /* privilegia parte alta (volti/soggetti) */
-      display:block; transition:transform 1.2s ease-out;
+      object-fit:cover;         /* adatta senza deformare */
+      object-position:center top;
+      opacity:.1;               /* 90% opache di default */
+      transform:translateX(0) scale(1);
+      transition:opacity .9s ease, transform .9s ease;
+      will-change:opacity, transform;
     }
-    .slide img:hover{transform:scale(1.03)}
-    @keyframes scroll{
-      0%{transform:translateX(0)}
-      100%{transform:translateX(-700%)} /* 7 slide */
+    /* quella attiva è nitida, sopra tutte */
+    .carousel .photo.active{
+      opacity:1;
+      z-index:2;
+      transform:translateX(0) scale(1);
     }
-    /* puntini facoltativi
-    .dots{position:absolute; left:50%; bottom:10px; transform:translateX(-50%); display:flex; gap:6px}
-    .dot{width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.7); border:1px solid rgba(0,0,0,.1)} */
+    /* quella che sta uscendo scivola un filo a sinistra e cala d’opacità */
+    .carousel .photo.leaving{
+      opacity:.1;
+      transform:translateX(-3%) scale(1.02);
+      z-index:1;
+    }
 
-    /* SEZIONE PERCORSO */
+    /* ===== SEZIONI ===== */
     .section{margin:28px 0}
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
@@ -76,19 +82,17 @@
     .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
     .muted{color:#475569}
 
-    /* THESIS preview card */
+    /* Tesi */
     .thesis{
-      display:flex; flex-direction:column; gap:10px;
-      border:1px solid var(--border); border-radius:14px; overflow:hidden;
-      background:#f8fbff;
+      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
+      display:flex; flex-direction:column;
     }
     .thesis iframe{width:100%; height:420px; border:0; background:#000}
+    .center{display:flex; justify-content:center; padding:12px}
     .btn{
-      align-self:flex-start;
       display:inline-block; padding:10px 14px; border-radius:12px;
       border:1px solid var(--accent); background:var(--accent); color:#fff;
       text-decoration:none; font-weight:800;
-      margin:0 12px 12px;
     }
 
     @media (max-width: 900px){
@@ -118,17 +122,15 @@
     <h1 class="page-title">Istruzione</h1>
 
     <!-- CAROSELLO -->
-    <section class="carousel card" aria-label="Fotografie IULM">
-      <div class="track" id="track">
-        <div class="slide"><img src="/img/istruzione1.png" alt="Campus IULM al tramonto"></div>
-        <div class="slide"><img src="/img/istruzione2.png" alt="Lezione in aula"></div>
-        <div class="slide"><img src="/img/istruzione3.png" alt="Studio e appunti con compagna"></div>
-        <div class="slide"><img src="/img/istruzione4.png" alt="Appunti ed evidenziazioni"></div>
-        <div class="slide"><img src="/img/istruzione5.png" alt="Scrivania con pianta e gatto"></div>
-        <div class="slide"><img src="/img/istruzione6.png" alt="Giorno della laurea triennale"></div>
-        <div class="slide"><img src="/img/istruzione7.png" alt="Segnaposto di tesi"></div>
-      </div>
-      <!-- <div class="dots"><span class="dot"></span> ...</div> -->
+    <section class="carousel" aria-label="Fotografie IULM">
+      <!-- Metti le tue immagini in /img con questi nomi -->
+      <img class="photo active"  src="/img/istruzione1.png" alt="Campus IULM al tramonto">
+      <img class="photo"        src="/img/istruzione2.png" alt="Lezione in aula">
+      <img class="photo"        src="/img/istruzione3.png" alt="Studio e appunti con compagna">
+      <img class="photo"        src="/img/istruzione4.png" alt="Appunti ed evidenziazioni">
+      <img class="photo"        src="/img/istruzione5.png" alt="Scrivania con pianta e gatto">
+      <img class="photo"        src="/img/istruzione6.png" alt="Giorno della laurea triennale">
+      <img class="photo"        src="/img/istruzione7.png" alt="Segnaposto di tesi">
     </section>
 
     <!-- IL MIO PERCORSO -->
@@ -138,23 +140,24 @@
         <div class="card">
           <div class="block-title">Comunicazione d’impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
           <p class="muted">
-            Qui puoi scrivere 5–7 righe sul percorso: corsi chiave, competenze sviluppate,
-            progetti significativi, metodo di studio e cosa ti ha lasciato. Mantieni lo stile
-            semplice e concreto, con focus su <strong>analisi</strong>, <strong>metodo</strong> e
-            <strong>creatività applicata</strong>. Se vuoi, posso aiutarti a rifinirlo.
+            Qui puoi raccontare in 5–7 righe il percorso: corsi chiave, competenze sviluppate,
+            progetti, metodo di studio e cosa ti ha lasciato. Mantieni uno stile semplice e concreto
+            con attenzione a <strong>analisi</strong>, <strong>metodo</strong> e
+            <strong> creatività applicata</strong>.
           </p>
         </div>
 
         <!-- Tesi a destra -->
         <aside class="thesis">
-          <!-- Google Drive preview (l’embed mostra un’anteprima scorrevole) -->
           <iframe
             src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview"
             allow="autoplay">
           </iframe>
-          <a class="btn" href="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/view?usp=sharing" target="_blank" rel="noopener">
-            Leggi di più
-          </a>
+          <div class="center">
+            <a class="btn" href="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/view?usp=sharing" target="_blank" rel="noopener">
+              Leggi di più
+            </a>
+          </div>
         </aside>
       </div>
     </section>
@@ -164,22 +167,38 @@
       <div class="card">
         <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM)</div>
         <p class="muted">
-          Spazio per descrivere il percorso magistrale: dataset, progetti di analisi,
-          modelli di machine learning applicati al marketing, lavoro in team, etica dell’IA,
-          e risultati concreti (es. dashboard, segmentazioni, insight azionabili).
+          Spazio per descrivere il percorso magistrale: dataset, progetti di analisi, modelli di
+          machine learning applicati al marketing, lavoro in team, etica dell’IA e risultati
+          concreti (dashboard, segmentazioni, insight azionabili).
         </p>
       </div>
     </section>
   </main>
 
   <script>
-    /* Facoltativo: pausa animazione carosello su hover (desktop) */
-    const carousel = document.querySelector('.carousel');
-    const track = document.getElementById('track');
-    if (carousel && track) {
-      carousel.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
-      carousel.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
-    }
+    // Carosello: ruota tra le foto. Attiva/fade e leggero slide-left dell’uscente.
+    const photos = Array.from(document.querySelectorAll('.carousel .photo'));
+    let i = 0;
+    const next = () => {
+      const current = photos[i];
+      const nextIndex = (i + 1) % photos.length;
+      const upcoming = photos[nextIndex];
+
+      // l’immagine corrente esce verso sinistra e diventa opaca
+      current.classList.remove('active');
+      current.classList.add('leaving');
+
+      // la prossima diventa nitida
+      upcoming.classList.add('active');
+      upcoming.classList.remove('leaving');
+
+      // quando la transizione finisce, ripulisci la classe 'leaving'
+      setTimeout(() => current.classList.remove('leaving'), 950);
+
+      i = nextIndex;
+    };
+    // cambia immagine ogni 4.5s
+    setInterval(next, 4500);
   </script>
 </body>
 </html>
