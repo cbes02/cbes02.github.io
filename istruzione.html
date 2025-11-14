@@ -74,37 +74,28 @@
       right:6%; opacity:.1; z-index:2; height:90%;
       transform:translateY(-50%);
     }
-    /* animazioni */
-    .leaving-left{
-      left:6% !important; right:auto !important;
-      opacity:.1 !important; height:90% !important;
-      transform:translateY(-50%) !important; z-index:2 !important;
-    }
-    .to-center{
-      left:50% !important; right:auto !important;
-      opacity:1 !important; height:100% !important;
-      transform:translate(-50%,-50%) !important; z-index:4 !important;
-    }
 
     /* ===== SEZIONI TESTO ===== */
     .section{margin:28px 0}
+    .grid{display:grid; gap:18px}
+    .cols-2{grid-template-columns:1.2fr .8fr; align-items:stretch}
+
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
       box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
-      min-height:640px;       /* allungo come la tesi */
+      min-height:720px;            /* altezza coerente con la tesi */
       display:flex; flex-direction:column;
     }
-    .grid{display:grid; gap:18px}
-    .cols-2{grid-template-columns:1.2fr .8fr}
     .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
     .muted{color:#475569}
 
-    /* Tesi preview (più alta) */
+    /* Tesi preview — stessa altezza del card */
     .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      min-height:640px; display:flex; align-items:stretch;
+      min-height:720px; display:flex; align-items:stretch;
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
-    .thesis iframe{width:100%; height:640px; border:0; background:#000}
+    .thesis iframe{width:100%; height:100%; border:0; background:#000}
 
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
@@ -144,7 +135,7 @@
     <!-- IL MIO PERCORSO -->
     <section class="section">
       <div class="grid cols-2">
-        <!-- Testo triennale (altezza allineata alla tesi) -->
+        <!-- Testo triennale -->
         <div class="card">
           <div class="block-title">Comunicazione d’impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
           <p class="muted">
@@ -178,13 +169,14 @@
           concreti (dashboard, segmentazioni, insight azionabili). Inserisci esempi dei corsi e
           dei tool usati.
         </p>
+        <div style="margin-top:auto; color:#6b7280; font-size:12px">Aggiorna quando vuoi: questo box cresce con il contenuto.</div>
       </div>
     </section>
   </main>
 
   <script>
-    // === Immagini (6 file) ===
-    const photosSrc = [
+    // ====== Immagini (6 file) ======
+    const sources = [
       '/img/istruzione1.png',
       '/img/istruzione2.png',
       '/img/istruzione3.png',
@@ -193,57 +185,57 @@
       '/img/istruzione6.png'
     ];
 
-    const wrap = document.querySelector('.carousel');
-    let idx = 0;
+    const stage = document.querySelector('.carousel');
 
-    // creo i 3 elementi immagine
-    const imgPrev = document.createElement('img');
-    const imgCurr = document.createElement('img');
-    const imgNext = document.createElement('img');
-    imgPrev.className = 'photo left';
-    imgCurr.className = 'photo center';
-    imgNext.className = 'photo right';
-    wrap.append(imgPrev, imgCurr, imgNext);
+    // Creo 3 elementi e li posiziono: left, center, right
+    const elLeft  = document.createElement('img');
+    const elCenter= document.createElement('img');
+    const elRight = document.createElement('img');
+    elLeft.className   = 'photo left';
+    elCenter.className = 'photo center';
+    elRight.className  = 'photo right';
+    stage.append(elLeft, elCenter, elRight);
 
-    function setImages() {
-      const prevIndex = (idx - 1 + photosSrc.length) % photosSrc.length;
-      const nextIndex = (idx + 1) % photosSrc.length;
-      imgPrev.src = photosSrc[prevIndex];
-      imgCurr.src = photosSrc[idx];
-      imgNext.src = photosSrc[nextIndex];
+    let current = 0; // indice della center
+
+    function applySources(){
+      const leftIndex  = (current - 1 + sources.length) % sources.length;
+      const rightIndex = (current + 1) % sources.length;
+      elLeft.src   = sources[leftIndex];
+      elCenter.src = sources[current];
+      elRight.src  = sources[rightIndex];
     }
-    setImages();
+    applySources();
 
-    function advance() {
-      // 1) l'attuale scivola a sinistra e diventa opaca
-      imgCurr.classList.add('leaving-left');
-      // 2) la destra entra verso il centro
-      imgNext.classList.add('to-center');
+    let advancing = false;
 
-      // 3) al termine della transizione riassegno i ruoli/sorgenti
+    function advanceOnce(){
+      if(advancing) return;       // evita doppie animazioni
+      advancing = true;
+
+      // Rotazione classi: center -> left, right -> center, left -> right
+      elCenter.className = 'photo left';
+      elRight.className  = 'photo center';
+      elLeft.className   = 'photo right';
+
+      // Aggiorno indice corrente (nuova center è quella che era right)
+      current = (current + 1) % sources.length;
+
+      // Dopo la transizione, aggiorno SOLO la nuova "right" con la prossima immagine,
+      // così la prossima volta entrerà da destra UNA sola volta.
       setTimeout(() => {
-        // l'immagine a sinistra (vecchio center) resta left
-        imgPrev.src = imgCurr.src;      // old center -> left
+        const nextForRight = (current + 1) % sources.length;
+        // ora elLeft ha classe 'photo right'
+        if(elLeft.className.includes('right')) elLeft.src = sources[nextForRight];
+        else if(elCenter.className.includes('right')) elCenter.src = sources[nextForRight];
+        else if(elRight.className.includes('right')) elRight.src = sources[nextForRight];
 
-        // la destra (to-center) diventa la nuova center
-        imgCurr.src = imgNext.src;
-
-        // calcolo la nuova "right"
-        const newRightIndex = (idx + 2) % photosSrc.length;
-        imgNext.src = photosSrc[newRightIndex];
-
-        // reset classi
-        imgPrev.className = 'photo left';
-        imgCurr.className = 'photo center';
-        imgNext.className = 'photo right';
-
-        // aggiorno indice corrente
-        idx = (idx + 1) % photosSrc.length;
-      }, 900); // durata transizione CSS
+        advancing = false;
+      }, 900); // deve combaciare con la durata CSS (.9s)
     }
 
-    // scorrimento automatico
-    setInterval(advance, 4500);
+    // autoplay
+    setInterval(advanceOnce, 4500);
   </script>
 </body>
 </html>
