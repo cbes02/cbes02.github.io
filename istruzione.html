@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Istruzione — Chiara Beretta</title>
-  <meta name="description" content="Percorso di studi di Chiara Beretta: comunicazione d'impresa, tesi triennale e magistrale in IA, Impresa e Società alla IULM." />
+  <meta name="description" content="Percorso di studi: triennale IULM con tesi e magistrale in IA, Impresa e Società.">
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -54,26 +54,16 @@
     .carousel .photo{
       position:absolute; top:50%;
       height:100%; width:auto;
-      transform:translateY(-50%);
       object-fit:cover; object-position:center;
+      transform:translateY(-50%);           /* base */
       transition:all .9s ease;
       will-change:left,right,transform,opacity,height,z-index;
       border-radius:12px;
     }
-    /* centro nitido */
-    .photo.center{
-      left:50%; transform:translate(-50%,-50%);
-      opacity:1; z-index:3; height:100%;
-    }
-    /* sinistra/destra opache (90% in meno = opacity .1) */
-    .photo.left{
-      left:6%; opacity:.1; z-index:2; height:90%;
-      transform:translateY(-50%);
-    }
-    .photo.right{
-      right:6%; opacity:.1; z-index:2; height:90%;
-      transform:translateY(-50%);
-    }
+    /* posizioni */
+    .photo.left  { left:6%;  right:auto; opacity:.1;  z-index:2; height:90%; }
+    .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
+    .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
 
     /* ===== SEZIONI TESTO ===== */
     .section{margin:28px 0}
@@ -83,7 +73,7 @@
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
       box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
-      min-height:720px;            /* altezza coerente con la tesi */
+      min-height:820px;                       /* << dimensione “più alta” */
       display:flex; flex-direction:column;
     }
     .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
@@ -92,7 +82,7 @@
     /* Tesi preview — stessa altezza del card */
     .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      min-height:720px; display:flex; align-items:stretch;
+      min-height:820px; display:flex; align-items:stretch;
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
     .thesis iframe{width:100%; height:100%; border:0; background:#000}
@@ -129,10 +119,10 @@
 
     <!-- CAROSELLO -->
     <section class="carousel" aria-label="Fotografie IULM">
-      <!-- creato via JS -->
+      <!-- i 3 pannelli vengono creati dallo script -->
     </section>
 
-    <!-- IL MIO PERCORSO -->
+    <!-- TRIENNALE + TESI -->
     <section class="section">
       <div class="grid cols-2">
         <!-- Testo triennale -->
@@ -152,14 +142,14 @@
           <div style="margin-top:auto; color:#6b7280; font-size:12px">Aggiorna quando vuoi: questo box cresce con il contenuto.</div>
         </div>
 
-        <!-- Preview tesi: parte da pagina 7 -->
+        <!-- Preview tesi (parte da pagina 7) -->
         <aside class="thesis" aria-label="Preview tesi triennale">
           <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
         </aside>
       </div>
     </section>
 
-    <!-- BLOCCO SUCCESSIVO: Magistrale -->
+    <!-- MAGISTRALE -->
     <section class="section">
       <div class="card">
         <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM)</div>
@@ -175,7 +165,13 @@
   </main>
 
   <script>
-    // ====== Immagini (6 file) ======
+    /* ===========================
+       CAROSELLO A 3 PANNELLI
+       Sequenza esatta richiesta:
+       sx = img (index-1) opaca, centro = index nitida, dx = (index+1) opaca.
+       Ogni 4.5s: centro -> sinistra (opaca), destra -> centro (nitida),
+       nuova prossima -> destra (opaca). Loop infinito.
+    ============================ */
     const sources = [
       '/img/istruzione1.png',
       '/img/istruzione2.png',
@@ -184,58 +180,63 @@
       '/img/istruzione5.png',
       '/img/istruzione6.png'
     ];
+    const N = sources.length;
 
     const stage = document.querySelector('.carousel');
 
-    // Creo 3 elementi e li posiziono: left, center, right
-    const elLeft  = document.createElement('img');
-    const elCenter= document.createElement('img');
-    const elRight = document.createElement('img');
+    // Creo tre elementi una volta sola
+    let elLeft  = document.createElement('img');
+    let elCenter= document.createElement('img');
+    let elRight = document.createElement('img');
     elLeft.className   = 'photo left';
     elCenter.className = 'photo center';
     elRight.className  = 'photo right';
     stage.append(elLeft, elCenter, elRight);
 
-    let current = 0; // indice della center
+    // Indice della foto al CENTRO
+    let idxCenter = 0;
 
-    function applySources(){
-      const leftIndex  = (current - 1 + sources.length) % sources.length;
-      const rightIndex = (current + 1) % sources.length;
-      elLeft.src   = sources[leftIndex];
-      elCenter.src = sources[current];
-      elRight.src  = sources[rightIndex];
+    // Inizializzo i tre pannelli
+    function initialRender(){
+      const idxLeft  = (idxCenter - 1 + N) % N;
+      const idxRight = (idxCenter + 1) % N;
+      elLeft.src   = sources[idxLeft];
+      elCenter.src = sources[idxCenter];
+      elRight.src  = sources[idxRight];
     }
-    applySources();
+    initialRender();
 
-    let advancing = false;
+    let animating = false;
 
-    function advanceOnce(){
-      if(advancing) return;       // evita doppie animazioni
-      advancing = true;
+    function step(){
+      if(animating) return;
+      animating = true;
 
-      // Rotazione classi: center -> left, right -> center, left -> right
-      elCenter.className = 'photo left';
-      elRight.className  = 'photo center';
-      elLeft.className   = 'photo right';
+      // ROTAZIONE DEI RIFERIMENTI:
+      //  center -> left, right -> center, left -> right
+      const oldLeft = elLeft;
+      elLeft   = elCenter;
+      elCenter = elRight;
+      elRight  = oldLeft;
 
-      // Aggiorno indice corrente (nuova center è quella che era right)
-      current = (current + 1) % sources.length;
+      // Riassegno le classi per far partire l'ANIMAZIONE (.9s)
+      elLeft.className   = 'photo left';
+      elCenter.className = 'photo center';
+      elRight.className  = 'photo right';
 
-      // Dopo la transizione, aggiorno SOLO la nuova "right" con la prossima immagine,
-      // così la prossima volta entrerà da destra UNA sola volta.
-      setTimeout(() => {
-        const nextForRight = (current + 1) % sources.length;
-        // ora elLeft ha classe 'photo right'
-        if(elLeft.className.includes('right')) elLeft.src = sources[nextForRight];
-        else if(elCenter.className.includes('right')) elCenter.src = sources[nextForRight];
-        else if(elRight.className.includes('right')) elRight.src = sources[nextForRight];
+      // Avanza l'indice della foto CENTRALE
+      idxCenter = (idxCenter + 1) % N;
 
-        advancing = false;
-      }, 900); // deve combaciare con la durata CSS (.9s)
+      // La NUOVA destra deve mostrare la "prossima" immagine
+      const nextRight = (idxCenter + 1) % N;
+      elRight.src = sources[nextRight];
+
+      // Sblocco al termine della transizione
+      setTimeout(() => { animating = false; }, 950);
     }
 
-    // autoplay
-    setInterval(advanceOnce, 4500);
+    // autoplay ogni 4.5s
+    setInterval(step, 4500);
   </script>
 </body>
 </html>
