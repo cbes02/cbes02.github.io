@@ -46,29 +46,28 @@
     }
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
-/* HERO con immagine montagna nitida e sfumatura verso il basso */
-.hero-wrap{
-  position:relative;
-  min-height:72vh;
-  display:flex;
-  align-items:center;
-  background:
-    linear-gradient(to bottom, rgba(255,255,255,0) 80%, rgba(255,255,255,1) 100%), /* sfumatura bianca nella parte bassa */
-    url('/img/montagna.png') center/cover no-repeat;
-}
+    /* HERO con montagna nitida e dissolvenza azzurrina in basso */
+    .hero-wrap{
+      position:relative;
+      min-height:72vh;
+      display:flex;
+      align-items:center;
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(211,243,255,0) 75%,
+          rgba(211,243,255,1) 100%
+        ), /* sfumatura azzurrina finale */
+        url('/img/montagna.png') center/cover no-repeat;
+    }
 
-/* velo azzurrino sopra, che si dissolve in basso */
-.hero-overlay{
-  position:absolute;
-  inset:0;
-  background:linear-gradient(
-    to bottom,
-    rgba(211,243,255,0.65) 0%,
-    rgba(211,243,255,0.40) 70%,
-    rgba(211,243,255,0.0) 100%
-  );
-  z-index:0;
-}
+    /* velo azzurrino sopra la montagna, più opaco e coerente con il resto */
+    .hero-overlay{
+      position:absolute;
+      inset:0;
+      background:rgba(211,243,255,0.8); /* 80% opacità */
+      z-index:0;
+    }
 
     .hero{
       position:relative; z-index:1;
