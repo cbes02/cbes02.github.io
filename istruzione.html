@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Istruzione — Chiara Beretta</title>
-  <meta name="description" content="Percorso di studi di Chiara Beretta: comunicazione d'impresa, tesi triennale e IA, Impresa e Società alla IULM." />
+  <meta name="description" content="Percorso di studi di Chiara Beretta: comunicazione d'impresa, tesi triennale e magistrale in IA, Impresa e Società alla IULM." />
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -36,41 +36,64 @@
     .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
+    /* LAYOUT */
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
-    .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800}
+    .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
 
-    /* ===== CAROSELLO “foto nitida al centro + opache sotto” ===== */
+    /* ===== CAROSELLO 3-PANNELLI ===== */
     .carousel{
-      position:relative; height:55vh; min-height:320px;
-      background:#000; border-radius:var(--radius);
-      border:1px solid var(--border); overflow:hidden;
+      position:relative;
+      height:52vh;            /* metà schermo circa */
+      min-height:320px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      overflow:hidden;
+      /* sfondo azzurrino per continuità con la pagina */
+      background:var(--bg);
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
-    /* tutte le foto sono impilate (stack) a pieno contenitore */
     .carousel .photo{
-      position:absolute; inset:0;
-      width:100%; height:100%;
-      object-fit:cover;         /* adatta senza deformare */
-      object-position:center top;
-      opacity:.1;               /* 90% opache di default */
-      transform:translateX(0) scale(1);
-      transition:opacity .9s ease, transform .9s ease;
-      will-change:opacity, transform;
+      position:absolute; top:50%;
+      height:100%; width:auto;
+      transform:translateY(-50%);
+      object-fit:cover; object-position:center;
+      transition:all .9s ease;
+      will-change:left,right,transform,opacity,filter;
+      border-radius:12px;
     }
-    /* quella attiva è nitida, sopra tutte */
-    .carousel .photo.active{
-      opacity:1;
-      z-index:2;
-      transform:translateX(0) scale(1);
+    /* centro nitido grande */
+    .photo.center{
+      left:50%; transform:translate(-50%,-50%);
+      opacity:1; z-index:3;
+      /* più grande al centro */
+      height:100%;
+      filter:none;
     }
-    /* quella che sta uscendo scivola un filo a sinistra e cala d’opacità */
-    .carousel .photo.leaving{
-      opacity:.1;
-      transform:translateX(-3%) scale(1.02);
-      z-index:1;
+    /* sinistra e destra: piccole e opache (90% di opacità in meno) */
+    .photo.left{
+      left:6%;
+      opacity:.1; z-index:2;
+      height:90%;
+      filter:blur(0px);
+      transform:translateY(-50%);
+    }
+    .photo.right{
+      right:6%;
+      opacity:.1; z-index:2;
+      height:90%;
+      filter:blur(0px);
+      transform:translateY(-50%);
+    }
+    /* animazione uscita verso sinistra della centrale */
+    .leaving-left{
+      left:6% !important;
+      right:auto !important;
+      opacity:.1 !important;
+      height:90% !important;
+      transform:translateY(-50%) !important;
     }
 
-    /* ===== SEZIONI ===== */
+    /* ===== SEZIONI TESTO ===== */
     .section{margin:28px 0}
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
@@ -78,27 +101,22 @@
     }
     .grid{display:grid; gap:18px}
     .cols-2{grid-template-columns:1.2fr .8fr}
-
     .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
     .muted{color:#475569}
 
-    /* Tesi */
+    /* Tesi preview */
     .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      display:flex; flex-direction:column;
     }
     .thesis iframe{width:100%; height:420px; border:0; background:#000}
-    .center{display:flex; justify-content:center; padding:12px}
-    .btn{
-      display:inline-block; padding:10px 14px; border-radius:12px;
-      border:1px solid var(--accent); background:var(--accent); color:#fff;
-      text-decoration:none; font-weight:800;
-    }
 
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
       .carousel{height:46vh}
       .thesis iframe{height:360px}
+      /* su mobile mostro solo la foto centrale per pulizia */
+      .photo.left,.photo.right{display:none}
+      .photo.center{height:100%}
     }
   </style>
 </head>
@@ -123,41 +141,29 @@
 
     <!-- CAROSELLO -->
     <section class="carousel" aria-label="Fotografie IULM">
-      <!-- Metti le tue immagini in /img con questi nomi -->
-      <img class="photo active"  src="/img/istruzione1.png" alt="Campus IULM al tramonto">
-      <img class="photo"        src="/img/istruzione2.png" alt="Lezione in aula">
-      <img class="photo"        src="/img/istruzione3.png" alt="Studio e appunti con compagna">
-      <img class="photo"        src="/img/istruzione4.png" alt="Appunti ed evidenziazioni">
-      <img class="photo"        src="/img/istruzione5.png" alt="Scrivania con pianta e gatto">
-      <img class="photo"        src="/img/istruzione6.png" alt="Giorno della laurea triennale">
-      <img class="photo"        src="/img/istruzione7.png" alt="Segnaposto di tesi">
+      <!-- Le immagini sono create e gestite via JS in base all’array sotto -->
     </section>
 
     <!-- IL MIO PERCORSO -->
     <section class="section">
       <div class="grid cols-2">
-        <!-- Testo a sinistra -->
+        <!-- Testo triennale -->
         <div class="card">
           <div class="block-title">Comunicazione d’impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
           <p class="muted">
             Qui puoi raccontare in 5–7 righe il percorso: corsi chiave, competenze sviluppate,
-            progetti, metodo di studio e cosa ti ha lasciato. Mantieni uno stile semplice e concreto
+            progetti significativi, metodo di studio e cosa ti ha lasciato. Stile semplice e concreto,
             con attenzione a <strong>analisi</strong>, <strong>metodo</strong> e
             <strong> creatività applicata</strong>.
           </p>
         </div>
 
-        <!-- Tesi a destra -->
+        <!-- Preview tesi (parte dalla pagina 7) -->
         <aside class="thesis">
           <iframe
-            src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview"
+            src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7"
             allow="autoplay">
           </iframe>
-          <div class="center">
-            <a class="btn" href="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/view?usp=sharing" target="_blank" rel="noopener">
-              Leggi di più
-            </a>
-          </div>
         </aside>
       </div>
     </section>
@@ -176,29 +182,64 @@
   </main>
 
   <script>
-    // Carosello: ruota tra le foto. Attiva/fade e leggero slide-left dell’uscente.
-    const photos = Array.from(document.querySelectorAll('.carousel .photo'));
-    let i = 0;
-    const next = () => {
-      const current = photos[i];
-      const nextIndex = (i + 1) % photos.length;
-      const upcoming = photos[nextIndex];
+    // === Config foto ===
+    const photosSrc = [
+      '/img/istruzione1.png',
+      '/img/istruzione2.png',
+      '/img/istruzione3.png',
+      '/img/istruzione4.png',
+      '/img/istruzione5.png',
+      '/img/istruzione6.png',
+      '/img/istruzione7.png'
+    ];
 
-      // l’immagine corrente esce verso sinistra e diventa opaca
-      current.classList.remove('active');
-      current.classList.add('leaving');
+    const wrap = document.querySelector('.carousel');
+    let idx = 0;
 
-      // la prossima diventa nitida
-      upcoming.classList.add('active');
-      upcoming.classList.remove('leaving');
+    // crea 3 img: prev (sx), current (centro), next (dx)
+    const imgPrev = document.createElement('img');
+    const imgCurr = document.createElement('img');
+    const imgNext = document.createElement('img');
+    imgPrev.className = 'photo left';
+    imgCurr.className = 'photo center';
+    imgNext.className = 'photo right';
+    wrap.append(imgPrev, imgCurr, imgNext);
 
-      // quando la transizione finisce, ripulisci la classe 'leaving'
-      setTimeout(() => current.classList.remove('leaving'), 950);
+    function setImages() {
+      const prevIndex = (idx - 1 + photosSrc.length) % photosSrc.length;
+      const nextIndex = (idx + 1) % photosSrc.length;
+      imgPrev.src = photosSrc[prevIndex];
+      imgCurr.src = photosSrc[idx];
+      imgNext.src = photosSrc[nextIndex];
+    }
+    setImages();
 
-      i = nextIndex;
-    };
-    // cambia immagine ogni 4.5s
-    setInterval(next, 4500);
+    function advance() {
+      // la centrale scivola a sinistra e diventa opaca (classe leaving-left)
+      imgCurr.classList.add('leaving-left');
+
+      // dopo la transizione, ri-assegno gli elementi/ruoli
+      setTimeout(() => {
+        // il precedente diventa "right", l'attuale diventa "left", il next diventa "center"
+        const oldPrevSrc = imgPrev.src;
+        imgPrev.src = imgCurr.src;      // l'attuale passa a sinistra
+        imgCurr.src = imgNext.src;      // il next diventa centrale
+        // il vecchio prev diventa il nuovo next (a destra)
+        const nextIndex = (idx + 2) % photosSrc.length;
+        imgNext.src = photosSrc[nextIndex];
+
+        // reset classi
+        imgCurr.className = 'photo center';
+        imgPrev.className = 'photo left';
+        imgNext.className = 'photo right';
+
+        // aggiorna indice corrente
+        idx = (idx + 1) % photosSrc.length;
+      }, 900); // uguale alla durata CSS
+    }
+
+    // avanza ogni 4.5 secondi
+    setInterval(advance, 4500);
   </script>
 </body>
 </html>
