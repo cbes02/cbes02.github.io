@@ -43,12 +43,11 @@
     /* ===== CAROSELLO 3-PANNELLI ===== */
     .carousel{
       position:relative;
-      height:52vh;            /* metà schermo circa */
+      height:52vh;
       min-height:320px;
       border-radius:var(--radius);
       border:1px solid var(--border);
       overflow:hidden;
-      /* sfondo azzurrino per continuità con la pagina */
       background:var(--bg);
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
@@ -58,39 +57,33 @@
       transform:translateY(-50%);
       object-fit:cover; object-position:center;
       transition:all .9s ease;
-      will-change:left,right,transform,opacity,filter;
+      will-change:left,right,transform,opacity,height,z-index;
       border-radius:12px;
     }
-    /* centro nitido grande */
+    /* centro nitido */
     .photo.center{
       left:50%; transform:translate(-50%,-50%);
-      opacity:1; z-index:3;
-      /* più grande al centro */
-      height:100%;
-      filter:none;
+      opacity:1; z-index:3; height:100%;
     }
-    /* sinistra e destra: piccole e opache (90% di opacità in meno) */
+    /* sinistra/destra opache (90% in meno = opacity .1) */
     .photo.left{
-      left:6%;
-      opacity:.1; z-index:2;
-      height:90%;
-      filter:blur(0px);
+      left:6%; opacity:.1; z-index:2; height:90%;
       transform:translateY(-50%);
     }
     .photo.right{
-      right:6%;
-      opacity:.1; z-index:2;
-      height:90%;
-      filter:blur(0px);
+      right:6%; opacity:.1; z-index:2; height:90%;
       transform:translateY(-50%);
     }
-    /* animazione uscita verso sinistra della centrale */
+    /* animazioni */
     .leaving-left{
-      left:6% !important;
-      right:auto !important;
-      opacity:.1 !important;
-      height:90% !important;
-      transform:translateY(-50%) !important;
+      left:6% !important; right:auto !important;
+      opacity:.1 !important; height:90% !important;
+      transform:translateY(-50%) !important; z-index:2 !important;
+    }
+    .to-center{
+      left:50% !important; right:auto !important;
+      opacity:1 !important; height:100% !important;
+      transform:translate(-50%,-50%) !important; z-index:4 !important;
     }
 
     /* ===== SEZIONI TESTO ===== */
@@ -98,23 +91,27 @@
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
       box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
+      min-height:640px;       /* allungo come la tesi */
+      display:flex; flex-direction:column;
     }
     .grid{display:grid; gap:18px}
     .cols-2{grid-template-columns:1.2fr .8fr}
     .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
     .muted{color:#475569}
 
-    /* Tesi preview */
+    /* Tesi preview (più alta) */
     .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
+      min-height:640px; display:flex; align-items:stretch;
     }
-    .thesis iframe{width:100%; height:420px; border:0; background:#000}
+    .thesis iframe{width:100%; height:640px; border:0; background:#000}
 
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
       .carousel{height:46vh}
-      .thesis iframe{height:360px}
-      /* su mobile mostro solo la foto centrale per pulizia */
+      .card{min-height:unset}
+      .thesis{min-height:unset}
+      .thesis iframe{height:420px}
       .photo.left,.photo.right{display:none}
       .photo.center{height:100%}
     }
@@ -141,29 +138,32 @@
 
     <!-- CAROSELLO -->
     <section class="carousel" aria-label="Fotografie IULM">
-      <!-- Le immagini sono create e gestite via JS in base all’array sotto -->
+      <!-- creato via JS -->
     </section>
 
     <!-- IL MIO PERCORSO -->
     <section class="section">
       <div class="grid cols-2">
-        <!-- Testo triennale -->
+        <!-- Testo triennale (altezza allineata alla tesi) -->
         <div class="card">
           <div class="block-title">Comunicazione d’impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
           <p class="muted">
             Qui puoi raccontare in 5–7 righe il percorso: corsi chiave, competenze sviluppate,
             progetti significativi, metodo di studio e cosa ti ha lasciato. Stile semplice e concreto,
             con attenzione a <strong>analisi</strong>, <strong>metodo</strong> e
-            <strong> creatività applicata</strong>.
+            <strong> creatività applicata</strong>. Aggiungi esempi di esami/progetti che ti
+            hanno formata (ricerche dati, piani editoriali, casi, campagne).
           </p>
+          <p class="muted">
+            Se vuoi, chiudi con un piccolo elenco di strumenti o abilità (es. Excel, Tableau,
+            PowerPoint avanzato, copy sintetico, public speaking, lavoro in team).
+          </p>
+          <div style="margin-top:auto; color:#6b7280; font-size:12px">Aggiorna quando vuoi: questo box cresce con il contenuto.</div>
         </div>
 
-        <!-- Preview tesi (parte dalla pagina 7) -->
-        <aside class="thesis">
-          <iframe
-            src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7"
-            allow="autoplay">
-          </iframe>
+        <!-- Preview tesi: parte da pagina 7 -->
+        <aside class="thesis" aria-label="Preview tesi triennale">
+          <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
         </aside>
       </div>
     </section>
@@ -175,28 +175,28 @@
         <p class="muted">
           Spazio per descrivere il percorso magistrale: dataset, progetti di analisi, modelli di
           machine learning applicati al marketing, lavoro in team, etica dell’IA e risultati
-          concreti (dashboard, segmentazioni, insight azionabili).
+          concreti (dashboard, segmentazioni, insight azionabili). Inserisci esempi dei corsi e
+          dei tool usati.
         </p>
       </div>
     </section>
   </main>
 
   <script>
-    // === Config foto ===
+    // === Immagini (6 file) ===
     const photosSrc = [
       '/img/istruzione1.png',
       '/img/istruzione2.png',
       '/img/istruzione3.png',
       '/img/istruzione4.png',
       '/img/istruzione5.png',
-      '/img/istruzione6.png',
-      '/img/istruzione7.png'
+      '/img/istruzione6.png'
     ];
 
     const wrap = document.querySelector('.carousel');
     let idx = 0;
 
-    // crea 3 img: prev (sx), current (centro), next (dx)
+    // creo i 3 elementi immagine
     const imgPrev = document.createElement('img');
     const imgCurr = document.createElement('img');
     const imgNext = document.createElement('img');
@@ -215,30 +215,34 @@
     setImages();
 
     function advance() {
-      // la centrale scivola a sinistra e diventa opaca (classe leaving-left)
+      // 1) l'attuale scivola a sinistra e diventa opaca
       imgCurr.classList.add('leaving-left');
+      // 2) la destra entra verso il centro
+      imgNext.classList.add('to-center');
 
-      // dopo la transizione, ri-assegno gli elementi/ruoli
+      // 3) al termine della transizione riassegno i ruoli/sorgenti
       setTimeout(() => {
-        // il precedente diventa "right", l'attuale diventa "left", il next diventa "center"
-        const oldPrevSrc = imgPrev.src;
-        imgPrev.src = imgCurr.src;      // l'attuale passa a sinistra
-        imgCurr.src = imgNext.src;      // il next diventa centrale
-        // il vecchio prev diventa il nuovo next (a destra)
-        const nextIndex = (idx + 2) % photosSrc.length;
-        imgNext.src = photosSrc[nextIndex];
+        // l'immagine a sinistra (vecchio center) resta left
+        imgPrev.src = imgCurr.src;      // old center -> left
+
+        // la destra (to-center) diventa la nuova center
+        imgCurr.src = imgNext.src;
+
+        // calcolo la nuova "right"
+        const newRightIndex = (idx + 2) % photosSrc.length;
+        imgNext.src = photosSrc[newRightIndex];
 
         // reset classi
-        imgCurr.className = 'photo center';
         imgPrev.className = 'photo left';
+        imgCurr.className = 'photo center';
         imgNext.className = 'photo right';
 
-        // aggiorna indice corrente
+        // aggiorno indice corrente
         idx = (idx + 1) % photosSrc.length;
-      }, 900); // uguale alla durata CSS
+      }, 900); // durata transizione CSS
     }
 
-    // avanza ogni 4.5 secondi
+    // scorrimento automatico
     setInterval(advance, 4500);
   </script>
 </body>
