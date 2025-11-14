@@ -1,1 +1,230 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Istruzione — Chiara Beretta</title>
+  <meta name="description" content="Percorso di istruzione di Chiara Beretta." />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --border:rgba(15,23,42,0.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      font-size:13pt; line-height:1.4;
+    }
+
+    /* NAVBAR (uguale alla home) */
+    .nav{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,0.8);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; padding:12px 16px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{
+      padding:8px 12px; border-radius:12px; text-decoration:none;
+      color:var(--accent); font-weight:600;
+    }
+    .menu a:hover{background:#fff; border:1px solid var(--border)}
+
+    /* CAROSELLO */
+    .carousel-wrap{
+      position:relative;
+      max-width:1100px; margin:18px auto 0; padding:0 16px;
+    }
+    .carousel{
+      position:relative; overflow:hidden;
+      border-radius:22px; border:1px solid var(--border);
+      height:50vh; max-height:520px; min-height:260px;
+      background:#fff;
+    }
+    .track{
+      display:flex; height:100%; width:100%;
+      transition:transform .6s ease-in-out;
+    }
+    .slide{
+      flex: 0 0 100%; height:100%; position:relative;
+      background:#e6eef5;
+    }
+    .slide img{
+      width:100%; height:100%; object-fit:cover; display:block;
+    }
+
+    /* controlli/dots */
+    .dots{
+      position:absolute; bottom:12px; left:0; right:0;
+      display:flex; justify-content:center; gap:8px; pointer-events:none;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background:rgba(255,255,255,.7);
+      box-shadow:0 0 0 1px rgba(0,0,0,.15) inset;
+      pointer-events:auto; cursor:pointer;
+    }
+    .dot.active{background:var(--accent)}
+
+    .arrow{
+      position:absolute; top:50%; transform:translateY(-50%);
+      width:40px; height:40px; border-radius:999px; border:1px solid var(--border);
+      background:rgba(255,255,255,.9); display:grid; place-items:center;
+      cursor:pointer; user-select:none;
+    }
+    .arrow:hover{filter:brightness(1.03)}
+    .arrow.left{left:12px}
+    .arrow.right{right:12px}
+
+    /* BLOCCO TESTO */
+    .container{max-width:1100px; margin:20px auto; padding:0 16px 24px}
+    .card{
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      padding:18px;
+    }
+    h1.page{font-size:clamp(26px,4.5vw,36px); color:var(--accent); margin:10px 0 6px}
+    h2{font-size:20px; margin:0 0 10px; color:var(--accent)}
+    p{margin:0 0 12px}
+
+    @media (max-width:860px){
+      .carousel{height:44vh}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- TITOLO PAGINA -->
+  <div class="container">
+    <h1 class="page">Istruzione</h1>
+  </div>
+
+  <!-- CAROSELLO (7 immagini) -->
+  <div class="carousel-wrap">
+    <div class="carousel" id="carousel">
+      <div class="track" id="track">
+        <!-- Carica queste immagini in /img (possono essere .jpg o .png) -->
+        <div class="slide"><img src="/img/istruzione1.jpg" alt="Istruzione 1"></div>
+        <div class="slide"><img src="/img/istruzione2.jpg" alt="Istruzione 2" loading="lazy"></div>
+        <div class="slide"><img src="/img/istruzione3.jpg" alt="Istruzione 3" loading="lazy"></div>
+        <div class="slide"><img src="/img/istruzione4.jpg" alt="Istruzione 4" loading="lazy"></div>
+        <div class="slide"><img src="/img/istruzione5.jpg" alt="Istruzione 5" loading="lazy"></div>
+        <div class="slide"><img src="/img/istruzione6.jpg" alt="Istruzione 6" loading="lazy"></div>
+        <div class="slide"><img src="/img/istruzione7.jpg" alt="Istruzione 7" loading="lazy"></div>
+      </div>
+
+      <!-- frecce -->
+      <div class="arrow left" id="prev" aria-label="Precedente">‹</div>
+      <div class="arrow right" id="next" aria-label="Successiva">›</div>
+
+      <!-- pallini -->
+      <div class="dots" id="dots" aria-label="Indicatori carosello"></div>
+    </div>
+  </div>
+
+  <!-- BLOCCO TESTO -->
+  <div class="container">
+    <div class="card">
+      <h2>Il mio percorso</h2>
+      <p>
+        Qui puoi scrivere il tuo percorso (liceo, triennale, magistrale, corsi, esami preferiti, tesi, attività extra…).
+        Aggiungi anche link a PDF, presentazioni o progetti se vuoi.
+      </p>
+      <p>
+        Suggerimento: usa paragrafi brevi e inizia con una sintesi chiara. Se vuoi, posso impaginare io il testo che mi mandi.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Carosello semplice: autoplay + frecce + pallini + swipe mobile
+    (function(){
+      const track = document.getElementById('track');
+      const slides = Array.from(track.children);
+      const prev = document.getElementById('prev');
+      const next = document.getElementById('next');
+      const dotsWrap = document.getElementById('dots');
+      const total = slides.length;
+      let index = 0;
+      let timer = null;
+
+      // crea dots (1 per slide)
+      slides.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'dot' + (i===0 ? ' active':'');
+        b.setAttribute('aria-label', 'Vai alla slide ' + (i+1));
+        b.addEventListener('click', () => go(i, true));
+        dotsWrap.appendChild(b);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      function update(){
+        track.style.transform = `translateX(-${index*100}%)`;
+        dots.forEach((d,i)=>d.classList.toggle('active', i===index));
+      }
+      function go(i, user=false){
+        index = (i + total) % total;
+        update();
+        if(user) restart();
+      }
+      function nextSlide(){ go(index+1); }
+      function prevSlide(){ go(index-1, true); }
+
+      next.addEventListener('click', () => go(index+1, true));
+      prev.addEventListener('click', () => go(index-1, true));
+
+      // autoplay
+      function start(){ timer = setInterval(nextSlide, 4000); }
+      function stop(){ clearInterval(timer); timer = null; }
+      function restart(){ stop(); start(); }
+      start();
+
+      // pausa su hover (desktop)
+      const carousel = document.getElementById('carousel');
+      carousel.addEventListener('mouseenter', stop);
+      carousel.addEventListener('mouseleave', start);
+
+      // swipe (mobile)
+      let sx = null;
+      carousel.addEventListener('touchstart', (e)=>{ sx = e.touches[0].clientX; }, {passive:true});
+      carousel.addEventListener('touchmove', ()=>{}, {passive:true});
+      carousel.addEventListener('touchend', (e)=>{
+        if(sx===null) return;
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 40){ dx<0 ? nextSlide() : prevSlide(); restart(); }
+        sx = null;
+      });
+    })();
+  </script>
+</body>
+</html>
 
