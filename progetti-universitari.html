@@ -1,1 +1,363 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progetti universitari — Chiara Beretta</title>
+  <meta name="description" content="Selezione di progetti universitari: analisi, ML, strategia, report e presentazioni (IULM).">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --muted:#475569;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:13pt; line-height:1.4;
+    }
+
+    /* NAVBAR */
+    .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
+    .menu a:hover{background:#fff; border:1px solid var(--border)}
+
+    /* LAYOUT */
+    .container{max-width:1100px; margin:0 auto; padding:24px 16px}
+    h1{margin:18px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
+    .lead{max-width:70ch; margin:8px auto 18px; text-align:center; color:var(--muted)}
+    .index{
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); padding:16px;
+    }
+    .index h2{margin:0 0 8px; color:var(--accent); font-size:20px}
+    .index .cols{display:grid; gap:12px; grid-template-columns:1fr 1fr}
+    .index a{color:var(--accent); text-decoration:none}
+    .index a:hover{text-decoration:underline}
+
+    /* Blocchi testo */
+    .card{
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
+    }
+    .card h3{margin:2px 0 8px; font-size:20px}
+    .muted{color:var(--muted)}
+    .section{margin:28px 0}
+    .anchor{scroll-margin-top:88px}
+
+    /* Viewer PDF singolo (grande, tutta larghezza) */
+    .pdf-solo{
+      margin-top:12px;
+      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
+      height:70vh; min-height:520px;
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+    }
+    .pdf-solo iframe{width:100%; height:100%; border:0; background:#000}
+
+    /* Viewer due colonne (slide + report) */
+    .pdf-duo{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:12px}
+    .pdf-box{
+      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
+      height:70vh; min-height:520px; box-shadow:0 12px 28px rgba(0,0,0,.06);
+    }
+    .pdf-box iframe{width:100%; height:100%; border:0; background:#000}
+
+    /* “Modulo verde + arancione” (struttura statica) */
+    .split-static{display:grid; grid-template-columns:1fr 1fr; gap:14px}
+    .split-left{
+      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
+      height:70vh; min-height:520px; box-shadow:0 12px 28px rgba(0,0,0,.06);
+    }
+    .split-left iframe{width:100%; height:100%; border:0; background:#000}
+    .split-right{
+      background:#fff; border:1px solid var(--border); border-radius:14px;
+      box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
+    }
+
+    /* Divider titoli sezione (MAGISTRALE / TRIENNALE) */
+    .divider{
+      margin:34px 0 8px; text-align:center; font-size:28px; font-weight:800; color:var(--accent);
+    }
+
+    @media (max-width: 900px){
+      .index .cols{grid-template-columns:1fr}
+      .split-static{grid-template-columns:1fr}
+      .pdf-duo{grid-template-columns:1fr}
+      .pdf-solo,.pdf-box{height:56vh; min-height:420px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1>Progetti universitari</h1>
+    <p class="lead">Qui trovi una selezione dei progetti di cui sono più fiera. Alcuni sono più analitici, altri più creativi — tutti con un impatto concreto.</p>
+
+    <!-- INDICE -->
+    <section class="index section">
+      <h2>Indice</h2>
+      <div class="cols">
+        <div>
+          <strong>MAGISTRALE</strong>
+          <ul>
+            <li><a href="#prob-stat">Probabilità e statistica (JMP) — mozzarelle</a></li>
+            <li><a href="#ai-marketing">AI & Machine Learning per il marketing — clustering</a></li>
+            <li><a href="#lumina">Laboratorio romano — Lumina cloud-commerce</a></li>
+            <li><a href="#callmewine">Strategic Mgmt & Digital Tech — Callmewine</a></li>
+            <li><a href="#stereotipi">Big Data Society — stereotipi & IA</a></li>
+            <li><a href="#datamining">Data Mining & Text Analytics (in corso)</a></li>
+            <li><a href="#marketingauto">Marketing automation (in corso)</a></li>
+          </ul>
+        </div>
+        <div>
+          <strong>TRIENNALE</strong>
+          <ul>
+            <li><a href="#marketing">Marketing — Rebranding marketing plan</a></li>
+            <li><a href="#creativita">Creatività e progettazione — Prodotto AI</a></li>
+            <li><a href="#graphic">Graphic design — Mostra “Sansone e Dalila”</a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== MAGISTRALE ===== -->
+    <div class="divider">MAGISTRALE</div>
+
+    <!-- Probabilità & statistica — struttura statica verde+arancione -->
+    <section id="prob-stat" class="section anchor">
+      <div class="split-static">
+        <!-- Verde = PDF -->
+        <div class="split-left">
+          <iframe
+            class="pdf-auto"
+            src="/docs/progetto-pettinicchio.pdf#page=1"
+            data-total="30"
+            data-interval="4500"
+            title="Analisi statistica (mozzarelle) — PDF">
+          </iframe>
+        </div>
+        <!-- Arancione (qui bianco) = testo -->
+        <div class="split-right">
+          <h3>Probabilità e statistica per il marketing — Analisi mozzarelle (JMP)</h3>
+          <p class="muted">
+            Studio statistico esplorativo e inferenziale su dataset del mercato delle mozzarelle:
+            pulizia dati, descrittive, test di ipotesi, ANOVA e regressioni in <strong>JMP</strong>.
+          </p>
+          <a href="#prob-stat" class="muted" style="color:var(--accent)">vai all’inizio della sezione</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI & ML — testo full width + PDF grande sotto -->
+    <section id="ai-marketing" class="section anchor">
+      <div class="card">
+        <h3>AI & Machine Learning per il marketing — Clustering su dati sintetici</h3>
+        <p class="muted">Progettazione e valutazione di segmentazione con tecniche di clustering; metodi e metriche per confrontare i modelli.</p>
+        <a href="#ai-marketing" class="muted" style="color:var(--accent)">vai all’inizio della sezione</a>
+      </div>
+      <div class="pdf-solo">
+        <iframe
+          class="pdf-auto"
+          src="/docs/progetto-ai-marketing.pdf#page=1"
+          data-total="40"
+          data-interval="4500"
+          title="AI & Marketing — PDF">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- Lumina — testo + due viewer (slide + report) -->
+    <section id="lumina" class="section anchor">
+      <div class="card">
+        <h3>Laboratorio romano — Lumina cloud-commerce</h3>
+        <p class="muted">Trasformazione di una PMI in architettura cloud: analisi processi, target architecture, roadmap.</p>
+        <a href="#lumina" class="muted" style="color:var(--accent)">vai all’inizio della sezione</a>
+      </div>
+      <div class="pdf-duo">
+        <div class="pdf-box">
+          <iframe
+            class="pdf-auto"
+            src="/docs/progetto-lumina-slide.pdf#page=1"
+            data-total="60"
+            data-interval="4500"
+            title="Lumina — Slide">
+          </iframe>
+        </div>
+        <div class="pdf-box">
+          <iframe
+            class="pdf-auto"
+            src="/docs/progetto-lumina-lab.pdf#page=1"
+            data-total="25"
+            data-interval="4500"
+            title="Lumina — Report">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Callmewine — testo + due viewer -->
+    <section id="callmewine" class="section anchor">
+      <div class="card">
+        <h3>Strategic Management & Digital Technology — Callmewine</h3>
+        <p class="muted">Analisi strategica e proposte di crescita per l’e-commerce del vino: benchmarking, mosse competitive, roadmap digitale.</p>
+        <a href="#callmewine" class="muted" style="color:var(--accent)">vai all’inizio della sezione</a>
+      </div>
+      <div class="pdf-duo">
+        <div class="pdf-box">
+          <iframe
+            class="pdf-auto"
+            src="/docs/progetto-callmewine-presentation.pdf#page=1"
+            data-total="35"
+            data-interval="4500"
+            title="Callmewine — Presentazione">
+          </iframe>
+        </div>
+        <div class="pdf-box">
+          <iframe
+            class="pdf-auto"
+            src="/docs/progetto-callmewine.pdf#page=1"
+            data-total="18"
+            data-interval="4500"
+            title="Callmewine — Report">
+          </iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stereotipi & IA — testo + PDF grande sotto -->
+    <section id="stereotipi" class="section anchor">
+      <div class="card">
+        <h3>Scenari socio-culturali — Stereotipi & Intelligenza Artificiale</h3>
+        <p class="muted">Come i modelli generativi riflettono (o correggono) bias e pregiudizi: quadro teorico, esperimenti e discussione.</p>
+        <a href="#stereotipi" class="muted" style="color:var(--accent)">vai all’inizio della sezione</a>
+      </div>
+      <div class="pdf-solo">
+        <iframe
+          class="pdf-auto"
+          src="/docs/progetto-stereotipi-ai.pdf#page=1"
+          data-total="28"
+          data-interval="4500"
+          title="Stereotipi & IA — PDF">
+        </iframe>
+      </div>
+    </section>
+
+    <!-- In corso: solo blocchi testo -->
+    <section id="datamining" class="section anchor">
+      <div class="card">
+        <h3>Data Mining & Text Analytics (in svolgimento)</h3>
+        <p class="muted">Applicazione di tecniche di data mining a un problema di marketing. (Sezione che si allungherà quando aggiungerai i contenuti.)</p>
+      </div>
+    </section>
+
+    <section id="marketingauto" class="section anchor">
+      <div class="card">
+        <h3>Marketing automation, platform & analytics (in svolgimento)</h3>
+        <p class="muted">Strategia di marketing automation per Eversport. (Sezione espandibile con piano, journey e misure.)</p>
+      </div>
+    </section>
+
+    <!-- ===== TRIENNALE ===== -->
+    <div class="divider">TRIENNALE</div>
+
+    <section id="marketing" class="section anchor">
+      <div class="card">
+        <h3>Marketing — Rebranding marketing plan</h3>
+        <p class="muted">Obiettivi, posizionamento e piano operativo con metriche. (Blocco testo che si allunga in base al contenuto.)</p>
+      </div>
+      <div class="pdf-solo">
+        <iframe
+          class="pdf-auto"
+          src="/docs/progetto-nonhocapitoilgioco.pdf#page=1"
+          data-total="24"
+          data-interval="4500"
+          title="Rebranding — PDF">
+        </iframe>
+      </div>
+    </section>
+
+    <section id="creativita" class="section anchor">
+      <div class="card">
+        <h3>Creatività e progettazione — Prodotto AI</h3>
+        <p class="muted">Concept e prototipo. (Blocco testo espandibile.)</p>
+      </div>
+    </section>
+
+    <section id="graphic" class="section anchor">
+      <div class="card">
+        <h3>Graphic design — Mostra “Sansone e Dalila”</h3>
+        <p class="muted">Progetto di valorizzazione dell’opera di Artemisia Gentileschi: identità visiva, layout espositivo, materiali.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* ====== AUTOPAGER PDF ======
+       - Parte SOLO quando il viewer entra in viewport (IntersectionObserver)
+       - Cambia pagina ogni data-interval ms
+       - Usa l'attributo data-total per ciclare
+       - Funziona con PDF locali (/docs/...) e con Google Drive /preview
+    */
+    const viewers = Array.from(document.querySelectorAll('.pdf-auto')).map(ifr => ({
+      el: ifr,
+      base: ifr.src.split('#')[0],
+      cur: parseInt((ifr.src.split('#page=')[1]||'1'), 10) || 1,
+      total: parseInt(ifr.dataset.total || '20', 10),
+      interval: parseInt(ifr.dataset.interval || '4500', 10),
+      timer: null
+    }));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const v = viewers.find(o => o.el === entry.target);
+        if(!v) return;
+        if(entry.isIntersecting){
+          // avvia autoplay se non già attivo
+          if(!v.timer){
+            v.timer = setInterval(() => {
+              v.cur = (v.cur % v.total) + 1;
+              v.el.src = v.base + '#page=' + v.cur;
+            }, v.interval);
+          }
+        }else{
+          // pausa autoplay fuori viewport
+          if(v.timer){ clearInterval(v.timer); v.timer = null; }
+        }
+      });
+    }, {threshold: .35});
+
+    viewers.forEach(v => io.observe(v.el));
+  </script>
+</body>
+</html>
 
