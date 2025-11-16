@@ -19,9 +19,8 @@
       --border:rgba(15,23,42,.12);
       --radius:18px;
 
-      /* Altezze dei riquadri PDF */
-      --pdfTall: 760px;  /* riquadro "alto" (come quello di JMP) */
-      --pdfWide: 680px;  /* riquadro "largo" (come il giallo) */
+      /* Altezze dei riquadri PDF - AUMENTATE per essere grandi come il viola */
+      --pdfTall: 900px;  /* riquadro "alto" più grande */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -53,11 +52,11 @@
       text-align:center;
     }
 
-    /* INTRODUZIONE (sotto il titolo) */
+    /* INTRODUZIONE (sotto il titolo - ALLINEATA A SINISTRA) */
     .intro-text{
-      text-align:center;
+      text-align:left;
       color:#465a6c;
-      max-width:800px;
+      max-width:1100px;
       margin:0 auto 24px;
       font-size:15px;
       line-height:1.6;
@@ -117,34 +116,30 @@
     }
     .muted{color:#465a6c}
 
-    /* ===== LAYOUT "STATICO": testo a sinistra + PDF alto a destra ===== */
+    /* ===== LAYOUT "STATICO": testo a sinistra + PDF GRANDE a destra ===== */
     .split{
-      display:grid; gap:18px; grid-template-columns:1.2fr .8fr; align-items:stretch;
+      display:grid; gap:18px; grid-template-columns:1fr 1fr; /* 50/50 per dare più spazio al PDF */
+      align-items:stretch;
       margin-bottom:48px; /* SEPARAZIONE 2cm tra progetti */
     }
     .pdf-view{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      height:var(--pdfTall);
+      height:var(--pdfTall);  /* Grande come il viola */
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
     .pdf-view iframe{width:100%; height:100%; border:0; background:#000}
 
-    /* ===== BLOCCO PDF LARGO (solo presentazione) ===== */
-    .pdf-wide{
-      margin-top:10px;
-      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      height:var(--pdfWide);
-      box-shadow:0 12px 28px rgba(0,0,0,.06);
-      margin-bottom:48px; /* SEPARAZIONE tra progetti */
+    /* Card nel layout split - si adatta all'altezza del PDF */
+    .split .card{
+      min-height:var(--pdfTall);  /* Altezza minima uguale al PDF */
     }
-    .pdf-wide iframe{width:100%; height:100%; border:0; background:#000}
 
-    /* ===== CONTAINER TRASPARENTE PER SLIDE ORIZZONTALI ===== */
+    /* ===== CONTAINER TRASPARENTE PER SLIDE ORIZZONTALI (SENZA BORDO SOPRA) ===== */
     .slides-container{
       background:transparent;
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:40px;
+      border:none;  /* TOLTO IL BORDO */
+      border-radius:0;
+      padding:40px 0;  /* Solo padding verticale */
       margin-top:10px;
       margin-bottom:48px; /* SEPARAZIONE tra progetti */
       display:flex;
@@ -174,8 +169,8 @@
     @media (max-width: 960px){
       .split{grid-template-columns:1fr}
       .pdf-view{height:520px}
-      .pdf-wide{height:520px}
-      .slides-container{padding:20px}
+      .split .card{min-height:auto}
+      .slides-container{padding:20px 0}
       .slides-inner{width:100%; height:480px}
     }
   </style>
@@ -201,7 +196,7 @@
     <!-- TITOLO PAGINA (identico a "Istruzione") -->
     <h1 class="page-title">Progetti universitari</h1>
 
-    <!-- INTRODUZIONE -->
+    <!-- INTRODUZIONE (ALLINEATA A SINISTRA) -->
     <p class="intro-text">
       Selezione di progetti universitari (magistrale e triennale) con presentazioni e report visualizzabili direttamente.
     </p>
@@ -238,7 +233,7 @@
     <!-- ===================== MAGISTRALE ===================== -->
     <h2 id="magistrale" class="section-title">MAGISTRALE</h2>
 
-    <!-- 1. Probabilità & Statistica — layout statico -->
+    <!-- 1. Probabilità & Statistica — layout statico con PDF GRANDE -->
     <section id="mag-1" class="split" aria-label="Probabilità & Statistica">
       <article class="card">
         <h3 class="p-title">1. Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</h3>
@@ -252,7 +247,7 @@
       </aside>
     </section>
 
-    <!-- 2. AI & ML — SOLO PRESENTAZIONE con link centrato -->
+    <!-- 2. AI & ML — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
     <section id="mag-2" aria-label="AI & ML per il marketing">
       <article class="card">
         <h3 class="p-title">2. AI & Machine Learning per il marketing — clustering su dati sintetici</h3>
@@ -265,12 +260,16 @@
           <a href="#" style="color:var(--accent); font-weight:700">aggiungi qui</a>
         </p>
       </article>
-      <div class="pdf-wide" aria-label="Presentazione clustering (preview)">
-        <iframe src="https://drive.google.com/file/d/1ROBheavW_Da8owxdqkW80559ZfxSEwtI/preview#page=1" allow="autoplay"></iframe>
+      
+      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
+      <div class="slides-container" aria-label="Slide clustering">
+        <div class="slides-inner">
+          <iframe src="https://drive.google.com/file/d/1ROBheavW_Da8owxdqkW80559ZfxSEwtI/preview#page=1" allow="autoplay"></iframe>
+        </div>
       </div>
     </section>
 
-    <!-- 3. Laboratorio romano — layout statico + SOTTO slide orizzontali in container trasparente -->
+    <!-- 3. Laboratorio romano — layout statico con PDF GRANDE + SOTTO slide orizzontali -->
     <section id="mag-3" class="split" aria-label="Laboratorio romano — Lumina cloud-commerce">
       <article class="card">
         <h3 class="p-title">3. Laboratorio romano — Lumina cloud-commerce</h3>
@@ -284,14 +283,14 @@
       </aside>
     </section>
     
-    <!-- Container trasparente con slide ridotta dentro -->
+    <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
     <section class="slides-container" aria-label="Slide Lumina">
       <div class="slides-inner">
         <iframe src="https://drive.google.com/file/d/1B_BYrqCr9HDIabZ7j-3c6O_i2ioPutts/preview#page=1" allow="autoplay"></iframe>
       </div>
     </section>
 
-    <!-- 4. Strategic Mgmt — layout statico + SOTTO slide orizzontali in container trasparente -->
+    <!-- 4. Strategic Mgmt — layout statico con PDF GRANDE + SOTTO slide orizzontali -->
     <section id="mag-4" class="split" aria-label="Strategic Management — Callmewine">
       <article class="card">
         <h3 class="p-title">4. Strategic Management & Digital Technology — analisi Callmewine e strategie di crescita</h3>
@@ -305,14 +304,14 @@
       </aside>
     </section>
     
-    <!-- Container trasparente con slide ridotta dentro -->
+    <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
     <section class="slides-container" aria-label="Slide Callmewine">
       <div class="slides-inner">
         <iframe src="https://drive.google.com/file/d/1B0t5Sk2MvM2vP3TRR_yTonwLLaPRIFfr/preview#page=1" allow="autoplay"></iframe>
       </div>
     </section>
 
-    <!-- 5. Scenari Big Data Society — SOLO PRESENTAZIONE -->
+    <!-- 5. Scenari Big Data Society — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
     <section id="mag-5" aria-label="Stereotipi & AI">
       <article class="card">
         <h3 class="p-title">5. Scenari socio-culturali della Big Data Society — stereotipi & intelligenza artificiale</h3>
@@ -321,8 +320,12 @@
           esempi, rischi, mitigazioni e spunti etici.
         </p>
       </article>
-      <div class="pdf-wide" aria-label="Presentazione stereotipi & AI (preview)">
-        <iframe src="https://drive.google.com/file/d/18sAdH-JggvzZKwhVNkkXF7-iWiCX_AEH/preview#page=1" allow="autoplay"></iframe>
+      
+      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
+      <div class="slides-container" aria-label="Slide stereotipi & AI">
+        <div class="slides-inner">
+          <iframe src="https://drive.google.com/file/d/18sAdH-JggvzZKwhVNkkXF7-iWiCX_AEH/preview#page=1" allow="autoplay"></iframe>
+        </div>
       </div>
     </section>
 
@@ -343,14 +346,18 @@
     <!-- ===================== TRIENNALE ===================== -->
     <h2 id="triennale" class="section-title">TRIENNALE</h2>
 
-    <!-- 1. Marketing — SOLO PRESENTAZIONE -->
+    <!-- 1. Marketing — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
     <section id="tri-1" aria-label="Rebranding marketing plan">
       <article class="card">
         <h3 class="p-title">1. Marketing — Rebranding marketing plan</h3>
         <p class="muted">Sintesi del progetto e dei principali deliverable.</p>
       </article>
-      <div class="pdf-wide" aria-label="Presentazione progetto marketing (preview)">
-        <iframe src="https://drive.google.com/file/d/1b5welVWVvbCkjKMqtH30qw09b3nq3TOz/preview#page=1" allow="autoplay"></iframe>
+      
+      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
+      <div class="slides-container" aria-label="Slide progetto marketing">
+        <div class="slides-inner">
+          <iframe src="https://drive.google.com/file/d/1b5welVWVvbCkjKMqtH30qw09b3nq3TOz/preview#page=1" allow="autoplay"></iframe>
+        </div>
       </div>
     </section>
 
