@@ -237,6 +237,16 @@
     ];
     createCarousel('carousel-younique', sourcesYounique);
 
+    /* ===== CAROSELLO TUMORI (4 immagini + 1 video) ===== */
+    const sourcesTumori = [
+      {type: 'image', src: '/img/tumori1.jpg'},
+      {type: 'image', src: '/img/tumori2.jpg'},
+      {type: 'image', src: '/img/tumori3.jpg'},
+      {type: 'image', src: '/img/tumori4.jpg'},
+      {type: 'video', src: '/video/tumori.mp4'}
+    ];
+    createCarouselWithVideo('carousel-tumori', sourcesTumori);
+
     /* ===== FUNZIONE CAROSELLO STANDARD ===== */
     function createCarousel(containerId, sources) {
       const N = sources.length;
