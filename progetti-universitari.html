@@ -18,9 +18,6 @@
       --text:#0f172a;
       --border:rgba(15,23,42,.12);
       --radius:18px;
-
-      /* Altezze dei riquadri PDF - AUMENTATE per essere grandi come il viola */
-      --pdfTall: 900px;  /* riquadro "alto" più grande */
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
@@ -96,7 +93,7 @@
       margin:52px 0 32px; 
       text-align:center;
       color:var(--accent);
-      font-size:clamp(20px,4vw,24px);  /* PIÙ PICCOLO dell'indice */
+      font-size:clamp(20px,4vw,24px);
       font-weight:800;
       letter-spacing:.02em;
       text-transform:uppercase;
@@ -114,34 +111,36 @@
       margin:2px 0 10px; color:var(--accent);
       font-weight:800; font-size:22px;
     }
+    .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
     .muted{color:#465a6c}
 
-    /* ===== LAYOUT "STATICO": testo a sinistra + PDF GRANDE a destra ===== */
+    /* ===== LAYOUT "STATICO ISTRUZIONE": stesse dimensioni della pagina Istruzione ===== */
     .split{
-      display:grid; gap:18px; grid-template-columns:1fr 1fr; /* 50/50 per dare più spazio al PDF */
-      align-items:stretch;
-      margin-bottom:48px; /* SEPARAZIONE 2cm tra progetti */
+      display:grid; gap:18px; grid-template-columns:1.2fr .8fr; align-items:stretch;
+      margin-bottom:48px;
     }
-    .pdf-view{
+    /* 🔸 ALTEZZA FISSA come il riquadro della pagina Istruzione */
+    .split .card,
+    .split .thesis { 
+      height:560px;  /* IDENTICO alla pagina Istruzione */
+    }
+
+    /* Tesi/PDF preview - identico a pagina Istruzione */
+    .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      height:var(--pdfTall);  /* Grande come il viola */
+      display:flex; align-items:stretch;
       box-shadow:0 12px 28px rgba(0,0,0,.06);
     }
-    .pdf-view iframe{width:100%; height:100%; border:0; background:#000}
-
-    /* Card nel layout split - si adatta all'altezza del PDF */
-    .split .card{
-      min-height:var(--pdfTall);  /* Altezza minima uguale al PDF */
-    }
+    .thesis iframe{width:100%; height:100%; border:0; background:#000}
 
     /* ===== CONTAINER TRASPARENTE PER SLIDE ORIZZONTALI (SENZA BORDO SOPRA) ===== */
     .slides-container{
       background:transparent;
-      border:none;  /* TOLTO IL BORDO */
+      border:none;
       border-radius:0;
-      padding:40px 0;  /* Solo padding verticale */
+      padding:40px 0;
       margin-top:10px;
-      margin-bottom:48px; /* SEPARAZIONE tra progetti */
+      margin-bottom:48px;
       display:flex;
       justify-content:center;
       align-items:center;
@@ -163,13 +162,14 @@
 
     /* Sezione card semplice con margine */
     .simple-section{
-      margin-bottom:48px; /* SEPARAZIONE tra progetti */
+      margin-bottom:48px;
     }
 
-    @media (max-width: 960px){
+    @media (max-width: 900px){
       .split{grid-template-columns:1fr}
-      .pdf-view{height:520px}
-      .split .card{min-height:auto}
+      .split .card,
+      .split .thesis { height:auto; }
+      .thesis iframe{height:420px}
       .slides-container{padding:20px 0}
       .slides-inner{width:100%; height:480px}
     }
@@ -233,21 +233,21 @@
     <!-- ===================== MAGISTRALE ===================== -->
     <h2 id="magistrale" class="section-title">MAGISTRALE</h2>
 
-    <!-- 1. Probabilità & Statistica — layout statico con PDF GRANDE -->
+    <!-- 1. Probabilità & Statistica — DIMENSIONI IDENTICHE A ISTRUZIONE -->
     <section id="mag-1" class="split" aria-label="Probabilità & Statistica">
       <article class="card">
-        <h3 class="p-title">1. Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</h3>
+        <div class="block-title">1. Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</div>
         <p class="muted">
           Sintesi del lavoro: pulizia dati, esplorazione, modelli e insight azionabili per il marketing.
           Indicatori chiave, test e risultati spiegati in modo chiaro.
         </p>
       </article>
-      <aside class="pdf-view" aria-label="Report JMP (preview)">
+      <aside class="thesis" aria-label="Report JMP (preview)">
         <iframe src="https://drive.google.com/file/d/1LWuMa8b5omSFbUI8d1FXgKMK-IEWVxHb/preview#page=1" allow="autoplay"></iframe>
       </aside>
     </section>
 
-    <!-- 2. AI & ML — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
+    <!-- 2. AI & ML — SLIDE IN CONTAINER TRASPARENTE -->
     <section id="mag-2" aria-label="AI & ML per il marketing">
       <article class="card">
         <h3 class="p-title">2. AI & Machine Learning per il marketing — clustering su dati sintetici</h3>
@@ -261,7 +261,6 @@
         </p>
       </article>
       
-      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
       <div class="slides-container" aria-label="Slide clustering">
         <div class="slides-inner">
           <iframe src="https://drive.google.com/file/d/1ROBheavW_Da8owxdqkW80559ZfxSEwtI/preview#page=1" allow="autoplay"></iframe>
@@ -269,49 +268,47 @@
       </div>
     </section>
 
-    <!-- 3. Laboratorio romano — layout statico con PDF GRANDE + SOTTO slide orizzontali -->
+    <!-- 3. Laboratorio romano — DIMENSIONI IDENTICHE A ISTRUZIONE + SOTTO slide -->
     <section id="mag-3" class="split" aria-label="Laboratorio romano — Lumina cloud-commerce">
       <article class="card">
-        <h3 class="p-title">3. Laboratorio romano — Lumina cloud-commerce</h3>
+        <div class="block-title">3. Laboratorio romano — Lumina cloud-commerce</div>
         <p class="muted">
           Trasformazione di una PMI tradizionale in un'architettura cloud:
           analisi del contesto, obiettivi, scelte tecnologiche e impatti sul business.
         </p>
       </article>
-      <aside class="pdf-view" aria-label="Report tecnico (preview)">
+      <aside class="thesis" aria-label="Report tecnico (preview)">
         <iframe src="https://drive.google.com/file/d/1fRwPUAbZI-QNeRweDsDXywhoiZpw3vqF/preview#page=1" allow="autoplay"></iframe>
       </aside>
     </section>
     
-    <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
     <section class="slides-container" aria-label="Slide Lumina">
       <div class="slides-inner">
         <iframe src="https://drive.google.com/file/d/1B_BYrqCr9HDIabZ7j-3c6O_i2ioPutts/preview#page=1" allow="autoplay"></iframe>
       </div>
     </section>
 
-    <!-- 4. Strategic Mgmt — layout statico con PDF GRANDE + SOTTO slide orizzontali -->
+    <!-- 4. Strategic Mgmt — DIMENSIONI IDENTICHE A ISTRUZIONE + SOTTO slide -->
     <section id="mag-4" class="split" aria-label="Strategic Management — Callmewine">
       <article class="card">
-        <h3 class="p-title">4. Strategic Management & Digital Technology — analisi Callmewine e strategie di crescita</h3>
+        <div class="block-title">4. Strategic Management & Digital Technology — analisi Callmewine e strategie di crescita</div>
         <p class="muted">
           Studio del posizionamento competitivo, analisi strategica e proposte di crescita
           basate su leve digitali, partnership e ottimizzazione di canale.
         </p>
       </article>
-      <aside class="pdf-view" aria-label="Report Callmewine (preview)">
+      <aside class="thesis" aria-label="Report Callmewine (preview)">
         <iframe src="https://drive.google.com/file/d/1oU0F1GsUgtk4BZEh0P0lUwODPBe4BMrB/preview#page=1" allow="autoplay"></iframe>
       </aside>
     </section>
     
-    <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
     <section class="slides-container" aria-label="Slide Callmewine">
       <div class="slides-inner">
         <iframe src="https://drive.google.com/file/d/1B0t5Sk2MvM2vP3TRR_yTonwLLaPRIFfr/preview#page=1" allow="autoplay"></iframe>
       </div>
     </section>
 
-    <!-- 5. Scenari Big Data Society — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
+    <!-- 5. Scenari Big Data Society — SLIDE IN CONTAINER TRASPARENTE -->
     <section id="mag-5" aria-label="Stereotipi & AI">
       <article class="card">
         <h3 class="p-title">5. Scenari socio-culturali della Big Data Society — stereotipi & intelligenza artificiale</h3>
@@ -321,7 +318,6 @@
         </p>
       </article>
       
-      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
       <div class="slides-container" aria-label="Slide stereotipi & AI">
         <div class="slides-inner">
           <iframe src="https://drive.google.com/file/d/18sAdH-JggvzZKwhVNkkXF7-iWiCX_AEH/preview#page=1" allow="autoplay"></iframe>
@@ -346,14 +342,13 @@
     <!-- ===================== TRIENNALE ===================== -->
     <h2 id="triennale" class="section-title">TRIENNALE</h2>
 
-    <!-- 1. Marketing — SLIDE IN CONTAINER TRASPARENTE (come Lumina) -->
+    <!-- 1. Marketing — SLIDE IN CONTAINER TRASPARENTE -->
     <section id="tri-1" aria-label="Rebranding marketing plan">
       <article class="card">
         <h3 class="p-title">1. Marketing — Rebranding marketing plan</h3>
         <p class="muted">Sintesi del progetto e dei principali deliverable.</p>
       </article>
       
-      <!-- Container trasparente con slide ridotta dentro (SENZA BORDO SOPRA) -->
       <div class="slides-container" aria-label="Slide progetto marketing">
         <div class="slides-inner">
           <iframe src="https://drive.google.com/file/d/1b5welVWVvbCkjKMqtH30qw09b3nq3TOz/preview#page=1" allow="autoplay"></iframe>
