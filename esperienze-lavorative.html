@@ -119,15 +119,6 @@
     .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
     .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
 
-    /* ===== IMMAGINE SINGOLA ===== */
-    .single-image{
-      width:100%;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      box-shadow:0 12px 28px rgba(0,0,0,.06);
-      margin-bottom:48px;
-    }
-
     @media (max-width: 900px){
       .carousel{height:46vh}
       .photo.left,.photo.right{display:none}
@@ -177,9 +168,6 @@
         Descrivi qui l'esperienza di ottimizzazione SEO. Questo blocco si espande automaticamente in base al testo che inserisci.
       </p>
     </div>
-
-    <!-- IMMAGINE SINGOLA -->
-    <img src="/img/madonnina-resell.jpg" alt="Madonnina Resell" class="single-image">
 
     <!-- ===================== ESPERIENZA 2 ===================== -->
     <h2 id="exp-2" class="exp-title">cameriera presso "bestia milano"<br>(06/2022 - 08/2024)</h2>
@@ -237,16 +225,6 @@
     ];
     createCarousel('carousel-younique', sourcesYounique);
 
-    /* ===== CAROSELLO TUMORI (4 immagini + 1 video) ===== */
-    const sourcesTumori = [
-      {type: 'image', src: '/img/tumori1.jpg'},
-      {type: 'image', src: '/img/tumori2.jpg'},
-      {type: 'image', src: '/img/tumori3.jpg'},
-      {type: 'image', src: '/img/tumori4.jpg'},
-      {type: 'video', src: '/video/tumori.mp4'}
-    ];
-    createCarouselWithVideo('carousel-tumori', sourcesTumori);
-
     /* ===== FUNZIONE CAROSELLO STANDARD ===== */
     function createCarousel(containerId, sources) {
       const N = sources.length;
@@ -291,103 +269,6 @@
         setTimeout(() => { animating = false; }, 950);
       }
       setInterval(step, 4500);
-    }
-
-    /* ===== FUNZIONE CAROSELLO CON VIDEO (pausa più lunga sul video) ===== */
-    function createCarouselWithVideo(containerId, sources) {
-      const N = sources.length;
-      const stage = document.getElementById(containerId);
-
-      let elLeft = createMediaElement(sources[0]);
-      let elCenter = createMediaElement(sources[0]);
-      let elRight = createMediaElement(sources[0]);
-      elLeft.className = 'photo left';
-      elCenter.className = 'photo center';
-      elRight.className = 'photo right';
-      stage.append(elLeft, elCenter, elRight);
-
-      let idxCenter = 0;
-      function render() {
-        const idxLeft = (idxCenter - 1 + N) % N;
-        const idxRight = (idxCenter + 1) % N;
-        updateMediaElement(elLeft, sources[idxLeft]);
-        updateMediaElement(elCenter, sources[idxCenter]);
-        updateMediaElement(elRight, sources[idxRight]);
-      }
-      render();
-
-      let animating = false;
-      let currentInterval = 4500;
-
-      function step() {
-        if (animating) return;
-        animating = true;
-
-        const oldLeft = elLeft;
-        elLeft = elCenter;
-        elCenter = elRight;
-        elRight = oldLeft;
-
-        elLeft.className = 'photo left';
-        elCenter.className = 'photo center';
-        elRight.className = 'photo right';
-
-        idxCenter = (idxCenter + 1) % N;
-        const nextRight = (idxCenter + 1) % N;
-        updateMediaElement(elRight, sources[nextRight]);
-
-        // Se il centro è un video, pausa più lunga (8 secondi)
-        if (sources[idxCenter].type === 'video') {
-          currentInterval = 8000;
-        } else {
-          currentInterval = 4500;
-        }
-
-        setTimeout(() => { 
-          animating = false;
-          setTimeout(step, currentInterval);
-        }, 950);
-      }
-      setTimeout(step, currentInterval);
-    }
-
-    function createMediaElement(source) {
-      if (source.type === 'video') {
-        const video = document.createElement('video');
-        video.src = source.src;
-        video.autoplay = true;
-        video.loop = true;
-        video.muted = true;
-        video.playsInline = true;
-        return video;
-      } else {
-        return document.createElement('img');
-      }
-    }
-
-    function updateMediaElement(element, source) {
-      if (source.type === 'video') {
-        if (element.tagName !== 'VIDEO') {
-          const newVideo = createMediaElement(source);
-          newVideo.className = element.className;
-          element.replaceWith(newVideo);
-          return newVideo;
-        } else {
-          element.src = source.src;
-          return element;
-        }
-      } else {
-        if (element.tagName !== 'IMG') {
-          const newImg = document.createElement('img');
-          newImg.className = element.className;
-          newImg.src = source.src;
-          element.replaceWith(newImg);
-          return newImg;
-        } else {
-          element.src = source.src;
-          return element;
-        }
-      }
     }
   </script>
 </body>
