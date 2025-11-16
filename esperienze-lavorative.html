@@ -1,1 +1,384 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Esperienze lavorative — Chiara Beretta</title>
+  <meta name="description" content="Percorso professionale e esperienze lavorative nel settore marketing, ospitalità e comunicazione.">
 
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:13pt; line-height:1.4;
+    }
+
+    /* NAVBAR */
+    .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
+    .menu a:hover{background:#fff; border:1px solid var(--border)}
+
+    /* LAYOUT */
+    .container{max-width:1100px; margin:0 auto; padding:24px 16px}
+    .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
+
+    /* INTRODUZIONE (allineata a sinistra, trasparente) */
+    .intro-text{
+      text-align:left;
+      color:#465a6c;
+      max-width:1100px;
+      margin:0 auto 24px;
+      font-size:15px;
+      line-height:1.6;
+      background:transparent;
+    }
+
+    /* ===== INDICE (trasparente, NON numerato) ===== */
+    .index-wrap{
+      margin:10px 0 32px;
+      background:transparent;
+      border:none;
+      padding:8px 0;
+    }
+    .clean-ul{list-style:none; padding-left:0; margin:0}
+    .clean-ul li{margin:8px 0; padding-left:20px; position:relative}
+    .clean-ul li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      font-weight:800;
+      color:var(--accent);
+    }
+    .index-link{
+      text-decoration:none; color:#103a6b;
+    }
+    .index-link:hover{color:var(--accent)}
+
+    /* ===== TITOLO ESPERIENZA (minuscolo, come "MAGISTRALE") ===== */
+    .exp-title{
+      margin:52px 0 18px;
+      color:var(--accent);
+      font-size:clamp(20px,4vw,24px);
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:lowercase;
+    }
+
+    /* ===== CARD TESTO (espandibile) ===== */
+    .card{
+      background:#fff; 
+      border:1px solid var(--border); 
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); 
+      padding:18px;
+      margin-bottom:48px;
+      min-height:120px;
+    }
+    .muted{color:#465a6c; line-height:1.6}
+
+    /* ===== CAROSELLO (come in Istruzione - CON BORDI) ===== */
+    .carousel{
+      position:relative;
+      height:52vh;
+      min-height:320px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      overflow:hidden;
+      background:var(--bg);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      margin-bottom:48px;
+    }
+    .carousel .photo{
+      position:absolute; top:50%;
+      height:100%; width:auto;
+      object-fit:cover; object-position:center;
+      transform:translateY(-50%);
+      transition:all .9s ease;
+      will-change:left,right,transform,opacity,height,z-index;
+      border-radius:12px;
+    }
+    .photo.left  { left:6%;  right:auto; opacity:.1;  z-index:2; height:90%; }
+    .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
+    .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
+
+    /* ===== IMMAGINE SINGOLA ===== */
+    .single-image{
+      width:100%;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      margin-bottom:48px;
+    }
+
+    @media (max-width: 900px){
+      .carousel{height:46vh}
+      .photo.left,.photo.right{display:none}
+      .photo.center{height:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">Esperienze lavorative</h1>
+
+    <!-- INTRODUZIONE (trasparente, allineata a sx) -->
+    <p class="intro-text">
+      Qui puoi inserire un testo introduttivo sulle tue esperienze lavorative.
+    </p>
+
+    <!-- ===================== INDICE (NON numerato) ===================== -->
+    <section class="index-wrap" aria-label="Indice esperienze">
+      <ul class="clean-ul">
+        <li><a class="index-link" href="#exp-1">Ottimizzazione SEO del catalogo per madonnina resell (10/2025 - 11/2025)</a></li>
+        <li><a class="index-link" href="#exp-2">Cameriera presso "bestia milano" (06/2022 - 08/2024)</a></li>
+        <li><a class="index-link" href="#exp-3">Hostess presso YouNique Lugano</a></li>
+        <li><a class="index-link" href="#exp-4">Alternanza scuola lavoro istituto dei tumori (01/2020)</a></li>
+      </ul>
+    </section>
+
+    <!-- ===================== ESPERIENZA 1 ===================== -->
+    <h2 id="exp-1" class="exp-title">ottimizzazione seo del catalogo per madonnina resell<br>(10/2025 - 11/2025)</h2>
+    
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza di ottimizzazione SEO. Questo blocco si espande automaticamente in base al testo che inserisci.
+      </p>
+    </div>
+
+    <!-- IMMAGINE SINGOLA -->
+    <img src="/img/madonnina-resell.jpg" alt="Madonnina Resell" class="single-image">
+
+    <!-- ===================== ESPERIENZA 2 ===================== -->
+    <h2 id="exp-2" class="exp-title">cameriera presso "bestia milano"<br>(06/2022 - 08/2024)</h2>
+
+    <!-- CAROSELLO 5 FOTO -->
+    <section class="carousel" id="carousel-bestia" aria-label="Foto Bestia Milano"></section>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza da cameriera. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+    <!-- ===================== ESPERIENZA 3 ===================== -->
+    <h2 id="exp-3" class="exp-title">hostess presso younique lugano</h2>
+
+    <!-- CAROSELLO 5 FOTO CON BORDI -->
+    <section class="carousel" id="carousel-younique" aria-label="Foto YouNique Lugano"></section>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza come hostess a Lugano. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+    <!-- ===================== ESPERIENZA 4 ===================== -->
+    <h2 id="exp-4" class="exp-title">alternanza scuola lavoro istituto dei tumori<br>(01/2020)</h2>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza di alternanza scuola-lavoro. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+  </main>
+
+  <script>
+    /* ===== CAROSELLO BESTIA (5 immagini) ===== */
+    const sourcesBestia = [
+      '/img/bestia1.jpg',
+      '/img/bestia2.jpg',
+      '/img/bestia3.jpg',
+      '/img/bestia4.jpg',
+      '/img/bestia5.jpg'
+    ];
+    createCarousel('carousel-bestia', sourcesBestia);
+
+    /* ===== CAROSELLO YOUNIQUE (5 immagini) ===== */
+    const sourcesYounique = [
+      '/img/younique1.jpg',
+      '/img/younique2.jpg',
+      '/img/younique3.jpg',
+      '/img/younique4.jpg',
+      '/img/younique5.jpg'
+    ];
+    createCarousel('carousel-younique', sourcesYounique);
+
+    /* ===== FUNZIONE CAROSELLO STANDARD ===== */
+    function createCarousel(containerId, sources) {
+      const N = sources.length;
+      const stage = document.getElementById(containerId);
+
+      let elLeft = document.createElement('img');
+      let elCenter = document.createElement('img');
+      let elRight = document.createElement('img');
+      elLeft.className = 'photo left';
+      elCenter.className = 'photo center';
+      elRight.className = 'photo right';
+      stage.append(elLeft, elCenter, elRight);
+
+      let idxCenter = 0;
+      function render() {
+        const idxLeft = (idxCenter - 1 + N) % N;
+        const idxRight = (idxCenter + 1) % N;
+        elLeft.src = sources[idxLeft];
+        elCenter.src = sources[idxCenter];
+        elRight.src = sources[idxRight];
+      }
+      render();
+
+      let animating = false;
+      function step() {
+        if (animating) return;
+        animating = true;
+
+        const oldLeft = elLeft;
+        elLeft = elCenter;
+        elCenter = elRight;
+        elRight = oldLeft;
+
+        elLeft.className = 'photo left';
+        elCenter.className = 'photo center';
+        elRight.className = 'photo right';
+
+        idxCenter = (idxCenter + 1) % N;
+        const nextRight = (idxCenter + 1) % N;
+        elRight.src = sources[nextRight];
+
+        setTimeout(() => { animating = false; }, 950);
+      }
+      setInterval(step, 4500);
+    }
+
+    /* ===== FUNZIONE CAROSELLO CON VIDEO (pausa più lunga sul video) ===== */
+    function createCarouselWithVideo(containerId, sources) {
+      const N = sources.length;
+      const stage = document.getElementById(containerId);
+
+      let elLeft = createMediaElement(sources[0]);
+      let elCenter = createMediaElement(sources[0]);
+      let elRight = createMediaElement(sources[0]);
+      elLeft.className = 'photo left';
+      elCenter.className = 'photo center';
+      elRight.className = 'photo right';
+      stage.append(elLeft, elCenter, elRight);
+
+      let idxCenter = 0;
+      function render() {
+        const idxLeft = (idxCenter - 1 + N) % N;
+        const idxRight = (idxCenter + 1) % N;
+        updateMediaElement(elLeft, sources[idxLeft]);
+        updateMediaElement(elCenter, sources[idxCenter]);
+        updateMediaElement(elRight, sources[idxRight]);
+      }
+      render();
+
+      let animating = false;
+      let currentInterval = 4500;
+
+      function step() {
+        if (animating) return;
+        animating = true;
+
+        const oldLeft = elLeft;
+        elLeft = elCenter;
+        elCenter = elRight;
+        elRight = oldLeft;
+
+        elLeft.className = 'photo left';
+        elCenter.className = 'photo center';
+        elRight.className = 'photo right';
+
+        idxCenter = (idxCenter + 1) % N;
+        const nextRight = (idxCenter + 1) % N;
+        updateMediaElement(elRight, sources[nextRight]);
+
+        // Se il centro è un video, pausa più lunga (8 secondi)
+        if (sources[idxCenter].type === 'video') {
+          currentInterval = 8000;
+        } else {
+          currentInterval = 4500;
+        }
+
+        setTimeout(() => { 
+          animating = false;
+          setTimeout(step, currentInterval);
+        }, 950);
+      }
+      setTimeout(step, currentInterval);
+    }
+
+    function createMediaElement(source) {
+      if (source.type === 'video') {
+        const video = document.createElement('video');
+        video.src = source.src;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        return video;
+      } else {
+        return document.createElement('img');
+      }
+    }
+
+    function updateMediaElement(element, source) {
+      if (source.type === 'video') {
+        if (element.tagName !== 'VIDEO') {
+          const newVideo = createMediaElement(source);
+          newVideo.className = element.className;
+          element.replaceWith(newVideo);
+          return newVideo;
+        } else {
+          element.src = source.src;
+          return element;
+        }
+      } else {
+        if (element.tagName !== 'IMG') {
+          const newImg = document.createElement('img');
+          newImg.className = element.className;
+          newImg.src = source.src;
+          element.replaceWith(newImg);
+          return newImg;
+        } else {
+          element.src = source.src;
+          return element;
+        }
+      }
+    }
+  </script>
+</body>
+</html>
