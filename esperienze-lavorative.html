@@ -215,15 +215,15 @@
     ];
     createCarousel('carousel-bestia', sourcesBestia);
 
-    /* ===== CAROSELLO YOUNIQUE (5 immagini) ===== */
+    /* ===== CAROSELLO YOUNIQUE (4 immagini + 1 video) ===== */
     const sourcesYounique = [
-      '/img/younique1.jpg',
-      '/img/younique2.jpg',
-      '/img/younique3.jpg',
-      '/img/younique4.jpg',
-      '/img/younique5.jpg'
+      {type: 'image', src: '/img/younique1.jpg'},
+      {type: 'image', src: '/img/younique2.jpg'},
+      {type: 'image', src: '/img/younique3.jpg'},
+      {type: 'image', src: '/img/younique4.jpg'},
+      {type: 'video', src: '/video/younique5.mp4'}
     ];
-    createCarousel('carousel-younique', sourcesYounique);
+    createCarouselWithVideo('carousel-younique', sourcesYounique);
 
     /* ===== FUNZIONE CAROSELLO STANDARD ===== */
     function createCarousel(containerId, sources) {
@@ -269,6 +269,103 @@
         setTimeout(() => { animating = false; }, 950);
       }
       setInterval(step, 4500);
+    }
+
+    /* ===== FUNZIONE CAROSELLO CON VIDEO (pausa più lunga sul video) ===== */
+    function createCarouselWithVideo(containerId, sources) {
+      const N = sources.length;
+      const stage = document.getElementById(containerId);
+
+      let elLeft = createMediaElement(sources[0]);
+      let elCenter = createMediaElement(sources[0]);
+      let elRight = createMediaElement(sources[0]);
+      elLeft.className = 'photo left';
+      elCenter.className = 'photo center';
+      elRight.className = 'photo right';
+      stage.append(elLeft, elCenter, elRight);
+
+      let idxCenter = 0;
+      function render() {
+        const idxLeft = (idxCenter - 1 + N) % N;
+        const idxRight = (idxCenter + 1) % N;
+        updateMediaElement(elLeft, sources[idxLeft]);
+        updateMediaElement(elCenter, sources[idxCenter]);
+        updateMediaElement(elRight, sources[idxRight]);
+      }
+      render();
+
+      let animating = false;
+      let currentInterval = 4500;
+
+      function step() {
+        if (animating) return;
+        animating = true;
+
+        const oldLeft = elLeft;
+        elLeft = elCenter;
+        elCenter = elRight;
+        elRight = oldLeft;
+
+        elLeft.className = 'photo left';
+        elCenter.className = 'photo center';
+        elRight.className = 'photo right';
+
+        idxCenter = (idxCenter + 1) % N;
+        const nextRight = (idxCenter + 1) % N;
+        elRight = updateMediaElement(elRight, sources[nextRight]);
+
+        // Se il centro è un video, pausa più lunga (7 secondi)
+        if (sources[idxCenter].type === 'video') {
+          currentInterval = 7000;
+        } else {
+          currentInterval = 4500;
+        }
+
+        setTimeout(() => { 
+          animating = false;
+          setTimeout(step, currentInterval);
+        }, 950);
+      }
+      setTimeout(step, currentInterval);
+    }
+
+    function createMediaElement(source) {
+      if (source.type === 'video') {
+        const video = document.createElement('video');
+        video.src = source.src;
+        video.autoplay = true;
+        video.loop = true;
+        video.muted = true;
+        video.playsInline = true;
+        return video;
+      } else {
+        return document.createElement('img');
+      }
+    }
+
+    function updateMediaElement(element, source) {
+      if (source.type === 'video') {
+        if (element.tagName !== 'VIDEO') {
+          const newVideo = createMediaElement(source);
+          newVideo.className = element.className;
+          element.replaceWith(newVideo);
+          return newVideo;
+        } else {
+          element.src = source.src;
+          return element;
+        }
+      } else {
+        if (element.tagName !== 'IMG') {
+          const newImg = document.createElement('img');
+          newImg.className = element.className;
+          newImg.src = source.src;
+          element.replaceWith(newImg);
+          return newImg;
+        } else {
+          element.src = source.src;
+          return element;
+        }
+      }
     }
   </script>
 </body>
