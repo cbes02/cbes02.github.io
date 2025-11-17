@@ -40,7 +40,7 @@
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
     .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
 
-    /* INTRODUZIONE */
+    /* INTRODUZIONE (allineata a sinistra, trasparente) */
     .intro-text{
       text-align:left;
       color:#465a6c;
@@ -51,15 +51,28 @@
       background:transparent;
     }
 
-    /* INDICE */
-    .index-wrap{margin:10px 0 32px; background:transparent; border:none; padding:8px 0;}
+    /* ===== INDICE (trasparente, NON numerato) ===== */
+    .index-wrap{
+      margin:10px 0 32px;
+      background:transparent;
+      border:none;
+      padding:8px 0;
+    }
     .clean-ul{list-style:none; padding-left:0; margin:0}
     .clean-ul li{margin:8px 0; padding-left:20px; position:relative}
-    .clean-ul li::before{content:"•"; position:absolute; left:0; font-weight:800; color:var(--accent);}
-    .index-link{text-decoration:none; color:#103a6b;}
+    .clean-ul li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      font-weight:800;
+      color:var(--accent);
+    }
+    .index-link{
+      text-decoration:none; color:#103a6b;
+    }
     .index-link:hover{color:var(--accent)}
 
-    /* TITOLO ESPERIENZA */
+    /* ===== TITOLO ESPERIENZA (minuscolo, come "MAGISTRALE") ===== */
     .exp-title{
       margin:52px 0 18px;
       color:var(--accent);
@@ -69,12 +82,12 @@
       text-transform:lowercase;
     }
 
-    /* CARD TESTO */
+    /* ===== CARD TESTO (espandibile) ===== */
     .card{
-      background:#fff;
-      border:1px solid var(--border);
+      background:#fff; 
+      border:1px solid var(--border); 
       border-radius:var(--radius);
-      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); 
       padding:18px;
       margin-bottom:48px;
       min-height:120px;
@@ -92,4 +105,67 @@
         <a href="/istruzione.html">Istruzione</a>
         <a href="/progetti-universitari.html">Progetti universitari</a>
         <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
-        <
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">Esperienze lavorative</h1>
+
+    <!-- INTRODUZIONE (trasparente, allineata a sx) -->
+    <p class="intro-text">
+      Qui puoi inserire un testo introduttivo sulle tue esperienze lavorative.
+    </p>
+
+    <!-- ===================== INDICE (NON numerato) ===================== -->
+    <section class="index-wrap" aria-label="Indice esperienze">
+      <ul class="clean-ul">
+        <li><a class="index-link" href="#exp-1">Ottimizzazione SEO del catalogo per madonnina resell (10/2025 - 11/2025)</a></li>
+        <li><a class="index-link" href="#exp-2">Cameriera presso "bestia milano" (06/2022 - 08/2024)</a></li>
+        <li><a class="index-link" href="#exp-3">Hostess presso YouNique Lugano</a></li>
+        <li><a class="index-link" href="#exp-4">Alternanza scuola lavoro istituto dei tumori (01/2020)</a></li>
+      </ul>
+    </section>
+
+    <!-- ===================== ESPERIENZA 1 ===================== -->
+    <h2 id="exp-1" class="exp-title">ottimizzazione seo del catalogo per madonnina resell<br>(10/2025 - 11/2025)</h2>
+    
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza di ottimizzazione SEO. Questo blocco si espande automaticamente in base al testo che inserisci.
+      </p>
+    </div>
+
+    <!-- ===================== ESPERIENZA 2 ===================== -->
+    <h2 id="exp-2" class="exp-title">cameriera presso "bestia milano"<br>(06/2022 - 08/2024)</h2>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza da cameriera. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+    <!-- ===================== ESPERIENZA 3 ===================== -->
+    <h2 id="exp-3" class="exp-title">hostess presso younique lugano</h2>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza come hostess a Lugano. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+    <!-- ===================== ESPERIENZA 4 ===================== -->
+    <h2 id="exp-4" class="exp-title">alternanza scuola lavoro istituto dei tumori<br>(01/2020)</h2>
+
+    <div class="card">
+      <p class="muted">
+        Descrivi qui l'esperienza di alternanza scuola-lavoro. Questo blocco si espande automaticamente.
+      </p>
+    </div>
+
+  </main>
+
+</body>
+</html>
