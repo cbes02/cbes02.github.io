@@ -40,6 +40,7 @@
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
     .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
 
+    /* INTRODUZIONE */
     .intro-text{
       text-align:left;
       color:#465a6c;
@@ -50,26 +51,15 @@
       background:transparent;
     }
 
-    .index-wrap{
-      margin:10px 0 32px;
-      background:transparent;
-      border:none;
-      padding:8px 0;
-    }
+    /* INDICE */
+    .index-wrap{margin:10px 0 32px; background:transparent; border:none; padding:8px 0;}
     .clean-ul{list-style:none; padding-left:0; margin:0}
     .clean-ul li{margin:8px 0; padding-left:20px; position:relative}
-    .clean-ul li::before{
-      content:"•";
-      position:absolute;
-      left:0;
-      font-weight:800;
-      color:var(--accent);
-    }
-    .index-link{
-      text-decoration:none; color:#103a6b;
-    }
+    .clean-ul li::before{content:"•"; position:absolute; left:0; font-weight:800; color:var(--accent);}
+    .index-link{text-decoration:none; color:#103a6b;}
     .index-link:hover{color:var(--accent)}
 
+    /* TITOLO ESPERIENZA */
     .exp-title{
       margin:52px 0 18px;
       color:var(--accent);
@@ -79,46 +69,17 @@
       text-transform:lowercase;
     }
 
+    /* CARD TESTO */
     .card{
-      background:#fff; 
-      border:1px solid var(--border); 
+      background:#fff;
+      border:1px solid var(--border);
       border-radius:var(--radius);
-      box-shadow:0 12px 28px rgba(0,0,0,.06); 
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
       padding:18px;
       margin-bottom:48px;
       min-height:120px;
     }
     .muted{color:#465a6c; line-height:1.6}
-
-    .carousel{
-      position:relative;
-      height:52vh;
-      min-height:320px;
-      border-radius:var(--radius);
-      border:1px solid var(--border);
-      overflow:hidden;
-      background:var(--bg);
-      box-shadow:0 12px 28px rgba(0,0,0,.06);
-      margin-bottom:48px;
-    }
-    .carousel .photo{
-      position:absolute; top:50%;
-      height:100%; width:auto;
-      object-fit:cover; object-position:center;
-      transform:translateY(-50%);
-      transition:all .9s ease;
-      will-change:left,right,transform,opacity,height,z-index;
-      border-radius:12px;
-    }
-    .photo.left  { left:6%;  right:auto; opacity:.1;  z-index:2; height:90%; }
-    .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
-    .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
-
-    @media (max-width: 900px){
-      .carousel{height:46vh}
-      .photo.left,.photo.right{display:none}
-      .photo.center{height:100%}
-    }
   </style>
 </head>
 <body>
@@ -127,4 +88,8 @@
   <nav class="nav">
     <div class="nav-inner">
       <div class="brand"><a href="/">Chiara Beretta</a></div>
-      <div
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <
