@@ -1,1 +1,280 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contatti — Chiara Beretta</title>
+  <meta name="description" content="Contattami per collaborazioni, opportunità lavorative o semplicemente per connetterci.">
 
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:13pt; line-height:1.4;
+    }
+
+    /* NAVBAR */
+    .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
+    .menu a:hover{background:#fff; border:1px solid var(--border)}
+
+    /* LAYOUT */
+    .container{max-width:1100px; margin:0 auto; padding:24px 16px; min-height:calc(100vh - 200px)}
+    .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
+
+    /* INTRO */
+    .intro-text{
+      text-align:center;
+      color:#465a6c;
+      max-width:700px;
+      margin:0 auto 40px;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    /* CONTACT GRID */
+    .contact-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+      gap:24px;
+      max-width:900px;
+      margin:0 auto 48px;
+    }
+
+    .contact-card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      padding:28px;
+      text-align:center;
+      transition:transform .3s ease, box-shadow .3s ease;
+      display:flex;
+      flex-direction:column;
+      min-height:200px;
+    }
+
+    .contact-card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 36px rgba(0,0,0,.1);
+    }
+
+    .contact-icon{
+      width:56px;
+      height:56px;
+      margin:0 auto 16px;
+      background:var(--bg);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:28px;
+    }
+
+    .contact-title{
+      font-size:18px;
+      font-weight:800;
+      color:var(--accent);
+      margin:0 0 8px;
+      text-transform:lowercase;
+    }
+
+    .contact-link{
+      color:#465a6c;
+      text-decoration:none;
+      display:inline-block;
+      margin-top:4px;
+      transition:all .3s ease;
+      word-break:break-word;
+    }
+
+    .contact-card:hover .contact-link{
+      color:var(--accent);
+      text-decoration:underline;
+    }
+
+    /* FORM SECTION */
+    .form-section{
+      max-width:700px;
+      margin:60px auto 0;
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      padding:32px;
+    }
+
+    .form-title{
+      font-size:24px;
+      font-weight:800;
+      color:var(--accent);
+      margin:0 0 8px;
+      text-align:center;
+      text-transform:lowercase;
+    }
+
+    .form-subtitle{
+      text-align:center;
+      color:#465a6c;
+      margin:0 0 28px;
+      font-size:14px;
+    }
+
+    .input-group{
+      margin-bottom:20px;
+    }
+
+    .input-label{
+      display:block;
+      font-weight:600;
+      color:var(--accent);
+      margin-bottom:8px;
+      font-size:14px;
+      text-transform:lowercase;
+    }
+
+    .input-field{
+      width:100%;
+      padding:12px 16px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      font-family:inherit;
+      font-size:14px;
+      transition:border-color .3s ease;
+    }
+
+    .input-field:focus{
+      outline:none;
+      border-color:var(--accent);
+    }
+
+    textarea.input-field{
+      resize:vertical;
+      min-height:120px;
+    }
+
+    .submit-btn{
+      width:100%;
+      padding:14px;
+      background:var(--accent);
+      color:#fff;
+      border:none;
+      border-radius:12px;
+      font-family:inherit;
+      font-size:16px;
+      font-weight:600;
+      cursor:pointer;
+      transition:opacity .3s ease;
+      text-transform:lowercase;
+    }
+
+    .submit-btn:hover{
+      opacity:.9;
+    }
+
+    @media (max-width: 640px){
+      .contact-grid{
+        grid-template-columns:1fr;
+      }
+      .form-section{
+        padding:24px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">Contatti</h1>
+
+    <p class="intro-text">
+      Sono sempre aperta a nuove opportunità, collaborazioni e connessioni. Non esitare a contattarmi attraverso uno dei canali qui sotto.
+    </p>
+
+    <!-- CONTACT CARDS -->
+    <div class="contact-grid">
+      
+      <div class="contact-card">
+        <div class="contact-icon">📧</div>
+        <h3 class="contact-title">email</h3>
+        <a href="mailto:beretta.chiara02@outlook.com" class="contact-link">beretta.chiara02@outlook.com</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">💼</div>
+        <h3 class="contact-title">linkedin</h3>
+        <a href="https://www.linkedin.com/in/chiara-beretta-8436ab327" target="_blank" class="contact-link">Chiara Beretta</a>
+      </div>
+
+      <div class="contact-card">
+        <div class="contact-icon">📱</div>
+        <h3 class="contact-title">telefono</h3>
+        <a href="tel:+393429531831" class="contact-link">+39 342 953 1831</a>
+      </div>
+
+    </div>
+
+    <!-- CONTACT FORM -->
+    <form class="form-section" action="https://formspree.io/f/mldzeydz" method="POST">
+      <h2 class="form-title">inviami un messaggio</h2>
+      <p class="form-subtitle">Compila il form qui sotto e ti risponderò al più presto.</p>
+      
+      <div class="input-group">
+        <label class="input-label">nome</label>
+        <input type="text" class="input-field" placeholder="Il tuo nome" name="nome" required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">email</label>
+        <input type="email" class="input-field" placeholder="La tua email" name="email" required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">oggetto</label>
+        <input type="text" class="input-field" placeholder="Oggetto del messaggio" name="oggetto" required>
+      </div>
+
+      <div class="input-group">
+        <label class="input-label">messaggio</label>
+        <textarea class="input-field" placeholder="Scrivi qui il tuo messaggio..." name="messaggio" required></textarea>
+      </div>
+
+      <button type="submit" class="submit-btn">invia messaggio</button>
+    </form>
+
+  </main>
+
+</body>
+</html>
