@@ -1,1 +1,423 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Passioni — Chiara Beretta</title>
+  <meta name="description" content="Le mie passioni: sciare, dipingere, vibe coding, creare gioielli e leggere.">
 
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#0f172a;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-size:13pt; line-height:1.4;
+    }
+
+    /* NAVBAR */
+    .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
+    .nav-inner{max-width:1100px; margin:0 auto; padding:12px 16px; display:flex; align-items:center; justify-content:space-between;}
+    .brand a{font-weight:800; text-decoration:none; color:var(--accent)}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{padding:8px 12px; border-radius:12px; text-decoration:none; color:var(--accent); font-weight:600}
+    .menu a:hover{background:#fff; border:1px solid var(--border)}
+
+    /* LAYOUT */
+    .container{max-width:1100px; margin:0 auto; padding:24px 16px}
+    .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
+
+    /* INTRODUZIONE */
+    .intro-text{
+      text-align:left;
+      color:#465a6c;
+      max-width:1100px;
+      margin:0 auto 24px;
+      font-size:15px;
+      line-height:1.6;
+      background:transparent;
+    }
+
+    /* ===== INDICE (NON numerato) ===== */
+    .index-wrap{
+      margin:10px 0 32px;
+      background:transparent;
+      border:none;
+      padding:8px 0;
+    }
+    .clean-ul{list-style:none; padding-left:0; margin:0}
+    .clean-ul li{margin:8px 0; padding-left:20px; position:relative}
+    .clean-ul li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      font-weight:800;
+      color:var(--accent);
+    }
+    .index-link{
+      text-decoration:none; color:#103a6b;
+    }
+    .index-link:hover{color:var(--accent)}
+
+    /* ===== TITOLO PASSIONE (minuscolo) ===== */
+    .passion-title{
+      margin:52px 0 18px;
+      color:var(--accent);
+      font-size:clamp(20px,4vw,24px);
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:lowercase;
+    }
+
+    /* ===== SEZIONI ===== */
+    .section{margin:28px 0}
+    .grid{display:grid; gap:18px}
+    .cols-2{grid-template-columns:1.2fr .8fr; align-items:stretch}
+
+    .card{
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
+      display:flex; flex-direction:column;
+      min-height:120px;
+    }
+    .muted{color:#465a6c; line-height:1.6}
+
+    /* ===== CAROSELLO 3-PANNELLI ===== */
+    .carousel{
+      position:relative;
+      height:52vh;
+      min-height:320px;
+      border-radius:var(--radius);
+      border:1px solid var(--border);
+      overflow:hidden;
+      background:var(--bg);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      margin-bottom:16px;
+    }
+    .carousel .photo{
+      position:absolute; top:50%;
+      height:100%; width:auto;
+      object-fit:cover; object-position:center;
+      transform:translateY(-50%);
+      transition:all .9s ease;
+      will-change:left,right,transform,opacity,height,z-index;
+      border-radius:12px;
+    }
+    .photo.left  { left:6%;  right:auto; opacity:.1;  z-index:2; height:90%; }
+    .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
+    .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
+
+    /* ===== CITAZIONE ===== */
+    .quote-box{
+      background:transparent; 
+      border:none; 
+      padding:24px;
+      margin:18px 0;
+      font-style:italic;
+      color:#465a6c;
+      font-size:15px;
+      line-height:1.7;
+      text-align:center;
+    }
+    .quote-box::before{
+      content:'"';
+      font-size:48px;
+      color:var(--accent);
+      opacity:.3;
+      line-height:0;
+      display:block;
+      margin-bottom:12px;
+    }
+
+    /* ===== CODE VIEWER (per vibe coding) ===== */
+    .code-viewer{
+      background:#1e293b; 
+      border:1px solid var(--border); 
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); 
+      padding:18px;
+      margin:18px 0;
+      max-height:280px;
+      overflow:auto;
+      font-family:'Courier New', monospace;
+      font-size:12px;
+      color:#e2e8f0;
+      line-height:1.5;
+    }
+    .code-viewer::-webkit-scrollbar{width:8px; height:8px}
+    .code-viewer::-webkit-scrollbar-thumb{background:#475569; border-radius:4px}
+
+    /* ===== CARD SINGOLA (per leggere) ===== */
+    .single-card{
+      background:#fff; 
+      border:1px solid var(--border); 
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); 
+      padding:18px;
+      margin:18px 0 48px;
+      min-height:120px;
+    }
+
+    @media (max-width: 900px){
+      .cols-2{grid-template-columns:1fr}
+      .carousel{height:46vh}
+      .photo.left,.photo.right{display:none}
+      .photo.center{height:100%}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <h1 class="page-title">Passioni</h1>
+
+    <!-- INTRODUZIONE -->
+    <p class="intro-text">
+      Qui puoi inserire un testo introduttivo sulle tue passioni, cosa rappresentano per te e come arricchiscono la tua vita.
+    </p>
+
+    <!-- ===================== INDICE (NON numerato) ===================== -->
+    <section class="index-wrap" aria-label="Indice passioni">
+      <ul class="clean-ul">
+        <li><a class="index-link" href="#sciare">Sciare</a></li>
+        <li><a class="index-link" href="#dipingere">Dipingere</a></li>
+        <li><a class="index-link" href="#vibe-coding">Vibe Coding</a></li>
+        <li><a class="index-link" href="#gioielli">Creare Gioielli</a></li>
+        <li><a class="index-link" href="#leggere">Leggere</a></li>
+      </ul>
+    </section>
+
+    <!-- ===================== SCIARE ===================== -->
+    <h2 id="sciare" class="passion-title">sciare</h2>
+
+    <section class="section">
+      <div class="grid cols-2">
+        <!-- Testo -->
+        <div class="card">
+          <p class="muted">
+            Descrivi qui la tua passione per lo sci: quando hai iniziato, cosa ti trasmette,
+            le tue destinazioni preferite, i momenti più memorabili sulle piste.
+            Questo blocco si espande automaticamente con il testo.
+          </p>
+        </div>
+
+        <!-- Carosello foto -->
+        <aside class="carousel" data-passion="sciare" aria-label="Foto sci"></aside>
+      </div>
+
+      <!-- Citazione -->
+      <div class="quote-box">
+        Inserisci qui una citazione significativa sullo sci o sulla montagna.
+      </div>
+    </section>
+
+    <!-- ===================== DIPINGERE ===================== -->
+    <h2 id="dipingere" class="passion-title">dipingere</h2>
+
+    <section class="section">
+      <div class="grid cols-2">
+        <!-- Testo -->
+        <div class="card">
+          <p class="muted">
+            Racconta la tua passione per la pittura: tecniche preferite, temi ricorrenti,
+            come ti fa sentire dipingere, opere di cui sei più orgogliosa.
+            Questo blocco si espande automaticamente.
+          </p>
+        </div>
+
+        <!-- Carosello foto -->
+        <aside class="carousel" data-passion="dipingere" aria-label="Foto dipinti"></aside>
+      </div>
+
+      <!-- Citazione -->
+      <div class="quote-box">
+        Inserisci qui una citazione sull'arte o sulla creatività.
+      </div>
+    </section>
+
+    <!-- ===================== VIBE CODING ===================== -->
+    <h2 id="vibe-coding" class="passion-title">vibe coding</h2>
+
+    <section class="section">
+      <!-- Testo -->
+      <div class="card">
+        <p class="muted">
+          Descrivi cosa significa per te il "vibe coding": l'approccio creativo alla programmazione,
+          i progetti che ti entusiasmano, come unisci logica e creatività nel codice.
+        </p>
+      </div>
+
+      <!-- Code Viewer -->
+      <div class="code-viewer">
+        <!-- Inserisci qui il tuo codice di esempio -->
+        <pre>// Esempio di codice vibe
+function createMagic() {
+  const vibes = ['creativity', 'logic', 'passion'];
+  return vibes.map(v => `✨ ${v} ✨`).join('\n');
+}
+
+console.log(createMagic());</pre>
+      </div>
+
+      <!-- Citazione -->
+      <div class="quote-box">
+        Inserisci qui una citazione sulla programmazione o sull'innovazione.
+      </div>
+    </section>
+
+    <!-- ===================== CREARE GIOIELLI ===================== -->
+    <h2 id="gioielli" class="passion-title">creare gioielli</h2>
+
+    <section class="section">
+      <div class="grid cols-2">
+        <!-- Testo -->
+        <div class="card">
+          <p class="muted">
+            Racconta la tua passione per la creazione di gioielli: materiali preferiti,
+            stili, il processo creativo, cosa ti ispira nel design.
+            Questo blocco si espande automaticamente.
+          </p>
+        </div>
+
+        <!-- Carosello foto -->
+        <aside class="carousel" data-passion="gioielli" aria-label="Foto gioielli"></aside>
+      </div>
+
+      <!-- Citazione -->
+      <div class="quote-box">
+        Inserisci qui una citazione sui gioielli o sull'artigianato.
+      </div>
+    </section>
+
+    <!-- ===================== LEGGERE ===================== -->
+    <h2 id="leggere" class="passion-title">leggere</h2>
+
+    <section class="section">
+      <!-- Card singola -->
+      <div class="single-card">
+        <p class="muted">
+          Descrivi la tua passione per la lettura: generi preferiti, autori che ami,
+          come la lettura arricchisce la tua vita, libri che ti hanno segnato.
+          Questo blocco si espande automaticamente con il testo che inserisci.
+        </p>
+      </div>
+
+      <!-- Citazione -->
+      <div class="quote-box">
+        Inserisci qui una citazione sulla lettura o sui libri.
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* ===== GESTIONE MULTIPLI CAROSELLI ===== */
+    const carouselData = {
+      sciare: [
+        '/img/sci1.png',
+        '/img/sci2.png',
+        '/img/sci3.png',
+        '/img/sci4.png',
+        '/img/sci5.png'
+      ],
+      dipingere: [
+        '/img/dipinto1.png',
+        '/img/dipinto2.png',
+        '/img/dipinto3.png',
+        '/img/dipinto4.png',
+        '/img/dipinto5.png',
+        '/img/dipinto6.png',
+        '/img/dipinto7.png',
+        '/img/dipinto8.png'
+      ],
+      gioielli: [
+        '/img/gioiello1.png',
+        '/img/gioiello2.png',
+        '/img/gioiello3.png'
+      ]
+    };
+
+    // Inizializza ogni carosello
+    document.querySelectorAll('.carousel').forEach(stage => {
+      const passionType = stage.getAttribute('data-passion');
+      const sources = carouselData[passionType];
+      if (!sources) return;
+
+      const N = sources.length;
+
+      // Crea i tre elementi
+      let elLeft  = document.createElement('img');
+      let elCenter= document.createElement('img');
+      let elRight = document.createElement('img');
+      elLeft.className   = 'photo left';
+      elCenter.className = 'photo center';
+      elRight.className  = 'photo right';
+      stage.append(elLeft, elCenter, elRight);
+
+      // Indice foto al centro
+      let idxCenter = 0;
+      
+      function initialRender(){
+        const idxLeft  = (idxCenter - 1 + N) % N;
+        const idxRight = (idxCenter + 1) % N;
+        elLeft.src   = sources[idxLeft];
+        elCenter.src = sources[idxCenter];
+        elRight.src  = sources[idxRight];
+      }
+      initialRender();
+
+      let animating = false;
+      function step(){
+        if(animating) return;
+        animating = true;
+
+        // Rotazione
+        const oldLeft = elLeft;
+        elLeft   = elCenter;
+        elCenter = elRight;
+        elRight  = oldLeft;
+
+        elLeft.className   = 'photo left';
+        elCenter.className = 'photo center';
+        elRight.className  = 'photo right';
+
+        idxCenter = (idxCenter + 1) % N;
+
+        const nextRight = (idxCenter + 1) % N;
+        elRight.src = sources[nextRight];
+
+        setTimeout(()=>{ animating = false; }, 950);
+      }
+      
+      setInterval(step, 4500);
+    });
+  </script>
+</body>
+</html>
