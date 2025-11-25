@@ -75,14 +75,15 @@
       box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
       display:flex; flex-direction:column;
     }
-    .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
-    .muted{color:#475569}
+    .block-title{font-weight:800; color:#004994; font-size:20px; margin:4px 0 10px}
+    .muted{color:#1e293b}
 
-    /* 🔸 ALTEZZE FISSE come il riquadro arancione */
-    /* Imposta un'altezza identica per il testo triennale e per il viewer tesi */
-    .row-triennale .card,
+    /* 🔸 ALTEZZE ALLUNGATE */
+    .row-triennale .card {
+      height:900px;  /* Allungata per contenere tutto il testo */
+    }
     .row-triennale .thesis { 
-      height:560px;            /* <-- QUI la misura fissa: “come il blocco arancione” */
+      height:450px;  /* Metà dell'altezza della card di testo */
     }
 
     /* Tesi preview */
@@ -93,13 +94,12 @@
     }
     .thesis iframe{width:100%; height:100%; border:0; background:#000}
 
-    /* 🔹 Card “bassa” che si espande con il contenuto */
-    .card.slim{ min-height:120px; } /* una riga circa; cresce automaticamente se aggiungi testo */
+    /* 🔹 Card "bassa" che si espande con il contenuto */
+    .card.slim{ min-height:120px; }
 
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
       .carousel{height:46vh}
-      /* su mobile niente altezza fissa: lasciamo adattare */
       .row-triennale .card,
       .row-triennale .thesis { height:auto; }
       .thesis iframe{height:420px}
@@ -130,38 +130,59 @@
     <!-- CAROSELLO -->
     <section class="carousel" aria-label="Fotografie IULM"></section>
 
-    <!-- TRIENNALE + TESI (altezza fissa come riquadro arancione) -->
+    <!-- TRIENNALE + TESI -->
     <section class="section">
       <div class="grid cols-2 row-triennale">
         <!-- Testo triennale -->
         <div class="card">
-          <div class="block-title">Comunicazione d’impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
+          <div class="block-title">Comunicazione d'impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
+          
           <p class="muted">
-            Qui puoi raccontare in 5–7 righe il percorso: corsi chiave, competenze sviluppate,
-            progetti significativi, metodo di studio e cosa ti ha lasciato. Stile semplice e concreto,
-            con attenzione a <strong>analisi</strong>, <strong>metodo</strong> e
-            <strong> creatività applicata</strong>. Aggiungi esempi di esami/progetti che ti
-            hanno formata (ricerche dati, piani editoriali, casi, campagne).
+            Durante l'ultimo anno del <strong>liceo scientifico</strong>, che ho concluso con il <strong>massimo dei voti</strong>, mi sono chiesta più volte quale sarebbe stata la continuazione ideale del mio percorso. Nonostante l'indirizzo con le materie scientifiche, sentivo il bisogno di qualcosa che unisse <strong>ragionamento e creatività</strong> e che mi permettesse inoltre di esprimere la mia curiosità verso il mondo della comunicazione.
           </p>
+
           <p class="muted">
-            Se vuoi, chiudi con un piccolo elenco di strumenti o abilità (es. Excel, Tableau,
-            PowerPoint avanzato, copy sintetico, public speaking, lavoro in team).
+            Così ho scelto di iscrivermi al corso di <strong>Comunicazione d'impresa e relazioni pubbliche</strong>, un percorso che mi ha permesso di esplorare diverse discipline: dal <strong>marketing</strong> alla sociologia, dall'economia al neuromarketing. È stato un viaggio stimolante, dove ho svolto molti <strong>lavori di gruppo e progetti pratici</strong>, grazie ai quali ho capito che, pur apprezzando la parte creativa del marketing, ciò che davvero mi appassiona è <strong>l'analisi dei dati</strong> e la capacità di rendere i risultati chiari e concreti.
           </p>
+
+          <p class="muted">
+            La mia <strong>tesi triennale</strong> nasce proprio da questa idea: dalla ricerca dell'ambito in cui dati potessero avere un impatto davvero importante e immediato, e la risposta è stata la sanità. Partendo dai dati raccolti nelle cartelle cliniche, ho sviluppato un progetto su <strong>come questi possano aiutare a prevedere il rischio di tumore al seno</strong>, una malattia che colpisce una grande percentuale di donne in Italia.
+          </p>
+
+          <p class="muted">
+            Un tema, questo, che all'epoca era ancora poco esplorato, ma che oggi trova sempre più applicazioni e che ha rappresentato la base per le mie <strong>scelte successive</strong>.
+          </p>
+          
           <div style="margin-top:auto; color:#6b7280; font-size:12px">Aggiorna quando vuoi.</div>
         </div>
 
-        <!-- Preview tesi (parte da pagina 7) -->
+        <!-- Preview tesi (metà altezza) -->
         <aside class="thesis" aria-label="Preview tesi triennale">
           <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
         </aside>
       </div>
     </section>
 
-    <!-- MAGISTRALE (bassa, si espande con il testo) -->
+    <!-- MAGISTRALE -->
     <section class="section">
       <div class="card slim">
-        <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM)</div>
-        <!-- Aggiungi testo quando vuoi: la card crescerà da sola -->
+        <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM) 2024/2026</div>
+        
+        <p class="muted">
+          Durante la triennale, grazie ai <strong>molti lavori di gruppo e alle riflessioni</strong> che ne sono nate, ho capito che la mia attitudine era più analitica di quanto pensassi. Mi piaceva ragionare sui dati, interpretare risultati e <strong>usare relazioni per prendere decisioni concrete</strong>.
+        </p>
+
+        <p class="muted">
+          Quando, verso la fine del 2022, sono comparse le prime applicazioni di <strong>intelligenza artificiale generativa</strong> disponibili al pubblico, ho iniziato ad appassionarmi profondamente a questo nuovo scenario. Ho cominciato a documentarmi, a sperimentare e a capire come l'IA potesse diventare una risorsa concreta per migliorare i processi e l'efficienza delle aziende.
+        </p>
+
+        <p class="muted">
+          Così ho deciso di iscrivermi al corso magistrale in <strong>Intelligenza Artificiale, Impresa e Società</strong> presso la IULM, perché rappresentava esattamente il connubio che cercavo: unire il <strong>marketing</strong>, le <strong>data analytics</strong> e le <strong>teorie dell'innovazione</strong>. Questo percorso mi ha permesso di approfondire le diverse sfumature dell'intelligenza artificiale: dalla <strong>comprensione di come funziona tecnicamente</strong> alla sua integrazione nei processi aziendali, passando per <strong>decisioni guidate dall'analisi e dall'automazione</strong> e anche i suoi rischi e le complessità a livello etico.
+        </p>
+
+        <p class="muted">
+          Un cammino che mi ha appassionato fin dal primo giorno e che sento pienamente in linea con ciò che voglio costruire per il mio <strong>futuro professionale</strong>.
+        </p>
       </div>
     </section>
   </main>
