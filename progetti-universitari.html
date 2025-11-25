@@ -15,7 +15,7 @@
     :root{
       --bg:#d3f3ff;
       --accent:#004994;
-      --text:#0f172a;
+      --text:#1e293b;
       --border:rgba(15,23,42,.12);
       --radius:18px;
     }
@@ -40,7 +40,7 @@
     /* LAYOUT BASE */
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
 
-    /* TITOLO PAGINA (identico a "Istruzione") */
+    /* TITOLO PAGINA */
     .page-title{
       margin:24px 0 8px;
       color:var(--accent);
@@ -49,17 +49,17 @@
       text-align:center;
     }
 
-    /* INTRODUZIONE (sotto il titolo - ALLINEATA A SINISTRA) */
+    /* INTRODUZIONE */
     .intro-text{
       text-align:left;
-      color:#465a6c;
+      color:var(--accent);
       max-width:1100px;
       margin:0 auto 24px;
       font-size:15px;
       line-height:1.6;
     }
 
-    /* ===== INDICE (trasparente, senza box) ===== */
+    /* INDICE */
     .index-wrap{
       margin:10px 0 32px;
       background:transparent;
@@ -75,7 +75,6 @@
       letter-spacing:.02em;
       text-transform:uppercase;
     }
-    /* Lista numerata SENZA puntino "." */
     .clean-ol{list-style:none; padding-left:0; margin:0}
     .clean-ol li{counter-increment:item; margin:8px 0}
     .clean-ol li::before{
@@ -84,11 +83,11 @@
       margin-right:6px;
     }
     .index-link{
-      text-decoration:none; color:#103a6b;
+      text-decoration:none; color:var(--accent);
     }
-    .index-link:hover{color:var(--accent)}
+    .index-link:hover{color:var(--accent); text-decoration:underline}
 
-    /* ===== TITOLONI SEZIONE (più piccoli dell'indice) ===== */
+    /* TITOLONI SEZIONE */
     .section-title{
       margin:52px 0 32px; 
       text-align:center;
@@ -101,7 +100,7 @@
       padding:0; border-radius:0;
     }
 
-    /* ===== CARD TESTO ===== */
+    /* CARD TESTO */
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
       box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
@@ -111,21 +110,21 @@
       margin:2px 0 10px; color:var(--accent);
       font-weight:800; font-size:22px;
     }
-    .block-title{font-weight:800; color:#000; font-size:20px; margin:4px 0 10px}
-    .muted{color:#465a6c}
+    .block-title{font-weight:800; color:var(--accent); font-size:20px; margin:4px 0 10px}
+    .muted{color:var(--text)}
+    .muted p{margin:10px 0}
 
-    /* ===== LAYOUT "STATICO ISTRUZIONE": stesse dimensioni della pagina Istruzione ===== */
+    /* LAYOUT STATICO */
     .split{
       display:grid; gap:18px; grid-template-columns:1.2fr .8fr; align-items:stretch;
       margin-bottom:48px;
     }
-    /* 🔸 ALTEZZA FISSA come il riquadro della pagina Istruzione */
     .split .card,
     .split .thesis { 
-      height:560px;  /* IDENTICO alla pagina Istruzione */
+      height:560px;
     }
 
-    /* Tesi/PDF preview - identico a pagina Istruzione */
+    /* Tesi/PDF preview */
     .thesis{
       border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
       display:flex; align-items:stretch;
@@ -133,7 +132,7 @@
     }
     .thesis iframe{width:100%; height:100%; border:0; background:#000}
 
-    /* ===== CONTAINER TRASPARENTE PER SLIDE ORIZZONTALI (SENZA BORDO SOPRA) ===== */
+    /* CONTAINER SLIDE ORIZZONTALI */
     .slides-container{
       background:transparent;
       border:none;
@@ -193,15 +192,17 @@
 
   <main class="container">
 
-    <!-- TITOLO PAGINA (identico a "Istruzione") -->
+    <!-- TITOLO PAGINA -->
     <h1 class="page-title">Progetti universitari</h1>
 
-    <!-- INTRODUZIONE (ALLINEATA A SINISTRA) -->
+    <!-- INTRODUZIONE -->
     <p class="intro-text">
-      Selezione di progetti universitari (magistrale e triennale) con presentazioni e report visualizzabili direttamente.
+      Questa sezione raccoglie i <strong>progetti più riusciti e stimolanti</strong> realizzati durante il mio percorso universitario. 
+      Ogni lavoro mi ha permesso di <strong>riflettere su temi diversi</strong> e di mettere alla prova le mie capacità creative, analitiche e organizzative. 
+      Vi troverete i progetti che <strong>mi hanno appassionato di più</strong> e che rappresentano al meglio il mio modo di lavorare e di crescere professionalmente.
     </p>
 
-    <!-- ===================== INDICE (trasparente) ===================== -->
+    <!-- INDICE -->
     <section class="index-wrap" aria-label="Indice rapido">
       <div class="index-grid">
         <!-- MAGISTRALE -->
@@ -223,8 +224,7 @@
           <h3><a class="index-link" href="#triennale">TRIENNALE</a></h3>
           <ol class="clean-ol">
             <li><a class="index-link" href="#tri-1">Marketing — Rebranding marketing plan</a></li>
-            <li><a class="index-link" href="#tri-2">Creatività & progettazione — Prodotto AI</a></li>
-            <li><a class="index-link" href="#tri-3">Graphic design — Mostra "Sansone e Dalila"</a></li>
+            <li><a class="index-link" href="#tri-2">Graphic design — Mostra "Sansone e Dalila"</a></li>
           </ol>
         </div>
       </div>
@@ -233,32 +233,63 @@
     <!-- ===================== MAGISTRALE ===================== -->
     <h2 id="magistrale" class="section-title">MAGISTRALE</h2>
 
-    <!-- 1. Probabilità & Statistica — DIMENSIONI IDENTICHE A ISTRUZIONE -->
+    <!-- 1. Probabilità & Statistica -->
     <section id="mag-1" class="split" aria-label="Probabilità & Statistica">
       <article class="card">
         <div class="block-title">1. Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</div>
-        <p class="muted">
-          Sintesi del lavoro: pulizia dati, esplorazione, modelli e insight azionabili per il marketing.
-          Indicatori chiave, test e risultati spiegati in modo chiaro.
-        </p>
+        <div class="muted">
+          <p>
+            Questo progetto universitario, realizzato per il corso <em>Intelligenza artificiale, impresa e società (a.a. 2024–2025)</em>, 
+            aveva come obiettivo l'<strong>analisi del mercato della mozzarella nel Sud Italia</strong>, con focus sul brand <strong>Pettinicchio</strong> 
+            e sui principali competitor nazionali.
+          </p>
+          <p>
+            Svolto in gruppo, ha previsto l'utilizzo di metodologie statistiche e strumenti di <strong>data analysis</strong> 
+            (EDA, analisi fattoriale e regressione lineare) per comprendere i <strong>driver di preferenza dei consumatori</strong> 
+            e le dinamiche competitive del settore.
+          </p>
+          <p>
+            L'analisi dei dati raccolti tramite 454 interviste CATI ha messo in luce l'importanza di <strong>qualità, tradizione e packaging</strong> 
+            come principali fattori di scelta e di competitività per i brand.
+          </p>
+          <p>
+            Questo progetto mi ha permesso di sviluppare solide competenze in <strong>analisi dei dati</strong>, 
+            <strong>interpretazione statistica</strong> e <strong>strategie di marketing basate su insight concreti</strong>.
+          </p>
+        </div>
       </article>
       <aside class="thesis" aria-label="Report JMP (preview)">
         <iframe src="https://drive.google.com/file/d/1LWuMa8b5omSFbUI8d1FXgKMK-IEWVxHb/preview#page=1" allow="autoplay"></iframe>
       </aside>
     </section>
 
-    <!-- 2. AI & ML — SLIDE IN CONTAINER TRASPARENTE -->
+    <!-- 2. AI & ML -->
     <section id="mag-2" aria-label="AI & ML per il marketing">
       <article class="card">
         <h3 class="p-title">2. AI & Machine Learning per il marketing — clustering su dati sintetici</h3>
-        <p class="muted">
-          Obiettivo: impostare una pipeline di clustering su dataset sintetici per esplorare segmentazioni possibili
-          e comprenderne l'utilità marketing-driven.
-        </p>
-        <p style="text-align:center; margin-top:6px">
-          <em>Link aggiuntivo (facoltativo):</em>
-          <a href="#" style="color:var(--accent); font-weight:700">aggiungi qui</a>
-        </p>
+        <div class="muted">
+          <p>
+            È stato un <em>project work</em> dedicato all'applicazione del <strong>machine learning nel marketing</strong>, 
+            con l'obiettivo di creare un modello di <strong>segmentazione clienti basato sull'algoritmo K-Means</strong>.
+          </p>
+          <p>
+            Attraverso l'uso di <strong>Python, JupyterLab, ChatGPT, Streamlit e GitHub</strong>, ho simulato un database di un e-commerce pet care, 
+            individuando <strong>quattro cluster di utenti</strong> con comportamenti d'acquisto distinti.
+          </p>
+          <p>
+            Il modello è stato poi trasformato in una <strong>web app interattiva</strong> capace di assegnare automaticamente 
+            i nuovi clienti al cluster più coerente, suggerendo strategie di marketing personalizzate.
+          </p>
+          <p>
+            Questo progetto mi ha permesso di sviluppare competenze pratiche in <strong>analisi dei dati, machine learning e sviluppo di applicazioni interattive</strong> 
+            basate su intelligenza artificiale.
+          </p>
+          <p style="text-align:center; margin-top:12px">
+            <a href="https://app-petcare-5zytjelaypr4p2glklgeql.streamlit.app/" target="_blank" style="color:var(--accent); font-weight:700; text-decoration:underline">
+              Vai alla Web App →
+            </a>
+          </p>
+        </div>
       </article>
       
       <div class="slides-container" aria-label="Slide clustering">
@@ -268,14 +299,29 @@
       </div>
     </section>
 
-    <!-- 3. Laboratorio romano — DIMENSIONI IDENTICHE A ISTRUZIONE + SOTTO slide -->
+    <!-- 3. Laboratorio romano -->
     <section id="mag-3" class="split" aria-label="Laboratorio romano — Lumina cloud-commerce">
       <article class="card">
         <div class="block-title">3. Laboratorio romano — Lumina cloud-commerce</div>
-        <p class="muted">
-          Trasformazione di una PMI tradizionale in un'architettura cloud:
-          analisi del contesto, obiettivi, scelte tecnologiche e impatti sul business.
-        </p>
+        <div class="muted">
+          <p>
+            Progetto dedicato alla <strong>trasformazione digitale e strategica di Lumina Srl</strong>, 
+            azienda valtellinese con oltre 120 anni di storia nel settore alimentare.
+          </p>
+          <p>
+            In gruppo, abbiamo sviluppato una <strong>piattaforma e-commerce B2B in cloud</strong> su <strong>Azure</strong> 
+            con tecnologia <strong>WordPress</strong>, integrando soluzioni di <strong>AI e Machine Learning</strong> 
+            per l'ottimizzazione degli ordini e l'assistenza clienti tramite <strong>chatbot intelligente</strong>.
+          </p>
+          <p>
+            Il progetto ha incluso anche un <strong>restyling del brand</strong>, un piano di <strong>comunicazione integrata</strong> 
+            e una strategia di <strong>lancio multicanale</strong> rivolta ai clienti professionali.
+          </p>
+          <p>
+            Questa esperienza mi ha permesso di unire <strong>competenze tecniche, creative e di marketing strategico</strong>, 
+            lavorando su un caso aziendale reale con approccio data-driven e orientato all'innovazione.
+          </p>
+        </div>
       </article>
       <aside class="thesis" aria-label="Report tecnico (preview)">
         <iframe src="https://drive.google.com/file/d/1fRwPUAbZI-QNeRweDsDXywhoiZpw3vqF/preview#page=1" allow="autoplay"></iframe>
@@ -288,14 +334,30 @@
       </div>
     </section>
 
-    <!-- 4. Strategic Mgmt — DIMENSIONI IDENTICHE A ISTRUZIONE + SOTTO slide -->
+    <!-- 4. Strategic Mgmt -->
     <section id="mag-4" class="split" aria-label="Strategic Management — Callmewine">
       <article class="card">
         <div class="block-title">4. Strategic Management & Digital Technology — analisi Callmewine e strategie di crescita</div>
-        <p class="muted">
-          Studio del posizionamento competitivo, analisi strategica e proposte di crescita
-          basate su leve digitali, partnership e ottimizzazione di canale.
-        </p>
+        <div class="muted">
+          <p>
+            Lavoro di gruppo universitario realizzato per analizzare e riposizionare <strong>CallMeWine</strong>: 
+            un e-commerce specializzato in vini e distillati, con l'obiettivo di rafforzarne la presenza sul mercato e migliorarne la redditività.
+          </p>
+          <p>
+            Il mio gruppo ed io abbiamo svolto un'<strong>analisi economica, competitiva e SWOT</strong>, 
+            individuando le principali criticità operative e proponendo strategie di <strong>ottimizzazione del magazzino, 
+            efficienza logistica e sviluppo commerciale</strong>.
+          </p>
+          <p>
+            Il piano ha previsto l'introduzione di un <strong>canale B2B per il settore Ho.Re.Ca</strong>, 
+            l'espansione verso i mercati europei e l'integrazione di tecnologie <strong>AI e chatbot</strong> 
+            per la personalizzazione dell'esperienza utente.
+          </p>
+          <p>
+            Il progetto mi ha permesso di approfondire competenze in <strong>marketing strategico, analisi di business 
+            e digital transformation</strong> applicate a un caso aziendale reale.
+          </p>
+        </div>
       </article>
       <aside class="thesis" aria-label="Report Callmewine (preview)">
         <iframe src="https://drive.google.com/file/d/1oU0F1GsUgtk4BZEh0P0lUwODPBe4BMrB/preview#page=1" allow="autoplay"></iframe>
@@ -308,14 +370,29 @@
       </div>
     </section>
 
-    <!-- 5. Scenari Big Data Society — SLIDE IN CONTAINER TRASPARENTE -->
+    <!-- 5. Scenari Big Data Society -->
     <section id="mag-5" aria-label="Stereotipi & AI">
       <article class="card">
         <h3 class="p-title">5. Scenari socio-culturali della Big Data Society — stereotipi & intelligenza artificiale</h3>
-        <p class="muted">
-          Esplorazione critica di come i modelli generativi possano riflettere o correggere i nostri pregiudizi:
-          esempi, rischi, mitigazioni e spunti etici.
-        </p>
+        <div class="muted">
+          <p>
+            Progetto universitario dedicato all'analisi del rapporto tra <strong>stereotipi sociali e modelli di intelligenza artificiale</strong>, 
+            svolto per il corso <em>Scenari socioculturali della Big Data Society</em>.
+          </p>
+          <p>
+            In gruppo, abbiamo indagato come <strong>ChatGPT e Gemini</strong> rappresentano figure stereotipate 
+            (come "la bionda", "il maranza", "la nonna", "il terrone") confrontando <strong>output visivi e testuali</strong> 
+            generati a partire dagli stessi prompt.
+          </p>
+          <p>
+            Il lavoro ha evidenziato come l'IA <strong>tenda a riprodurre i pregiudizi culturali</strong> presenti nei dataset, 
+            mostrando bias più marcati verso gli uomini e più attenuati per categorie sociali considerate "protette".
+          </p>
+          <p>
+            L'esperienza ha permesso di sviluppare competenze di <strong>analisi critica dei bias algoritmici</strong>, 
+            di <strong>comunicazione visiva</strong> e di <strong>etica dell'intelligenza artificiale</strong>.
+          </p>
+        </div>
       </article>
       
       <div class="slides-container" aria-label="Slide stereotipi & AI">
@@ -325,15 +402,26 @@
       </div>
     </section>
 
-    <!-- 6. & 7. blocchi testo "in corso" -->
+    <!-- 6. Data Mining -->
     <section id="mag-6" class="card simple-section" aria-label="Data Mining in corso">
       <h3 class="p-title">6. Data Mining & Text Analytics (in corso)</h3>
-      <p class="muted">Applicazione di una tecnica di data mining su un problema di marketing. (Work in progress)</p>
+      <div class="muted">
+        <p>
+          Ancora in corso, prevede la realizzazione di un modello Python per <strong>sentiment e text analysis</strong>, 
+          con implementazione tecnica, ambiente configurato in Anaconda e documentazione su GitHub.
+        </p>
+      </div>
     </section>
 
+    <!-- 7. Automation -->
     <section id="mag-7" class="card simple-section" aria-label="Automation in corso">
       <h3 class="p-title">7. Marketing automation, marketing platform & analytics (in corso)</h3>
-      <p class="muted">Strategia di automation, orchestrazione piattaforme e KPI. (Work in progress)</p>
+      <div class="muted">
+        <p>
+          In via di sviluppo, mira alla creazione di una strategia di <strong>marketing automation</strong> per <strong>Eversports</strong>, 
+          con focus su customer journey, automazioni su Active Campaign e flussi di nurturing personalizzati.
+        </p>
+      </div>
     </section>
 
     <!-- Spazio prima di TRIENNALE -->
@@ -342,11 +430,33 @@
     <!-- ===================== TRIENNALE ===================== -->
     <h2 id="triennale" class="section-title">TRIENNALE</h2>
 
-    <!-- 1. Marketing — SLIDE IN CONTAINER TRASPARENTE -->
+    <!-- 1. Marketing -->
     <section id="tri-1" aria-label="Rebranding marketing plan">
       <article class="card">
         <h3 class="p-title">1. Marketing — Rebranding marketing plan</h3>
-        <p class="muted">Sintesi del progetto e dei principali deliverable.</p>
+        <div class="muted">
+          <p>
+            Progetto accademico volto alla <strong>creazione di una strategia di rilancio per un marchio storico del settore alimentare</strong>, 
+            attraverso un approccio analitico e creativo.
+          </p>
+          <p>
+            Il lavoro ha previsto un'ampia <strong>analisi di mercato</strong> con individuazione dei trend di consumo, 
+            <strong>studio della concorrenza</strong> e definizione di una <strong>segmentazione familiare evolutiva</strong> 
+            (famiglie di ieri, oggi e domani) per comprendere i diversi target di riferimento.
+          </p>
+          <p>
+            È stata poi sviluppata una strategia di <strong>posizionamento competitivo</strong> e un piano di <strong>marketing mix</strong> completo, 
+            con focus su innovazione di prodotto, pricing coerente con il target e comunicazione emozionale.
+          </p>
+          <p>
+            La campagna ha incluso <strong>radio, riviste, social media e cartellonistica nazionale</strong>, 
+            accompagnata da un piano media dettagliato e dalla <strong>ripartizione del budget</strong> sui principali canali pubblicitari.
+          </p>
+          <p>
+            Il progetto ha permesso di combinare <strong>analisi strategica e creatività</strong>, 
+            approfondendo competenze di <strong>marketing operativo e comunicazione integrata</strong>.
+          </p>
+        </div>
       </article>
       
       <div class="slides-container" aria-label="Slide progetto marketing">
@@ -356,16 +466,28 @@
       </div>
     </section>
 
-    <!-- 2. Creatività & progettazione -->
-    <section id="tri-2" class="card simple-section" aria-label="Creatività & Prodotto AI">
-      <h3 class="p-title">2. Creatività & progettazione — Prodotto AI</h3>
-      <p class="muted">Spazio descrittivo che potrai ampliare quando vuoi con concept, wireframe o demo.</p>
-    </section>
-
-    <!-- 3. Graphic design -->
-    <section id="tri-3" class="card simple-section" aria-label="Mostra Sansone e Dalila">
-      <h3 class="p-title">3. Graphic design — Mostra "Sansone e Dalila"</h3>
-      <p class="muted">Progettazione della mostra per valorizzare l'opera di Artemisia Gentileschi.</p>
+    <!-- 2. Graphic design -->
+    <section id="tri-2" class="card simple-section" aria-label="Mostra Sansone e Dalila">
+      <h3 class="p-title">2. Graphic design — Mostra "Sansone e Dalila"</h3>
+      <div class="muted">
+        <p>
+          Il progetto consisteva nello <strong>sviluppo di un concept per la valorizzazione dell'opera "Sansone e Dalila" di Artemisia Gentileschi</strong>, 
+          con l'obiettivo di promuoverla attraverso un approccio immersivo e accessibile.
+        </p>
+        <p>
+          È stato ideato un <strong>allestimento museale completo</strong>, con attenzione alla disposizione dello spazio, 
+          alle luci e all'esperienza del visitatore.
+        </p>
+        <p>
+          Accanto all'allestimento, sono state progettate <strong>attività interattive e laboratori didattici</strong> 
+          per coinvolgere diversi pubblici, e sviluppata una <strong>strategia di comunicazione integrata</strong> 
+          con identità visiva, materiali promozionali e canali digitali.
+        </p>
+        <p>
+          La simulazione ha compreso anche la <strong>gestione logistica e del budget</strong>, 
+          permettendo di consolidare competenze in <strong>progettazione culturale, organizzazione eventi e comunicazione visiva</strong>.
+        </p>
+      </div>
     </section>
 
   </main>
