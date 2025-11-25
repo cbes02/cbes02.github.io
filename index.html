@@ -43,6 +43,7 @@
     .menu a{
       padding:8px 12px; border-radius:12px; text-decoration:none;
       color:var(--accent); font-weight:600;
+      transition: transform 0.1s ease, background 0.2s ease;
     }
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
@@ -72,7 +73,7 @@
     .hero{
       position:relative; z-index:1;
       max-width:1100px; margin:0 auto; padding:64px 16px;
-      display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center;
+      display:grid; grid-template-columns:1.4fr .6fr; gap:28px; align-items:center;
     }
     .hero h1{
       margin:0 0 12px; color:var(--accent);
@@ -89,6 +90,15 @@
       border-radius:12px; border:1px solid var(--accent);
       text-decoration:none; font-weight:800;
       background:var(--accent); color:#fff;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,73,148,0.3);
+    }
+    .btn:active{
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,73,148,0.2);
     }
 
     .avatar-wrap{display:flex; justify-content:flex-end}
@@ -111,6 +121,15 @@
       display:inline-block; padding:8px 12px;
       border:1px solid var(--accent); border-radius:10px;
       text-decoration:none; color:var(--accent); font-weight:700; background:#fff;
+      transition: transform 0.1s ease, box-shadow 0.1s ease;
+    }
+    .go:hover{
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0,73,148,0.2);
+    }
+    .go:active{
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0,73,148,0.1);
     }
     .grid{display:grid; gap:16px}
     .grid.cols-2{grid-template-columns:1fr 1fr}
@@ -150,15 +169,17 @@
       <div>
         <h1>Ciao! sono Chiara,</h1>
         <p>
-          sono una persona <strong>curiosa, creativa</strong> e sempre <strong>in movimento</strong>. 
-          Mi piace <strong>osservare, sperimentare</strong> e <strong>imparare</strong> da ogni esperienza, che sia un progetto universitario, un lavoro o una mia passione personale.
+          sono una persona <strong>curiosa</strong>, <strong>creativa</strong> e sempre <strong>in movimento</strong>. 
+          Mi piace <strong>osservare</strong>, <strong>sperimentare</strong> e <strong>imparare</strong> da ogni esperienza, che sia un progetto universitario, un lavoro o una mia passione personale.
           <br><br>
-          <strong>Credo nel valore della costanza e dell'impegno, ma anche nell'importanza di trovare momenti che mi ispirino e mi facciano stare bene</strong>.
-          L'intelligenza artificiale, il design, la creatività manuale e le esperienze a contatto con la natura sono ciò che mi aiutano a crescere e a guardare il mondo con occhi nuovi.
+          Credo nel valore della <strong>costanza</strong> e dell'<strong>impegno</strong>, ma anche nell'importanza di trovare momenti che mi <strong>ispirino</strong> e mi facciano stare bene.
+          L'<strong>intelligenza artificiale</strong>, il <strong>design</strong>, la <strong>creatività manuale</strong> e le esperienze a <strong>contatto con la natura</strong> sono ciò che mi aiutano a crescere e a guardare il mondo con occhi nuovi.
           <br><br>
-          Mi considero una persona versatile, capace di unire analisi e intuizione, logica e sensibilità; elementi che porto con me in tutto ciò che faccio con il desiderio costante di migliorarmi e costruire qualcosa di autentico. 
+          Mi considero una persona <strong>versatile</strong>, capace di unire <strong>analisi e intuizione</strong>, <strong>logica e sensibilità</strong>; elementi che porto con me in tutto ciò che faccio con il desiderio costante di <strong>migliorarmi</strong> e costruire qualcosa di <strong>autentico</strong>. 
           <br><br>
-          Se vuoi un riassunto clicca qui sotto 
+          <div style="text-align: center;">
+            Se vuoi un riassunto clicca qui sotto 👇
+          </div>
 
         </p>
         <div class="cta">
