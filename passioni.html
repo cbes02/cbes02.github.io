@@ -15,7 +15,7 @@
     :root{
       --bg:#d3f3ff;
       --accent:#004994;
-      --text:#0f172a;
+      --text:#1e293b;
       --border:rgba(15,23,42,.12);
       --radius:18px;
     }
@@ -24,7 +24,7 @@
     body{
       margin:0; background:var(--bg); color:var(--text);
       font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      font-size:13pt; line-height:1.4;
+      font-size:13pt; line-height:1.45;
     }
 
     /* NAVBAR */
@@ -43,7 +43,7 @@
     /* INTRODUZIONE */
     .intro-text{
       text-align:left;
-      color:#465a6c;
+      color:var(--accent);
       max-width:1100px;
       margin:0 auto 24px;
       font-size:15px;
@@ -51,7 +51,7 @@
       background:transparent;
     }
 
-    /* ===== INDICE (NON numerato) ===== */
+    /* INDICE */
     .index-wrap{
       margin:10px 0 32px;
       background:transparent;
@@ -68,38 +68,37 @@
       color:var(--accent);
     }
     .index-link{
-      text-decoration:none; color:#103a6b;
-      transition:all .2s ease;
+      text-decoration:none; color:var(--accent);
     }
-    .index-link:hover{
-      color:var(--accent);
-      text-decoration:underline;
-    }
+    .index-link:hover{color:var(--accent); text-decoration:underline}
 
-    /* ===== TITOLO PASSIONE (minuscolo) ===== */
+    /* TITOLO PASSIONE */
     .passion-title{
       margin:52px 0 18px;
       color:var(--accent);
       font-size:clamp(20px,4vw,24px);
       font-weight:800;
       letter-spacing:.02em;
-      text-transform:lowercase;
+      text-transform:uppercase;
     }
 
-    /* ===== SEZIONI ===== */
+    /* SEZIONI */
     .section{margin:28px 0}
     .grid{display:grid; gap:18px}
     .cols-2{grid-template-columns:1.2fr .8fr; align-items:stretch}
 
     .card{
-      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
-      box-shadow:0 12px 28px rgba(0,0,0,.06); padding:18px;
-      display:flex; flex-direction:column;
+      background:#fff; 
+      border:1px solid var(--border); 
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06); 
+      padding:18px;
       min-height:120px;
     }
-    .muted{color:#465a6c; line-height:1.6}
+    .muted{color:var(--text); line-height:1.6}
+    .muted p{margin:10px 0}
 
-    /* ===== CAROSELLO 3-PANNELLI ===== */
+    /* CAROSELLO */
     .carousel{
       position:relative;
       height:52vh;
@@ -124,14 +123,14 @@
     .photo.center{ left:50%; right:auto; opacity:1;   z-index:3; height:100%; transform:translate(-50%,-50%); }
     .photo.right { right:6%; left:auto;  opacity:.1;  z-index:2; height:90%; }
 
-    /* ===== CITAZIONE ===== */
+    /* CITAZIONE */
     .quote-box{
       background:transparent; 
       border:none; 
       padding:24px;
       margin:18px 0;
       font-style:italic;
-      color:#465a6c;
+      color:var(--accent);
       font-size:15px;
       line-height:1.7;
       text-align:center;
@@ -145,8 +144,15 @@
       display:block;
       margin-bottom:12px;
     }
+    .quote-author{
+      display:block;
+      margin-top:12px;
+      font-style:normal;
+      font-weight:600;
+      color:var(--accent);
+    }
 
-    /* ===== CODE VIEWER (per vibe coding) ===== */
+    /* CODE VIEWER */
     .code-viewer{
       background:#1e293b; 
       border:1px solid var(--border); 
@@ -157,14 +163,14 @@
       max-height:280px;
       overflow:auto;
       font-family:'Courier New', monospace;
-      font-size:12px;
+      font-size:11px;
       color:#e2e8f0;
       line-height:1.5;
     }
     .code-viewer::-webkit-scrollbar{width:8px; height:8px}
     .code-viewer::-webkit-scrollbar-thumb{background:#475569; border-radius:4px}
 
-    /* ===== CARD SINGOLA (per leggere) ===== */
+    /* CARD SINGOLA */
     .single-card{
       background:#fff; 
       border:1px solid var(--border); 
@@ -204,32 +210,50 @@
 
     <!-- INTRODUZIONE -->
     <p class="intro-text">
-      Qui puoi inserire un testo introduttivo sulle tue passioni, cosa rappresentano per te e come arricchiscono la tua vita.
+      Le passioni sono per me un vero <strong>motore di energia e ispirazione</strong>. 
+      Mi permettono di staccare dalla routine, di ritrovare <strong>equilibrio</strong> e di esprimere il mio lato più autentico. 
+      Sono ciò che mi rilassa, mi rigenera e mi aiuta a crescere, sia come persona che come mente creativa. 
+      Mi insegnano la <strong>costanza</strong> e la <strong>pazienza</strong>, ma anche il valore di dedicare tempo a ciò che mi fa stare bene. 
+      Attraverso di esse riesco a mantenere viva la <strong>curiosità</strong> e a trovare sempre nuovi stimoli per migliorarmi.
     </p>
 
-    <!-- ===================== INDICE (NON numerato) ===================== -->
+    <!-- INDICE -->
     <section class="index-wrap" aria-label="Indice passioni">
       <ul class="clean-ul">
         <li><a class="index-link" href="#sciare">Sciare</a></li>
         <li><a class="index-link" href="#dipingere">Dipingere</a></li>
         <li><a class="index-link" href="#vibe-coding">Vibe Coding</a></li>
         <li><a class="index-link" href="#gioielli">Creare Gioielli</a></li>
-        <li><a class="index-link" href="#leggere">Leggere</a></li>
       </ul>
     </section>
 
     <!-- ===================== SCIARE ===================== -->
-    <h2 id="sciare" class="passion-title">sciare</h2>
+    <h2 id="sciare" class="passion-title">SCIARE</h2>
 
     <section class="section">
       <div class="grid cols-2">
         <!-- Testo -->
         <div class="card">
-          <p class="muted">
-            Descrivi qui la tua passione per lo sci: quando hai iniziato, cosa ti trasmette,
-            le tue destinazioni preferite, i momenti più memorabili sulle piste.
-            Questo blocco si espande automaticamente con il testo.
-          </p>
+          <div class="muted">
+            <p>
+              Lo <strong>sci</strong> per me è una sensazione di <strong>libertà assoluta</strong>: 
+              un momento in cui tutto il resto scompare.
+            </p>
+            <p>
+              Appena metto gli sci ai piedi e sento l'aria fredda che mi sfiora il viso, 
+              mi sembra di staccare da ogni altro pensiero. Il profumo della montagna, della neve fresca e dell'aria pulita 
+              mi rigenera completamente, come se mi riportasse <strong>equilibrio ed energia</strong>.
+            </p>
+            <p>
+              Ogni anno aspetto con entusiasmo l'apertura degli impianti di <strong>Pila</strong>, 
+              perché significa tornare sulle piste, partire presto in autostrada e godermi quelle giornate intense 
+              in cui il tempo sembra rallentare.
+            </p>
+            <p>
+              Ogni discesa è un piccolo rito di <strong>pace e adrenalina</strong>, 
+              un modo per sentirmi viva, leggera e pienamente me stessa.
+            </p>
+          </div>
         </div>
 
         <!-- Carosello foto -->
@@ -238,22 +262,37 @@
 
       <!-- Citazione -->
       <div class="quote-box">
-        Inserisci qui una citazione significativa sullo sci o sulla montagna.
+        Lo sci è una danza, e la montagna ne è sempre la musica.
+        <span class="quote-author">— Jean-Claude Killy</span>
       </div>
     </section>
 
     <!-- ===================== DIPINGERE ===================== -->
-    <h2 id="dipingere" class="passion-title">dipingere</h2>
+    <h2 id="dipingere" class="passion-title">DIPINGERE</h2>
 
     <section class="section">
       <div class="grid cols-2">
         <!-- Testo -->
         <div class="card">
-          <p class="muted">
-            Racconta la tua passione per la pittura: tecniche preferite, temi ricorrenti,
-            come ti fa sentire dipingere, opere di cui sei più orgogliosa.
-            Questo blocco si espande automaticamente.
-          </p>
+          <div class="muted">
+            <p>
+              Dipingere per me è una delle attività più <strong>stimolanti e impegnative</strong>. 
+              Mi piace perché richiede <strong>manualità, occhio e sensibilità per i colori</strong>, 
+              ma anche pazienza, precisione e attenzione ai dettagli.
+            </p>
+            <p>
+              Non è qualcosa che mi viene naturale, e forse proprio per questo la vivo come una <strong>sfida personale</strong>: 
+              riuscire a sfumare bene, a cogliere le proporzioni, a capire come la luce cambia i toni e come i colori si mescolano tra loro.
+            </p>
+            <p>
+              Ogni volta che mi metto davanti a una tela devo rallentare, dedicare tempo e lasciare spazio alla calma e all'intuizione. 
+              È un modo per staccare, per <strong>concentrarmi solo sul momento presente</strong> e, anche se non tutto riesce come vorrei, 
+              spesso il risultato mi sorprende — ed è proprio lì che trovo la mia <strong>soddisfazione più grande</strong>.
+            </p>
+            <p>
+              In foto potete vedere le creazioni di cui vado più fiera.
+            </p>
+          </div>
         </div>
 
         <!-- Carosello foto -->
@@ -262,52 +301,121 @@
 
       <!-- Citazione -->
       <div class="quote-box">
-        Inserisci qui una citazione sull'arte o sulla creatività.
+        La pittura è un atto di pazienza e di scoperta: all'inizio non sai dove ti porterà, ma ogni colore ti insegna qualcosa di te.
+        <span class="quote-author">— Anonimo contemporaneo</span>
       </div>
     </section>
 
     <!-- ===================== VIBE CODING ===================== -->
-    <h2 id="vibe-coding" class="passion-title">vibe coding</h2>
+    <h2 id="vibe-coding" class="passion-title">VIBE CODING</h2>
 
     <section class="section">
       <!-- Testo -->
       <div class="card">
-        <p class="muted">
-          Descrivi cosa significa per te il "vibe coding": l'approccio creativo alla programmazione,
-          i progetti che ti entusiasmano, come unisci logica e creatività nel codice.
-        </p>
+        <div class="muted">
+          <p>
+            Una delle mie passioni più forti è il mondo dell'<strong>intelligenza artificiale</strong> e del <strong>Vibe Coding</strong>, 
+            un campo che trovo affascinante per le possibilità creative e tecniche che offre.
+          </p>
+          <p>
+            Negli ultimi mesi, grazie ai nuovi <strong>modelli generativi</strong> come Claude, 
+            ho potuto sperimentare e realizzare <strong>progetti personali</strong>, tra cui anche questo sito.
+          </p>
+          <p>
+            Il Vibe Coding, in particolare, mi ha permesso di unire competenze di <strong>prompt engineering e programmazione</strong> 
+            per creare esperienze digitali dinamiche e personalizzate.
+          </p>
+          <p>
+            Mi affascina la libertà che dà l'AI, ma credo sia importante ricordare che <strong>non fa tutto da sola</strong>: 
+            serve conoscenza, consapevolezza e capacità di guidarla.
+          </p>
+          <p>
+            Grazie al mio percorso di studi ho acquisito le basi dei principali <strong>linguaggi di programmazione</strong>, 
+            che mi aiutano a leggere, correggere e ottimizzare il codice per dare forma alle mie idee.
+          </p>
+        </div>
       </div>
 
       <!-- Code Viewer -->
       <div class="code-viewer">
-        <!-- Inserisci qui il tuo codice di esempio -->
-        <pre>// Esempio di codice vibe
-function createMagic() {
-  const vibes = ['creativity', 'logic', 'passion'];
-  return vibes.map(v => `✨ ${v} ✨`).join('\n');
-}
+<pre>// Gestione multipli caroselli con rotazione automatica
+const carouselData = {
+  sciare: ['/img/sci1.png', '/img/sci2.png', '/img/sci3.png'],
+  dipingere: ['/img/dipinto1.png', '/img/dipinto2.png', '/img/dipinto3.png'],
+  gioielli: ['/img/gioiello1.png', '/img/gioiello2.png', '/img/gioiello3.png']
+};
 
-console.log(createMagic());</pre>
+document.querySelectorAll('.carousel').forEach(stage => {
+  const passionType = stage.getAttribute('data-passion');
+  const sources = carouselData[passionType];
+  if (!sources) return;
+
+  const N = sources.length;
+  let idxCenter = 0;
+  let animating = false;
+
+  function step(){
+    if(animating) return;
+    animating = true;
+
+    const oldLeft = elLeft;
+    elLeft   = elCenter;
+    elCenter = elRight;
+    elRight  = oldLeft;
+
+    elLeft.className   = 'photo left';
+    elCenter.className = 'photo center';
+    elRight.className  = 'photo right';
+
+    idxCenter = (idxCenter + 1) % N;
+    const nextRight = (idxCenter + 1) % N;
+    elRight.src = sources[nextRight];
+
+    setTimeout(()=>{ animating = false; }, 950);
+  }
+  
+  setInterval(step, 4500);
+});</pre>
       </div>
 
       <!-- Citazione -->
       <div class="quote-box">
-        Inserisci qui una citazione sulla programmazione o sull'innovazione.
+        La tecnologia da sola non basta. È la combinazione tra tecnologia e arti liberali, tra umanità e scienze, che ci dà i risultati che fanno cantare il cuore.
+        <span class="quote-author">— Steve Jobs</span>
       </div>
     </section>
 
     <!-- ===================== CREARE GIOIELLI ===================== -->
-    <h2 id="gioielli" class="passion-title">creare gioielli</h2>
+    <h2 id="gioielli" class="passion-title">CREARE GIOIELLI</h2>
 
     <section class="section">
       <div class="grid cols-2">
         <!-- Testo -->
         <div class="card">
-          <p class="muted">
-            Racconta la tua passione per la creazione di gioielli: materiali preferiti,
-            stili, il processo creativo, cosa ti ispira nel design.
-            Questo blocco si espande automaticamente.
-          </p>
+          <div class="muted">
+            <p>
+              Creare gioielli è per me un'attività che unisce <strong>creatività, pazienza e personalità</strong>.
+            </p>
+            <p>
+              Penso sempre che un gioiello realizzato con le proprie mani abbia un <strong>valore speciale</strong>, 
+              perché racchiude tempo, cura e un tocco unico.
+            </p>
+            <p>
+              Mi piace l'idea di poter creare un pezzo <strong>su misura per ogni occasione</strong>, 
+              un accessorio pensato proprio per me — magari per una serata particolare o per dare carattere a un outfit.
+            </p>
+            <p>
+              In un periodo in cui gli accessori del <strong>fast fashion sembrano tutti uguali</strong>, 
+              creare i miei gioielli è un modo per <strong>avere qualcosa di diverso, autentico e irripetibile</strong>.
+            </p>
+            <p>
+              Mi dedico soprattutto agli <strong>orecchini</strong>, perché mi permettono di sperimentare forme, colori e materiali, 
+              stimolando la mia parte creativa e spingendomi ogni volta a migliorare, crescere e lasciare un segno personale in ciò che realizzo.
+            </p>
+            <p>
+              In foto potete vedere le creazioni di cui vado più fiera.
+            </p>
+          </div>
         </div>
 
         <!-- Carosello foto -->
@@ -316,26 +424,8 @@ console.log(createMagic());</pre>
 
       <!-- Citazione -->
       <div class="quote-box">
-        Inserisci qui una citazione sui gioielli o sull'artigianato.
-      </div>
-    </section>
-
-    <!-- ===================== LEGGERE ===================== -->
-    <h2 id="leggere" class="passion-title">leggere</h2>
-
-    <section class="section">
-      <!-- Card singola -->
-      <div class="single-card">
-        <p class="muted">
-          Descrivi la tua passione per la lettura: generi preferiti, autori che ami,
-          come la lettura arricchisce la tua vita, libri che ti hanno segnato.
-          Questo blocco si espande automaticamente con il testo che inserisci.
-        </p>
-      </div>
-
-      <!-- Citazione -->
-      <div class="quote-box">
-        Inserisci qui una citazione sulla lettura o sui libri.
+        Per essere insostituibili bisogna essere diversi.
+        <span class="quote-author">— Coco Chanel</span>
       </div>
     </section>
 
