@@ -15,7 +15,7 @@
     :root{
       --bg:#d3f3ff;
       --accent:#004994;
-      --text:#0f172a;
+      --text:#1e293b;
       --border:rgba(15,23,42,.12);
       --radius:18px;
     }
@@ -24,7 +24,7 @@
     body{
       margin:0; background:var(--bg); color:var(--text);
       font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial;
-      font-size:13pt; line-height:1.4;
+      font-size:13pt; line-height:1.45;
     }
 
     /* NAVBAR */
@@ -40,10 +40,10 @@
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
     .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
 
-    /* INTRODUZIONE (allineata a sinistra, trasparente) */
+    /* INTRODUZIONE */
     .intro-text{
       text-align:left;
-      color:#465a6c;
+      color:var(--accent);
       max-width:1100px;
       margin:0 auto 24px;
       font-size:15px;
@@ -51,7 +51,7 @@
       background:transparent;
     }
 
-    /* ===== INDICE (trasparente, NON numerato) ===== */
+    /* INDICE */
     .index-wrap{
       margin:10px 0 32px;
       background:transparent;
@@ -68,31 +68,50 @@
       color:var(--accent);
     }
     .index-link{
-      text-decoration:none; color:#103a6b;
+      text-decoration:none; color:var(--accent);
     }
-    .index-link:hover{color:var(--accent)}
+    .index-link:hover{color:var(--accent); text-decoration:underline}
 
-    /* ===== TITOLO ESPERIENZA (minuscolo, come "MAGISTRALE") ===== */
+    /* TITOLO ESPERIENZA */
     .exp-title{
       margin:52px 0 18px;
       color:var(--accent);
       font-size:clamp(20px,4vw,24px);
       font-weight:800;
       letter-spacing:.02em;
-      text-transform:lowercase;
+      text-transform:uppercase;
     }
 
-    /* ===== CARD TESTO (espandibile) ===== */
+    /* CARD TESTO */
     .card{
       background:#fff; 
       border:1px solid var(--border); 
       border-radius:var(--radius);
       box-shadow:0 12px 28px rgba(0,0,0,.06); 
       padding:18px;
-      margin-bottom:48px;
+      margin-bottom:24px;
       min-height:120px;
     }
-    .muted{color:#465a6c; line-height:1.6}
+    .muted{color:var(--text); line-height:1.6}
+    .muted p{margin:10px 0}
+
+    /* BADGE COMPETENZE */
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      justify-content:center;
+      margin:24px 0 48px;
+    }
+    .skill-badge{
+      background:var(--accent);
+      color:#fff;
+      padding:8px 20px;
+      border-radius:24px;
+      font-size:13px;
+      font-weight:600;
+      display:inline-block;
+    }
   </style>
 </head>
 <body>
@@ -114,55 +133,169 @@
   <main class="container">
     <h1 class="page-title">Esperienze lavorative</h1>
 
-    <!-- INTRODUZIONE (trasparente, allineata a sx) -->
+    <!-- INTRODUZIONE -->
     <p class="intro-text">
-      Qui puoi inserire un testo introduttivo sulle tue esperienze lavorative.
+      In questa sezione sono raccolte <strong>tutte le mie esperienze lavorative</strong>, che rappresentano un percorso di crescita personale e professionale. 
+      Ho sempre cercato di <strong>lavorare e imparare da realtà diverse</strong>, mettendomi alla prova in contesti nuovi e sviluppando competenze trasversali. 
+      Ogni esperienza mi ha aiutata a <strong>maturare come persona e come lavoratrice</strong>, insegnandomi l'importanza dell'impegno, della collaborazione e della capacità di adattamento.
     </p>
 
-    <!-- ===================== INDICE (NON numerato) ===================== -->
+    <!-- INDICE -->
     <section class="index-wrap" aria-label="Indice esperienze">
       <ul class="clean-ul">
-        <li><a class="index-link" href="#exp-1">Ottimizzazione SEO del catalogo per madonnina resell (10/2025 - 11/2025)</a></li>
-        <li><a class="index-link" href="#exp-2">Cameriera presso "bestia milano" (06/2022 - 08/2024)</a></li>
-        <li><a class="index-link" href="#exp-3">Hostess presso YouNique Lugano</a></li>
-        <li><a class="index-link" href="#exp-4">Alternanza scuola lavoro istituto dei tumori (01/2020)</a></li>
+        <li><a class="index-link" href="#exp-1">Ottimizzazione SEO del catalogo per Madonnina Resell (10/2025 - 11/2025)</a></li>
+        <li><a class="index-link" href="#exp-2">Cameriera presso "Bestia Milano" (06/2022 - 08/2024)</a></li>
+        <li><a class="index-link" href="#exp-3">Hostess presso Younique Lugano</a></li>
+        <li><a class="index-link" href="#exp-4">Alternanza scuola lavoro Istituto dei Tumori (01/2020)</a></li>
       </ul>
     </section>
 
     <!-- ===================== ESPERIENZA 1 ===================== -->
-    <h2 id="exp-1" class="exp-title">ottimizzazione seo del catalogo per madonnina resell<br>(10/2025 - 11/2025)</h2>
+    <h2 id="exp-1" class="exp-title">OTTIMIZZAZIONE SEO DEL CATALOGO PER MADONNINA RESELL<br>(10/2025 - 11/2025)</h2>
     
     <div class="card">
-      <p class="muted">
-        Descrivi qui l'esperienza di ottimizzazione SEO. Questo blocco si espande automaticamente in base al testo che inserisci.
-      </p>
+      <div class="muted">
+        <p>
+          Un'altra esperienza molto formativa che ho svolto è stata l'<strong>ottimizzazione SEO del catalogo prodotti per Madonnina Resell</strong>, 
+          un e-commerce dedicato al mondo <strong>streetwear e sneakers limited edition</strong>. 
+          Questo progetto mi ha permesso di sviluppare competenze approfondite nel campo della <strong>scrittura SEO e del digital marketing</strong>.
+        </p>
+        <p>
+          Dopo aver studiato in modo autonomo le basi della <strong>Search Engine Optimization</strong>, 
+          mi sono occupata di <strong>analizzare la struttura del sito e dei contenuti</strong>, gestiti tramite Shopify, per individuare aree di miglioramento. 
+          Ho poi applicato strategie mirate per ottimizzare le <strong>descrizioni prodotto</strong> in ottica SEO e <strong>UX copywriting</strong>, 
+          con l'obiettivo di migliorare il <strong>posizionamento organico sui motori di ricerca</strong> (Google, Bing, ecc.) e la <strong>leggibilità per l'utente</strong>.
+        </p>
+        <p>
+          Per velocizzare il processo, ho integrato <strong>strumenti di intelligenza artificiale</strong> che mi hanno aiutata nella ricerca di keyword e nella generazione di bozze testuali; 
+          mantenendo però sempre un controllo umano accurato sulla <strong>coerenza del tono</strong>, sulla <strong>correttezza terminologica</strong> 
+          e sull'<strong>aderenza al linguaggio del settore streetwear/resell</strong>.
+        </p>
+        <p>
+          L'obiettivo è stato quello di rendere il catalogo non solo più <strong>performante in termini di SEO</strong>, 
+          ma anche <strong>più coinvolgente e omogeneo</strong> per chi naviga, migliorando la <strong>user experience complessiva</strong> 
+          e favorendo la <strong>conversione</strong>.
+        </p>
+        <p>
+          Questa esperienza mi ha permesso di approfondire le logiche del <strong>content marketing</strong>, 
+          di affinare la mia capacità di <strong>scrittura strategica</strong> e di comprendere come la comunicazione digitale possa essere al tempo stesso 
+          <strong>creativa, tecnica e orientata ai risultati</strong>.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <span class="skill-badge">SEO</span>
+      <span class="skill-badge">Shopify</span>
+      <span class="skill-badge">Copywriting</span>
+      <span class="skill-badge">Prompt Engineering</span>
     </div>
 
     <!-- ===================== ESPERIENZA 2 ===================== -->
-    <h2 id="exp-2" class="exp-title">cameriera presso "bestia milano"<br>(06/2022 - 08/2024)</h2>
+    <h2 id="exp-2" class="exp-title">CAMERIERA PRESSO "BESTIA MILANO"<br>(06/2022 - 08/2024)</h2>
 
     <div class="card">
-      <p class="muted">
-        Descrivi qui l'esperienza da cameriera. Questo blocco si espande automaticamente.
-      </p>
+      <div class="muted">
+        <p>
+          Un'altra esperienza lavorativa che ho portato avanti per l'intero periodo della mia <strong>laurea triennale</strong> 
+          è stata quella di <strong>cameriera presso un'hamburgheria</strong>.
+        </p>
+        <p>
+          È stata un'esperienza che, oltre a permettermi di avere una mia indipendenza economica, 
+          mi ha insegnato moltissimo dal punto di vista <strong>organizzativo e umano</strong>.
+        </p>
+        <p>
+          Gestire un impiego part-time mentre frequentavo le lezioni universitarie e preparavo gli esami mi ha aiutata a sviluppare una 
+          <strong>forte capacità di pianificazione</strong> e di <strong>gestione del tempo</strong>. 
+          Ho imparato a distribuire le energie in modo equilibrato tra studio, lavoro e vita personale, 
+          comprendendo quanto la costanza e la disciplina siano fondamentali per raggiungere gli obiettivi.
+        </p>
+        <p>
+          Lavorare in un ambiente dinamico e spesso frenetico come quello della ristorazione mi ha inoltre permesso di affinare le mie <strong>abilità relazionali</strong>, 
+          imparando a <strong>collaborare efficacemente con i colleghi</strong>, coordinare il lavoro in squadra e mantenere la calma anche nei momenti di maggiore pressione.
+        </p>
+        <p>
+          Questa esperienza mi ha anche insegnato a <strong>rapportarmi con una clientela molto varia</strong>: 
+          sviluppando empatia, capacità di ascolto e un approccio orientato alla <strong>soluzione dei problemi</strong>, 
+          qualità che considero preziose in qualsiasi contesto professionale.
+        </p>
+        <p>
+          In sintesi, questo percorso mi ha fornito una solida base di <strong>autonomia, responsabilità e adattabilità</strong>, 
+          valori che oggi porto con me in ogni nuova esperienza lavorativa e personale.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <span class="skill-badge">Organizzazione del tempo e priorità</span>
+      <span class="skill-badge">Lavorare in team</span>
+      <span class="skill-badge">Customer care</span>
+      <span class="skill-badge">Problem solving</span>
     </div>
 
     <!-- ===================== ESPERIENZA 3 ===================== -->
-    <h2 id="exp-3" class="exp-title">hostess presso younique lugano</h2>
+    <h2 id="exp-3" class="exp-title">HOSTESS PRESSO YOUNIQUE LUGANO</h2>
 
     <div class="card">
-      <p class="muted">
-        Descrivi qui l'esperienza come hostess a Lugano. Questo blocco si espande automaticamente.
-      </p>
+      <div class="muted">
+        <p>
+          Tra i lavori che ho svolto negli ultimi anni quello che ricordo con più piacere è sicuramente l'esperienza come <strong>hostess</strong> 
+          alla fiera <strong>Younique</strong> di Lugano.
+        </p>
+        <p>
+          È stata un'occasione unica per confrontarmi con un contesto internazionale e dinamico, molto diverso da quelli a cui ero abituata.
+        </p>
+        <p>
+          Durante la manifestazione ho avuto modo di interagire con <strong>molte persone di nazionalità diverse</strong>: 
+          ognuno con le proprie aspettative e le proprie richieste da assecondare.
+        </p>
+        <p>
+          Il mio ruolo consisteva nell'<strong>accreditare i visitatori</strong>, gestirne l'ingresso alla fiera, consegnare i biglietti e spiegare in breve 
+          che cosa si poteva trovare all'interno della mostra dedicata all'artigianato.
+        </p>
+        <p>
+          Era un ambiente vivace e sempre in movimento, in cui precisione e gentilezza dovevano andare sempre di pari passo.
+        </p>
+        <p>
+          È stata un'esperienza che mi ha insegnato a <strong>gestire situazioni diverse con calma e professionalità</strong>, 
+          ad adattarmi rapidamente a persone e contesti nuovi e a comunicare in modo chiaro anche in lingue diverse.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <span class="skill-badge">Problem-solving</span>
+      <span class="skill-badge">Gestione del cliente</span>
     </div>
 
     <!-- ===================== ESPERIENZA 4 ===================== -->
-    <h2 id="exp-4" class="exp-title">alternanza scuola lavoro istituto dei tumori<br>(01/2020)</h2>
+    <h2 id="exp-4" class="exp-title">ALTERNANZA SCUOLA LAVORO ISTITUTO DEI TUMORI<br>(01/2020)</h2>
 
     <div class="card">
-      <p class="muted">
-        Descrivi qui l'esperienza di alternanza scuola-lavoro. Questo blocco si espande automaticamente.
-      </p>
+      <div class="muted">
+        <p>
+          Durante gli anni del liceo, anche se non era obbligatorio, ho deciso di dedicare due settimane all'<strong>Istituto Nazionale dei Tumori di Milano</strong>, 
+          dove ho svolto un'esperienza di <strong>supporto amministrativo</strong> alle attività didattiche.
+        </p>
+        <p>
+          Mi occupavo di assistere i professori nella gestione delle comunicazioni, di aggiornare file e documenti in Excel e di coordinare alcune piccole attività organizzative.
+        </p>
+        <p>
+          È stato un ambiente sicuramente impegnativo ma anche profondamente formativo: 
+          mi ha colpito l'idea di poter contribuire, anche in minima parte, al funzionamento di una realtà così importante e complessa, 
+          che ogni giorno lavora per fare del bene.
+        </p>
+        <p>
+          Un'esperienza breve ma significativa, che mi ha insegnato il valore della precisione, dell'ascolto e della collaborazione all'interno di un contesto strutturato.
+        </p>
+      </div>
+    </div>
+
+    <div class="skills">
+      <span class="skill-badge">Excel</span>
+      <span class="skill-badge">Comunicazione</span>
+      <span class="skill-badge">Precisione</span>
+      <span class="skill-badge">Empatia</span>
     </div>
 
   </main>
