@@ -27,6 +27,11 @@
       font-size:13pt; line-height:1.4;
     }
 
+    /* GRASSETTO PERSONALIZZATO */
+    .bold-text {
+      font-weight: 600;
+    }
+
     /* NAVBAR */
     .nav{position:sticky; top:0; z-index:100; backdrop-filter:saturate(180%) blur(10px);
       background:rgba(255,255,255,.8); border-bottom:1px solid var(--border);}
@@ -68,7 +73,7 @@
     /* ===== SEZIONI ===== */
     .section{margin:28px 0}
     .grid{display:grid; gap:18px}
-    .cols-2{grid-template-columns:1.2fr .8fr; align-items:stretch}
+    .cols-2{grid-template-columns:.6fr .4fr; align-items:start}
 
     .card{
       background:#fff; border:1px solid var(--border); border-radius:var(--radius);
@@ -77,32 +82,33 @@
     }
     .block-title{font-weight:800; color:#004994; font-size:20px; margin:4px 0 10px}
     .muted{color:#1e293b}
+    .muted p{margin:20px 0}
 
-    /* 🔸 ALTEZZE ALLUNGATE */
+    /* Card triennale non ha altezza fissa */
     .row-triennale .card {
-      height:900px;  /* Allungata per contenere tutto il testo */
-    }
-    .row-triennale .thesis { 
-      height:450px;  /* Metà dell'altezza della card di testo */
+      min-height:120px;
     }
 
-    /* Tesi preview */
+    /* Tesi preview - Posizionata in alto a destra sticky */
     .thesis{
-      border:1px solid var(--border); border-radius:14px; overflow:hidden; background:#f8fbff;
-      display:flex; align-items:stretch;
+      position:sticky;
+      top:80px;
+      border:1px solid var(--border); 
+      border-radius:14px; 
+      overflow:hidden; 
+      background:#f8fbff;
       box-shadow:0 12px 28px rgba(0,0,0,.06);
+      height:600px;
     }
     .thesis iframe{width:100%; height:100%; border:0; background:#000}
 
-    /* 🔹 Card "bassa" che si espande con il contenuto */
+    /* Card slim per magistrale */
     .card.slim{ min-height:120px; }
 
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
       .carousel{height:46vh}
-      .row-triennale .card,
-      .row-triennale .thesis { height:auto; }
-      .thesis iframe{height:420px}
+      .thesis{position:relative; top:0; height:420px; margin-top:16px}
       .photo.left,.photo.right{display:none}
       .photo.center{height:100%}
     }
@@ -138,25 +144,23 @@
           <div class="block-title">Comunicazione d'impresa e Relazioni Pubbliche (IULM) 2021/2024</div>
           
           <p class="muted">
-            Durante l'ultimo anno del <strong>liceo scientifico</strong>, che ho concluso con il <strong>massimo dei voti</strong>, mi sono chiesta più volte quale sarebbe stata la continuazione ideale del mio percorso. Nonostante l'indirizzo con le materie scientifiche, sentivo il bisogno di qualcosa che unisse <strong>ragionamento e creatività</strong> e che mi permettesse inoltre di esprimere la mia curiosità verso il mondo della comunicazione.
+            Durante l'ultimo anno del <span class="bold-text">liceo scientifico</span>, che ho concluso con il <span class="bold-text">massimo dei voti</span>, mi sono chiesta più volte quale sarebbe stata la continuazione ideale del mio percorso. Nonostante l'indirizzo con le materie scientifiche, sentivo il bisogno di qualcosa che unisse <span class="bold-text">ragionamento e creatività</span> e che mi permettesse inoltre di esprimere la mia curiosità verso il mondo della comunicazione.
           </p>
 
           <p class="muted">
-            Così ho scelto di iscrivermi al corso di <strong>Comunicazione d'impresa e relazioni pubbliche</strong>, un percorso che mi ha permesso di esplorare diverse discipline: dal <strong>marketing</strong> alla sociologia, dall'economia al neuromarketing. È stato un viaggio stimolante, dove ho svolto molti <strong>lavori di gruppo e progetti pratici</strong>, grazie ai quali ho capito che, pur apprezzando la parte creativa del marketing, ciò che davvero mi appassiona è <strong>l'analisi dei dati</strong> e la capacità di rendere i risultati chiari e concreti.
+            Così ho scelto di iscrivermi al corso di <span class="bold-text">Comunicazione d'impresa e relazioni pubbliche</span>, un percorso che mi ha permesso di esplorare diverse discipline: dal <span class="bold-text">marketing</span> alla sociologia, dall'economia al neuromarketing. È stato un viaggio stimolante, dove ho svolto molti <span class="bold-text">lavori di gruppo e progetti pratici</span>, grazie ai quali ho capito che, pur apprezzando la parte creativa del marketing, ciò che davvero mi appassiona è <span class="bold-text">l'analisi dei dati</span> e la capacità di rendere i risultati chiari e concreti.
           </p>
 
           <p class="muted">
-            La mia <strong>tesi triennale</strong> nasce proprio da questa idea: dalla ricerca dell'ambito in cui dati potessero avere un impatto davvero importante e immediato, e la risposta è stata la sanità. Partendo dai dati raccolti nelle cartelle cliniche, ho sviluppato un progetto su <strong>come questi possano aiutare a prevedere il rischio di tumore al seno</strong>, una malattia che colpisce una grande percentuale di donne in Italia.
+            La mia <span class="bold-text">tesi triennale</span> nasce proprio da questa idea: dalla ricerca dell'ambito in cui dati potessero avere un impatto davvero importante e immediato, e la risposta è stata la sanità. Partendo dai dati raccolti nelle cartelle cliniche, ho sviluppato un progetto su <span class="bold-text">come questi possano aiutare a prevedere il rischio di tumore al seno</span>, una malattia che colpisce una grande percentuale di donne in Italia.
           </p>
 
           <p class="muted">
-            Un tema, questo, che all'epoca era ancora poco esplorato, ma che oggi trova sempre più applicazioni e che ha rappresentato la base per le mie <strong>scelte successive</strong>.
+            Un tema, questo, che all'epoca era ancora poco esplorato, ma che oggi trova sempre più applicazioni e che ha rappresentato la base per le mie <span class="bold-text">scelte successive</span>.
           </p>
-          
-          <div style="margin-top:auto; color:#6b7280; font-size:12px">Aggiorna quando vuoi.</div>
         </div>
 
-        <!-- Preview tesi (metà altezza) -->
+        <!-- Preview tesi - Sticky a destra -->
         <aside class="thesis" aria-label="Preview tesi triennale">
           <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
         </aside>
@@ -169,19 +173,19 @@
         <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM) 2024/2026</div>
         
         <p class="muted">
-          Durante la triennale, grazie ai <strong>molti lavori di gruppo e alle riflessioni</strong> che ne sono nate, ho capito che la mia attitudine era più analitica di quanto pensassi. Mi piaceva ragionare sui dati, interpretare risultati e <strong>usare relazioni per prendere decisioni concrete</strong>.
+          Durante la triennale, grazie ai <span class="bold-text">molti lavori di gruppo e alle riflessioni</span> che ne sono nate, ho capito che la mia attitudine era più analitica di quanto pensassi. Mi piaceva ragionare sui dati, interpretare risultati e <span class="bold-text">usare relazioni per prendere decisioni concrete</span>.
         </p>
 
         <p class="muted">
-          Quando, verso la fine del 2022, sono comparse le prime applicazioni di <strong>intelligenza artificiale generativa</strong> disponibili al pubblico, ho iniziato ad appassionarmi profondamente a questo nuovo scenario. Ho cominciato a documentarmi, a sperimentare e a capire come l'IA potesse diventare una risorsa concreta per migliorare i processi e l'efficienza delle aziende.
+          Quando, verso la fine del 2022, sono comparse le prime applicazioni di <span class="bold-text">intelligenza artificiale generativa</span> disponibili al pubblico, ho iniziato ad appassionarmi profondamente a questo nuovo scenario. Ho cominciato a documentarmi, a sperimentare e a capire come l'IA potesse diventare una risorsa concreta per migliorare i processi e l'efficienza delle aziende.
         </p>
 
         <p class="muted">
-          Così ho deciso di iscrivermi al corso magistrale in <strong>Intelligenza Artificiale, Impresa e Società</strong> presso la IULM, perché rappresentava esattamente il connubio che cercavo: unire il <strong>marketing</strong>, le <strong>data analytics</strong> e le <strong>teorie dell'innovazione</strong>. Questo percorso mi ha permesso di approfondire le diverse sfumature dell'intelligenza artificiale: dalla <strong>comprensione di come funziona tecnicamente</strong> alla sua integrazione nei processi aziendali, passando per <strong>decisioni guidate dall'analisi e dall'automazione</strong> e anche i suoi rischi e le complessità a livello etico.
+          Così ho deciso di iscrivermi al corso magistrale in <span class="bold-text">Intelligenza Artificiale, Impresa e Società</span> presso la IULM, perché rappresentava esattamente il connubio che cercavo: unire il <span class="bold-text">marketing</span>, le <span class="bold-text">data analytics</span> e le <span class="bold-text">teorie dell'innovazione</span>. Questo percorso mi ha permesso di approfondire le diverse sfumature dell'intelligenza artificiale: dalla <span class="bold-text">comprensione di come funziona tecnicamente</span> alla sua integrazione nei processi aziendali, passando per <span class="bold-text">decisioni guidate dall'analisi e dall'automazione</span> e anche i suoi rischi e le complessità a livello etico.
         </p>
 
         <p class="muted">
-          Un cammino che mi ha appassionato fin dal primo giorno e che sento pienamente in linea con ciò che voglio costruire per il mio <strong>futuro professionale</strong>.
+          Un cammino che mi ha appassionato fin dal primo giorno e che sento pienamente in linea con ciò che voglio costruire per il mio <span class="bold-text">futuro professionale</span>.
         </p>
       </div>
     </section>
@@ -190,12 +194,12 @@
   <script>
     /* ===== CAROSELLO a 3 pannelli con sequenza esatta (6 immagini) ===== */
     const sources = [
-      '/img/istruzione1.png',
-      '/img/istruzione2.png',
-      '/img/istruzione3.png',
-      '/img/istruzione4.png',
-      '/img/istruzione5.png',
-      '/img/istruzione6.png'
+      'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=800',
+      'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800',
+      'https://images.unsplash.com/photo-1562774053-701939374585?w=800',
+      'https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=800',
+      'https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=800',
+      'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800'
     ];
     const N = sources.length;
     const stage = document.querySelector('.carousel');
