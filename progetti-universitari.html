@@ -1,3 +1,453 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Progetti universitari — Chiara Beretta</title>
+  <meta name="description" content="Selezione di progetti universitari magistrali e triennali con presentazioni e report visualizzabili direttamente.">
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#d3f3ff;
+      --accent:#004994;
+      --text:#1e293b;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--bg);
+      color:var(--text);
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size:13pt;
+      line-height:1.45;
+    }
+
+    /* GRASSETTO PERSONALIZZATO */
+    .bold-text{
+      font-weight:600;
+    }
+
+    /* NAVBAR */
+    .nav{
+      position:sticky;
+      top:0;
+      z-index:100;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(255,255,255,.8);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:1100px;
+      margin:0 auto;
+      padding:12px 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+    }
+    .brand a{
+      font-weight:800;
+      text-decoration:none;
+      color:var(--accent);
+    }
+    .menu{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .menu a{
+      padding:8px 12px;
+      border-radius:12px;
+      text-decoration:none;
+      color:var(--accent);
+      font-weight:600;
+    }
+    .menu a:hover{
+      background:#fff;
+      border:1px solid var(--border);
+    }
+
+    /* LAYOUT BASE */
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:24px 16px;
+    }
+
+    /* TITOLO PAGINA */
+    .page-title{
+      margin:24px 0 8px;
+      color:var(--accent);
+      font-size:clamp(28px,4.8vw,42px);
+      font-weight:800;
+      text-align:center;
+    }
+
+    /* INTRODUZIONE */
+    .intro-text{
+      text-align:left;
+      color:var(--accent);
+      max-width:1100px;
+      margin:0 auto 24px;
+      font-size:15px;
+      line-height:1.6;
+    }
+
+    /* INDICE */
+    .index-wrap{
+      margin:10px 0 32px;
+      background:transparent;
+      border:none;
+      padding:8px 0;
+    }
+    .index-grid{
+      display:grid;
+      gap:18px;
+      grid-template-columns:1fr;
+    }
+    .index-col h3{
+      margin:16px 0 10px;
+      color:var(--accent);
+      font-size:clamp(22px,4vw,28px);
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+    }
+    .clean-ol{
+      list-style:none;
+      padding-left:0;
+      margin:0;
+    }
+    .clean-ol li{
+      counter-increment:item;
+      margin:8px 0;
+    }
+    .clean-ol li::before{
+      content:counter(item) " ";
+      font-weight:800;
+      color:var(--accent);
+      margin-right:6px;
+    }
+    .index-link{
+      text-decoration:none;
+      color:var(--accent);
+    }
+    .index-link:hover{
+      color:var(--accent);
+      text-decoration:underline;
+    }
+
+    /* TITOLONI SEZIONE */
+    .section-title{
+      margin:52px 0 32px;
+      text-align:center;
+      color:var(--accent);
+      font-size:clamp(20px,4vw,24px);
+      font-weight:800;
+      letter-spacing:.02em;
+      text-transform:uppercase;
+      background:transparent;
+      padding:0;
+      border-radius:0;
+    }
+
+    /* CARD TESTO */
+    .card{
+      background:#fff;
+      border:1px solid var(--border);
+      border-radius:var(--radius);
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+      padding:18px;
+      display:flex;
+      flex-direction:column;
+    }
+    .p-title{
+      margin:2px 0 10px;
+      color:var(--accent);
+      font-weight:800;
+      font-size:22px;
+    }
+    .block-title{
+      font-weight:800;
+      color:var(--accent);
+      font-size:20px;
+      margin:4px 0 10px;
+    }
+    .muted{
+      color:var(--text);
+    }
+    .muted p{
+      margin:20px 0;
+    }
+
+    /* LAYOUT STATICO */
+    .split{
+      display:grid;
+      gap:18px;
+      grid-template-columns:1.2fr .8fr;
+      align-items:stretch;
+      margin-bottom:48px;
+    }
+    .split .card,
+    .split .thesis{
+      height:560px;
+    }
+
+    /* Tesi/PDF preview */
+    .thesis{
+      border:1px solid var(--border);
+      border-radius:14px;
+      overflow:hidden;
+      background:#f8fbff;
+      display:flex;
+      align-items:stretch;
+      box-shadow:0 12px 28px rgba(0,0,0,.06);
+    }
+    .thesis iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      background:#000;
+    }
+
+    /* CONTAINER SLIDE ORIZZONTALI */
+    .slides-container{
+      background:transparent;
+      border:none;
+      border-radius:0;
+      padding:40px 0;
+      margin-top:10px;
+      margin-bottom:48px;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .slides-inner{
+      width:85%;
+      max-width:900px;
+      border:1px solid var(--border);
+      border-radius:12px;
+      overflow:hidden;
+      background:#f8fbff;
+      height:580px;
+      box-shadow:0 8px 20px rgba(0,0,0,.08);
+    }
+    .slides-inner iframe{
+      width:100%;
+      height:100%;
+      border:0;
+      background:#000;
+    }
+
+    /* Spazio extra prima di TRIENNALE */
+    .spacer{
+      height:64px;
+    }
+
+    /* Sezione card semplice con margine */
+    .simple-section{
+      margin-bottom:48px;
+    }
+
+    @media (max-width:900px){
+      .split{
+        grid-template-columns:1fr;
+      }
+      .split .card,
+      .split .thesis{
+        height:auto;
+      }
+      .thesis iframe{
+        height:420px;
+      }
+      .slides-container{
+        padding:20px 0;
+      }
+      .slides-inner{
+        width:100%;
+        height:480px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="menu">
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <!-- TITOLO PAGINA -->
+    <h1 class="page-title">Progetti universitari</h1>
+
+    <!-- INTRODUZIONE -->
+    <p class="intro-text">
+      Questa sezione raccoglie i <span class="bold-text">progetti più riusciti e stimolanti</span> realizzati durante il mio percorso universitario.
+      Ogni lavoro mi ha permesso di <span class="bold-text">riflettere su temi diversi</span> e di mettere alla prova le mie capacità creative, analitiche e organizzative.
+      Vi troverete i progetti che <span class="bold-text">mi hanno appassionato di più</span> e che rappresentano al meglio il mio modo di lavorare e di crescere professionalmente.
+    </p>
+    <p class="intro-text">
+      N.B. Alcuni progetti mostrati sono stati realizzati in collaborazione con altri studenti. I dati personali sono stati oscurati per rispetto della privacy.
+    </p>
+
+    <!-- INDICE -->
+    <section class="index-wrap" aria-label="Indice rapido">
+      <div class="index-grid">
+        <!-- MAGISTRALE -->
+        <div class="index-col">
+          <h3><a class="index-link" href="#magistrale">MAGISTRALE</a></h3>
+          <ol class="clean-ol">
+            <li><a class="index-link" href="#mag-1">NeuroLabel — Wine Label Intelligence · Cognition, Neuroscience & Machine Learning</a></li>
+            <li><a class="index-link" href="#mag-2">Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</a></li>
+            <li><a class="index-link" href="#mag-3">AI & Machine Learning per il marketing — clustering su dati sintetici</a></li>
+            <li><a class="index-link" href="#mag-4">Laboratorio romano — Lumina cloud-commerce</a></li>
+            <li><a class="index-link" href="#mag-5">Strategic Management & Digital Technology — analisi Callmewine e strategie di crescita</a></li>
+            <li><a class="index-link" href="#mag-6">Scenari socio-culturali della Big Data Society — stereotipi & intelligenza artificiale</a></li>
+          </ol>
+        </div>
+
+        <!-- TRIENNALE -->
+        <div class="index-col">
+          <h3><a class="index-link" href="#triennale">TRIENNALE</a></h3>
+          <ol class="clean-ol">
+            <li><a class="index-link" href="#tri-1">Marketing — Rebranding marketing plan</a></li>
+            <li><a class="index-link" href="#tri-2">Graphic design — Mostra "Sansone e Dalila"</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== MAGISTRALE ===================== -->
+    <h2 id="magistrale" class="section-title">MAGISTRALE</h2>
+
+    <!-- 1. NeuroLabel -->
+    <section id="mag-1" aria-label="NeuroLabel">
+      <article class="card">
+        <h3 class="p-title">1. NeuroLabel — Wine Label Intelligence · Cognition, Neuroscience & Machine Learning (a.a. 2025–2026)</h3>
+        <div class="muted">
+          <p>
+            Progetto finale del mio percorso universitario, sviluppato con Rebecca Magarotto per il corso di <em>Cognition, Neuroscience and Machine Learning</em>.
+            L'obiettivo era costruire un <span class="bold-text">sistema AI capace di valutare l'efficacia visiva di un'etichetta di vino</span> secondo i criteri della neuromappa IULM.
+          </p>
+          <p>
+            Il sistema analizza l'etichetta fronte tramite <span class="bold-text">Gemini Vision</span>, genera descrizioni testuali validate con similarità coseno, e le passa a tre modelli
+            <span class="bold-text">Gradient Boosting</span> separati — addestrati su un dataset di 83 etichette valutate da esperti IULM — per predire i punteggi di eleganza, design e coerenza cromatica.
+            Il risultato finale applica <span class="bold-text">pesi neurologici basati sulle fasi preattentive dell'elaborazione visiva</span> e un bonus per la posizione sullo scaffale.
+          </p>
+          <p>
+            Il progetto è strutturato come <span class="bold-text">funnel di lead generation</span> rivolto ai produttori vinicoli, con deploy completo su <span class="bold-text">GitHub Pages</span> e <span class="bold-text">Render.com</span>.
+          </p>
+          <p>
+            Questo progetto mi ha permesso di sviluppare competenze in <span class="bold-text">computer vision, NLP, machine learning applicato</span> e <span class="bold-text">deploy di sistemi AI end-to-end</span>.
+          </p>
+        </div>
+      </article>
+
+      <div class="slides-container" aria-label="Slide NeuroLabel">
+        <div class="slides-inner">
+          <iframe src="https://drive.google.com/file/d/1xuNhCKTQJTp8XnK2qwlIoUY74FYJtV_4/view?usp=drive_link" title="Slide NeuroLabel"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Probabilità & Statistica -->
+    <section id="mag-2" class="split" aria-label="Probabilità & Statistica">
+      <article class="card">
+        <div class="block-title">2. Probabilità e statistica per il marketing — analisi di un dataset sul mercato delle mozzarelle (JMP)</div>
+        <div class="muted">
+          <p>
+            Questo progetto universitario, realizzato per il corso <em>Intelligenza artificiale, impresa e società (a.a. 2024–2025)</em>,
+            aveva come obiettivo l'<span class="bold-text">analisi del mercato della mozzarella nel Sud Italia</span>, con focus sul brand <span class="bold-text">Pettinicchio</span>
+            e sui principali competitor nazionali.
+          </p>
+          <p>
+            Svolto in gruppo, ha previsto l'utilizzo di metodologie statistiche e strumenti di <span class="bold-text">data analysis</span>
+            (EDA, analisi fattoriale e regressione lineare) per comprendere i <span class="bold-text">driver di preferenza dei consumatori</span>
+            e le dinamiche competitive del settore.
+          </p>
+          <p>
+            L'analisi dei dati raccolti tramite 454 interviste CATI ha messo in luce l'importanza di <span class="bold-text">qualità, tradizione e packaging</span>
+            come principali fattori di scelta e di competitività per i brand.
+          </p>
+          <p>
+            Questo progetto mi ha permesso di sviluppare solide competenze in <span class="bold-text">analisi dei dati</span>,
+            <span class="bold-text">interpretazione statistica</span> e <span class="bold-text">strategie di marketing basate su insight concreti</span>.
+          </p>
+        </div>
+      </article>
+      <aside class="thesis" aria-label="Report JMP (preview)">
+        <iframe src="https://drive.google.com/file/d/1Y2f3rYsiXRXiXAlE686VTMrlvZQ2uTdm/preview" allow="autoplay" title="Report JMP"></iframe>
+      </aside>
+    </section>
+
+    <!-- 3. AI & ML -->
+    <section id="mag-3" aria-label="AI & ML per il marketing">
+      <article class="card">
+        <h3 class="p-title">3. AI & Machine Learning per il marketing — clustering su dati sintetici</h3>
+        <div class="muted">
+          <p>
+            È stato un <em>project work</em> dedicato all'applicazione del <span class="bold-text">machine learning nel marketing</span>,
+            con l'obiettivo di creare un modello di <span class="bold-text">segmentazione clienti basato sull'algoritmo K-Means</span>.
+            Attraverso l'uso di <span class="bold-text">Python, JupyterLab, ChatGPT, Streamlit e GitHub</span>, ho simulato un database di un e-commerce pet care,
+            individuando <span class="bold-text">quattro cluster di utenti</span> con comportamenti d'acquisto distinti.
+          </p>
+          <p>
+            Il modello è stato poi trasformato in una <span class="bold-text">web app interattiva</span> capace di assegnare automaticamente
+            i nuovi clienti al cluster più coerente, suggerendo strategie di marketing personalizzate.
+            Questo progetto mi ha permesso di sviluppare competenze pratiche in <span class="bold-text">analisi dei dati, machine learning e sviluppo di applicazioni interattive</span>
+            basate su intelligenza artificiale.
+          </p>
+          <p style="text-align:center; margin-top:12px">
+            <a href="https://app-petcare-5zytjelaypr4p2glklgeql.streamlit.app/" target="_blank" rel="noopener" style="color:var(--accent); font-weight:700; text-decoration:underline">
+              Vai alla Web App →
+            </a>
+          </p>
+        </div>
+      </article>
+
+      <div class="slides-container" aria-label="Slide clustering">
+        <div class="slides-inner">
+          <iframe src="https://drive.google.com/file/d/1ROBheavW_Da8owxdqkW80559ZfxSEwtI/preview#page=1" allow="autoplay" title="Slide clustering"></iframe>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. Laboratorio romano -->
+    <section id="mag-4" class="split" aria-label="Laboratorio romano — Lumina cloud-commerce">
+      <article class="card">
+        <div class="block-title">4. Laboratorio romano — Lumina cloud-commerce</div>
+        <div class="muted">
+          <p>
+            Progetto dedicato alla <span class="bold-text">trasformazione digitale e strategica di Lumina Srl</span>,
+            azienda valtellinese con oltre 120 anni di storia nel settore alimentare.
+          </p>
+          <p>
+            In gruppo, abbiamo sviluppato una <span class="bold-text">piattaforma e-commerce B2B in cloud</span> su <span class="bold-text">Azure</span>
+            con tecnologia <span class="bold-text">WordPress</span>, integrando soluzioni di <span class="bold-text">AI e Machine Learning</span>
+            per l'ottimizzazione degli ordini e l'assistenza clienti tramite <span class="bold-text">chatbot intelligente</span>.
+          </p>
+          <p>
+            Il progetto ha incluso anche un <span class="bold-text">restyling del brand</span>, un piano di <span class="bold-text">comunicazione integrata</span>
+            e una strategia di <span class="bold-text">lancio multicanale</span> rivolta ai clienti professionali.
+          </p>
           <p>
             Questa esperienza mi ha permesso di unire <span class="bold-text">competenze tecniche, creative e di marketing strategico</span>,
             lavorando su un caso aziendale reale con approccio data-driven e orientato all'innovazione.
