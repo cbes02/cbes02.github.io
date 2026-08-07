@@ -53,10 +53,11 @@
       justify-content:space-between;
     }
     .brand a{
-      font-weight:800;
+      display:flex;
+      align-items:center;
       text-decoration:none;
-      color:var(--accent);
     }
+    .brand-signature{display:block; width:auto; height:46px}
     .menu{
       display:flex;
       gap:10px;
@@ -286,7 +287,7 @@
   <!-- NAVBAR -->
   <nav class="nav">
     <div class="nav-inner">
-      <div class="brand"><a href="/">Chiara Beretta</a></div>
+      <div class="brand"><a href="/" aria-label="Chiara Beretta — Home"><img class="brand-signature" src="/img/firma-chiara-beretta.png" alt="Firma di Chiara Beretta"></a></div>
       <div class="menu">
         <a href="/istruzione.html">Istruzione</a>
         <a href="/progetti-universitari.html">Progetti universitari</a>
