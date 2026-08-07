@@ -13,7 +13,7 @@
 
   <style>
     :root{
-      --bg: #d3f3ff;
+      --bg: #f3ebe2;
       --accent: #004994;
       --text: #0f172a;
       --border: rgba(15,23,42,0.12);
@@ -52,27 +52,13 @@
     }
     .menu a:hover{background:#fff; border:1px solid var(--border)}
 
-    /* HERO con montagna nitida e dissolvenza azzurrina in basso */
+    /* HERO */
     .hero-wrap{
       position:relative;
       min-height:72vh;
       display:flex;
       align-items:center;
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(211,243,255,0) 75%,
-          rgba(211,243,255,1) 100%
-        ), /* sfumatura azzurrina finale */
-        url('/img/montagna.png') center/cover no-repeat;
-    }
-
-    /* velo azzurrino sopra la montagna, più opaco e coerente con il resto */
-    .hero-overlay{
-      position:absolute;
-      inset:0;
-      background:rgba(211,243,255,0.8); /* 80% opacità */
-      z-index:0;
+      background:var(--bg);
     }
 
     .hero{
@@ -170,7 +156,6 @@
 
   <!-- HERO -->
   <div class="hero-wrap">
-    <div class="hero-overlay"></div>
     <section class="hero">
       <div>
         <h1>Ciao! sono Chiara,</h1>
