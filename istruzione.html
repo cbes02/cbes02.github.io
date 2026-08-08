@@ -48,6 +48,14 @@
     .container{max-width:1100px; margin:0 auto; padding:24px 16px}
     .page-title{margin:24px 0 8px; color:var(--accent); font-size:clamp(28px,4.8vw,42px); font-weight:800; text-align:center}
 
+    /* INDICE */
+    .index-wrap{margin:10px 0 32px; background:transparent; border:none; padding:8px 0}
+    .clean-ul{list-style:none; padding-left:0; margin:0}
+    .clean-ul li{margin:8px 0; padding-left:20px; position:relative}
+    .clean-ul li::before{content:"•"; position:absolute; left:0; font-weight:800; color:var(--accent)}
+    .index-link{text-decoration:none; color:var(--accent)}
+    .index-link:hover{color:var(--accent); text-decoration:underline}
+
     /* ===== CAROSELLO 3-PANNELLI ===== */
     .carousel{
       position:relative;
@@ -137,11 +145,42 @@
   <main class="container">
     <h1 class="page-title">Istruzione</h1>
 
+    <!-- INDICE -->
+    <section class="index-wrap" aria-label="Indice istruzione">
+      <ul class="clean-ul">
+        <li><a class="index-link" href="#magistrale">Laurea magistrale — Intelligenza Artificiale, Impresa e Società</a></li>
+        <li><a class="index-link" href="#triennale">Laurea triennale — Comunicazione d'impresa e Relazioni Pubbliche</a></li>
+      </ul>
+    </section>
+
     <!-- CAROSELLO -->
     <section class="carousel" aria-label="Fotografie IULM"></section>
 
+    <!-- MAGISTRALE -->
+    <section id="magistrale" class="section">
+      <div class="card slim">
+        <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM) 2024/2026</div>
+
+        <p class="muted">
+          Durante la triennale, grazie ai <span class="bold-text">molti lavori di gruppo e alle riflessioni</span> che ne sono nate, ho capito che la mia attitudine era più analitica di quanto pensassi. Mi piaceva ragionare sui dati, interpretare risultati e <span class="bold-text">usare relazioni per prendere decisioni concrete</span>.
+        </p>
+
+        <p class="muted">
+          Quando, verso la fine del 2022, sono comparse le prime applicazioni di <span class="bold-text">intelligenza artificiale generativa</span> disponibili al pubblico, ho iniziato ad appassionarmi profondamente a questo nuovo scenario. Ho cominciato a documentarmi, a sperimentare e a capire come l'IA potesse diventare una risorsa concreta per migliorare i processi e l'efficienza delle aziende.
+        </p>
+
+        <p class="muted">
+          Così ho deciso di iscrivermi al corso magistrale in <span class="bold-text">Intelligenza Artificiale, Impresa e Società</span> presso la IULM, perché rappresentava esattamente il connubio che cercavo: unire il <span class="bold-text">marketing</span>, le <span class="bold-text">data analytics</span> e le <span class="bold-text">teorie dell'innovazione</span>. Questo percorso mi ha permesso di approfondire le diverse sfumature dell'intelligenza artificiale: dalla <span class="bold-text">comprensione di come funziona tecnicamente</span> alla sua integrazione nei processi aziendali, passando per <span class="bold-text">decisioni guidate dall'analisi e dall'automazione</span> e anche i suoi rischi e le complessità a livello etico.
+        </p>
+
+        <p class="muted">
+          Un cammino che mi ha appassionato fin dal primo giorno e che sento pienamente in linea con ciò che voglio costruire per il mio <span class="bold-text">futuro professionale</span>.
+        </p>
+      </div>
+    </section>
+
     <!-- TRIENNALE + TESI -->
-    <section class="section">
+    <section id="triennale" class="section">
       <div class="grid cols-2 row-triennale">
         <!-- Testo triennale -->
         <div class="card">
@@ -171,35 +210,14 @@
       </div>
     </section>
 
-    <!-- MAGISTRALE -->
-    <section class="section">
-      <div class="card slim">
-        <div class="block-title">Intelligenza Artificiale, Impresa e Società (IULM) 2024/2026</div>
-        
-        <p class="muted">
-          Durante la triennale, grazie ai <span class="bold-text">molti lavori di gruppo e alle riflessioni</span> che ne sono nate, ho capito che la mia attitudine era più analitica di quanto pensassi. Mi piaceva ragionare sui dati, interpretare risultati e <span class="bold-text">usare relazioni per prendere decisioni concrete</span>.
-        </p>
-
-        <p class="muted">
-          Quando, verso la fine del 2022, sono comparse le prime applicazioni di <span class="bold-text">intelligenza artificiale generativa</span> disponibili al pubblico, ho iniziato ad appassionarmi profondamente a questo nuovo scenario. Ho cominciato a documentarmi, a sperimentare e a capire come l'IA potesse diventare una risorsa concreta per migliorare i processi e l'efficienza delle aziende.
-        </p>
-
-        <p class="muted">
-          Così ho deciso di iscrivermi al corso magistrale in <span class="bold-text">Intelligenza Artificiale, Impresa e Società</span> presso la IULM, perché rappresentava esattamente il connubio che cercavo: unire il <span class="bold-text">marketing</span>, le <span class="bold-text">data analytics</span> e le <span class="bold-text">teorie dell'innovazione</span>. Questo percorso mi ha permesso di approfondire le diverse sfumature dell'intelligenza artificiale: dalla <span class="bold-text">comprensione di come funziona tecnicamente</span> alla sua integrazione nei processi aziendali, passando per <span class="bold-text">decisioni guidate dall'analisi e dall'automazione</span> e anche i suoi rischi e le complessità a livello etico.
-        </p>
-
-        <p class="muted">
-          Un cammino che mi ha appassionato fin dal primo giorno e che sento pienamente in linea con ciò che voglio costruire per il mio <span class="bold-text">futuro professionale</span>.
-        </p>
-      </div>
-    </section>
   </main>
 
   <script>
-    /* ===== CAROSELLO a 3 pannelli con sequenza esatta (5 immagini) ===== */
+    /* ===== CAROSELLO a 3 pannelli con sequenza esatta (6 immagini) ===== */
     const sources = [
       '/img/istruzione1.png',
       '/img/istruzione2.png',
+      '/img/istruzione3.png',
       '/img/istruzione4.png',
       '/img/istruzione5.png',
       '/img/istruzione6.png'
