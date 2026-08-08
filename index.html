@@ -66,8 +66,8 @@
 
     .hero{
       position:relative; z-index:1;
-      max-width:1100px; margin:0 auto; padding:64px 16px;
-      display:grid; grid-template-columns:1.4fr .6fr; gap:28px; align-items:center;
+      max-width:1280px; margin:0 auto; padding:64px 16px;
+      display:grid; grid-template-columns:minmax(0,1.35fr) minmax(290px,.55fr) minmax(145px,.28fr); gap:24px; align-items:center;
     }
     .hero h1{
       margin:0 0 12px; color:var(--accent);
@@ -137,6 +137,65 @@
       .avatar-code-ring .rotating-code{animation:none}
     }
 
+    /* POST-IT INTERATTIVI */
+    .postits{display:flex; flex-direction:column; gap:18px; align-items:center}
+    .postit{
+      --note:#dcefcf;
+      position:relative; width:145px; min-height:112px;
+      padding:28px 14px 16px;
+      border:0; border-radius:3px;
+      background:var(--note); color:var(--accent);
+      font:700 15px/1.25 'Montserrat',sans-serif;
+      text-align:center; cursor:pointer;
+      box-shadow:0 10px 18px rgba(60,42,30,.15);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    .postit::before{
+      content:""; position:absolute; top:-7px; left:50%;
+      width:54px; height:16px; transform:translateX(-50%) rotate(-2deg);
+      background:rgba(255,255,255,.58); box-shadow:0 1px 2px rgba(0,0,0,.08);
+    }
+    .postit:nth-child(1){transform:rotate(-2deg)}
+    .postit:nth-child(2){transform:rotate(1.5deg)}
+    .postit:nth-child(3){transform:rotate(-1deg)}
+    .postit:hover,.postit:focus-visible{transform:rotate(0) translateY(-4px); box-shadow:0 15px 24px rgba(60,42,30,.2)}
+    .postit.green{--note:#dcefcf}
+    .postit.blue{--note:#d9edf3}
+    .postit.pink{--note:#f4dce2}
+
+    .note-modal{
+      position:fixed; inset:0; z-index:5000;
+      display:grid; place-items:center; padding:24px;
+      background:rgba(30,24,20,.68);
+      opacity:0; visibility:hidden; pointer-events:none;
+      transition:opacity .25s ease, visibility .25s ease;
+    }
+    .note-modal.is-open{opacity:1; visibility:visible; pointer-events:auto}
+    .note-dialog{
+      --note:#dcefcf;
+      position:relative; width:min(460px,92vw); min-height:330px;
+      display:flex; flex-direction:column; justify-content:center;
+      padding:62px 44px 44px;
+      border-radius:4px; background:var(--note); color:var(--accent);
+      text-align:center; box-shadow:0 28px 70px rgba(0,0,0,.34);
+      transform:scale(.86) rotate(-1deg); transition:transform .25s ease;
+    }
+    .note-modal.is-open .note-dialog{transform:scale(1) rotate(-1deg)}
+    .note-dialog::before{
+      content:""; position:absolute; top:-10px; left:50%;
+      width:92px; height:25px; transform:translateX(-50%) rotate(-2deg);
+      background:rgba(255,255,255,.58); box-shadow:0 1px 3px rgba(0,0,0,.1);
+    }
+    .note-dialog h2{margin:0 0 22px; font-size:30px}
+    .note-dialog p{margin:0; font-size:17px; line-height:1.65}
+    .note-close{
+      position:absolute; top:14px; right:16px;
+      width:38px; height:38px; border:0; border-radius:50%;
+      background:rgba(255,255,255,.52); color:var(--accent);
+      font-size:25px; line-height:1; cursor:pointer;
+    }
+    body.modal-open{overflow:hidden}
+
     /* PROVA LOADER HOME */
     body.is-loading{overflow:hidden}
     .page-loader{
@@ -169,6 +228,8 @@
     @media (max-width: 860px){
       .hero{grid-template-columns:1fr}
       .avatar-wrap{justify-content:center; margin-top:12px}
+      .postits{flex-direction:row; flex-wrap:wrap; justify-content:center; margin-top:14px}
+      .postit{width:135px; min-height:104px}
     }
 
     /* FOOTER */
@@ -243,7 +304,20 @@
           </svg>
         </div>
       </div>
+      <aside class="postits" aria-label="Tre parole che mi descrivono">
+        <button class="postit green" type="button" data-title="Energica" data-color="#dcefcf" data-copy="Ho appena concluso il mio percorso di studi con il massimo dei voti e sono pronta a trasformare l'entusiasmo in risultati. Non vedo l'ora di dimostrare quanto valgo e di dare forma alle tante idee che ho in testa.">Energica</button>
+        <button class="postit blue" type="button" data-title="Positiva" data-color="#d9edf3" data-copy="Credo che in ogni situazione ci sia un elemento positivo da cui ripartire: bisogna saperlo riconoscere e costruirgli attorno nuove opportunità e valore.">Positiva</button>
+        <button class="postit pink" type="button" data-title="Puntigliosa" data-color="#f4dce2" data-copy="Desidero fare ogni cosa al meglio, ma sto imparando che la perfezione non esiste. È un aspetto su cui lavoro ogni giorno: sono proprio gli errori, il confronto e i tentativi a farci crescere davvero.">Puntigliosa</button>
+      </aside>
     </section>
+  </div>
+
+  <div class="note-modal" id="note-modal" aria-hidden="true">
+    <article class="note-dialog" role="dialog" aria-modal="true" aria-labelledby="note-title">
+      <button class="note-close" type="button" aria-label="Chiudi">×</button>
+      <h2 id="note-title"></h2>
+      <p id="note-copy"></p>
+    </article>
   </div>
 
   <footer class="site-footer">
@@ -272,6 +346,44 @@
       if (document.readyState === 'complete') hideLoader();
       else window.addEventListener('load', hideLoader, { once:true });
       setTimeout(hideLoader, 1800);
+    })();
+  </script>
+  <script>
+    (() => {
+      const modal = document.getElementById('note-modal');
+      const dialog = modal.querySelector('.note-dialog');
+      const title = document.getElementById('note-title');
+      const copy = document.getElementById('note-copy');
+      const closeButton = modal.querySelector('.note-close');
+      let lastTrigger = null;
+
+      const openNote = (button) => {
+        lastTrigger = button;
+        title.textContent = button.dataset.title;
+        copy.textContent = button.dataset.copy;
+        dialog.style.setProperty('--note', button.dataset.color);
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+        closeButton.focus();
+      };
+      const closeNote = () => {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+        if (lastTrigger) lastTrigger.focus();
+      };
+
+      document.querySelectorAll('.postit').forEach(button => {
+        button.addEventListener('click', () => openNote(button));
+      });
+      closeButton.addEventListener('click', closeNote);
+      modal.addEventListener('click', event => {
+        if (event.target === modal) closeNote();
+      });
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && modal.classList.contains('is-open')) closeNote();
+      });
     })();
   </script>
 </body>
