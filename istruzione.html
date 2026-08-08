@@ -121,6 +121,14 @@
       text-align:center;
     }
     .thesis-placeholder strong{display:block; margin-bottom:8px; font-size:20px}
+    .thesis-column{min-width:0}
+    .thesis-note{
+      margin:10px 4px 0;
+      color:var(--accent);
+      font-size:13px;
+      line-height:1.4;
+      text-align:center;
+    }
 
     /* Card slim per magistrale */
     .card.slim{ min-height:120px; }
@@ -188,12 +196,15 @@
           </p>
         </div>
 
-        <aside class="thesis thesis-placeholder" aria-label="Spazio tesi magistrale">
-          <div>
-            <strong>Tesi magistrale</strong>
-            <span>Spazio pronto per inserire il documento.</span>
-          </div>
-        </aside>
+        <div class="thesis-column">
+          <aside class="thesis thesis-placeholder" aria-label="Spazio tesi magistrale">
+            <div>
+              <strong>Tesi magistrale</strong>
+              <span>Spazio pronto per inserire il documento.</span>
+            </div>
+          </aside>
+          <p class="thesis-note">Se vuoi saperne di più sulla tesi clicca qui 👆🏽</p>
+        </div>
       </div>
     </section>
 
@@ -222,9 +233,12 @@
         </div>
 
         <!-- Preview tesi - Sticky a destra -->
-        <aside class="thesis" aria-label="Preview tesi triennale">
-          <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
-        </aside>
+        <div class="thesis-column">
+          <aside class="thesis" aria-label="Preview tesi triennale">
+            <iframe src="https://drive.google.com/file/d/1AN7-zCHJTqd66gQqpRFvtDFpQwwVPevO/preview#page=7" allow="autoplay"></iframe>
+          </aside>
+          <p class="thesis-note">Se vuoi saperne di più sulla tesi clicca qui 👆🏽</p>
+        </div>
       </div>
     </section>
 
