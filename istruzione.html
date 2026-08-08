@@ -102,8 +102,7 @@
 
     /* Tesi preview - Posizionata in alto a destra sticky */
     .thesis{
-      position:sticky;
-      top:80px;
+      position:relative;
       border:1px solid var(--border); 
       border-radius:14px; 
       overflow:hidden; 
@@ -121,7 +120,11 @@
       text-align:center;
     }
     .thesis-placeholder strong{display:block; margin-bottom:8px; font-size:20px}
-    .thesis-column{min-width:0}
+    .thesis-column{
+      min-width:0;
+      position:sticky;
+      top:80px;
+    }
     .thesis-note{
       margin:10px 4px 0;
       color:var(--accent);
@@ -138,7 +141,8 @@
     @media (max-width: 900px){
       .cols-2{grid-template-columns:1fr}
       .carousel{height:46vh}
-      .thesis{position:relative; top:0; height:420px; margin-top:16px}
+      .thesis-column{position:relative; top:0}
+      .thesis{height:420px; margin-top:16px}
       .photo.left,.photo.right{display:none}
       .photo.center{height:100%}
     }
