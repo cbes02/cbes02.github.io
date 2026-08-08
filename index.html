@@ -130,6 +130,35 @@
       .avatar-code-ring .rotating-code{animation:none}
     }
 
+    /* PROVA LOADER HOME */
+    body.is-loading{overflow:hidden}
+    .page-loader{
+      position:fixed; inset:0; z-index:9999;
+      display:grid; place-items:center;
+      background:var(--bg);
+      opacity:1; visibility:visible;
+      transition:opacity .35s ease, visibility .35s ease;
+    }
+    .page-loader.is-hidden{opacity:0; visibility:hidden; pointer-events:none}
+    .loader-emblem{
+      position:relative; width:210px; height:210px;
+      display:grid; place-items:center;
+    }
+    .loader-emblem::before{
+      content:""; position:absolute; inset:0;
+      border:1.5px solid rgba(90,62,43,.18);
+      border-top-color:var(--accent);
+      border-right-color:var(--accent);
+      border-radius:50%;
+      animation:loader-spin 1.15s linear infinite;
+    }
+    .loader-signature{width:158px; height:auto; display:block}
+    @keyframes loader-spin{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion:reduce){
+      .loader-emblem::before{animation:none}
+      .page-loader{transition:none}
+    }
+
     footer{
       padding:28px 0; border-top:1px solid var(--border);
       text-align:center; color:#355;
@@ -148,7 +177,13 @@
     .site-footer a:hover,.site-footer a:focus-visible{text-decoration:underline}
 </style>
 </head>
-<body>
+<body class="is-loading">
+
+  <div class="page-loader" id="page-loader" role="status" aria-label="Caricamento della pagina">
+    <div class="loader-emblem">
+      <img class="loader-signature" src="/img/firma-chiara-beretta.png?v=2" alt="">
+    </div>
+  </div>
 
   <!-- NAVBAR -->
   <nav class="nav">
@@ -220,5 +255,22 @@
       </div>
     </div>
   </footer>
+  <script>
+    (() => {
+      const loader = document.getElementById('page-loader');
+      let hidden = false;
+      const hideLoader = () => {
+        if (hidden) return;
+        hidden = true;
+        setTimeout(() => {
+          loader.classList.add('is-hidden');
+          document.body.classList.remove('is-loading');
+        }, 450);
+      };
+      if (document.readyState === 'complete') hideLoader();
+      else window.addEventListener('load', hideLoader, { once:true });
+      setTimeout(hideLoader, 1800);
+    })();
+  </script>
 </body>
 </html>
