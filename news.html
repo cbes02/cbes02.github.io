@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chiara Beretta — News!</title>
+  <meta name="description" content="News e aggiornamenti di Chiara Beretta.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#f3ebe2;
+      --accent:#5a3e2b;
+      --text:#0f172a;
+      --border:rgba(15,23,42,.12);
+      --radius:18px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0; background:var(--bg); color:var(--text);
+      font-family:'Montserrat',system-ui,-apple-system,Segoe UI,Roboto,Arial;
+      font-size:13pt; line-height:1.5;
+    }
+    .nav{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:rgba(250,246,240,.92);
+      border-bottom:1px solid var(--border);
+    }
+    .nav-inner{
+      max-width:1100px; margin:0 auto; padding:12px 16px;
+      display:flex; align-items:center; justify-content:space-between;
+    }
+    .brand a{display:flex; align-items:center; text-decoration:none}
+    .brand-signature{display:block; width:auto; height:56px}
+    .menu{display:flex; gap:10px; flex-wrap:wrap}
+    .menu a{
+      padding:8px 12px; border:1px solid transparent; border-radius:12px;
+      text-decoration:none; color:var(--accent); font-weight:600;
+    }
+    .menu a:hover,
+    .menu a:focus-visible,
+    .menu a:active,
+    .menu a[aria-current="page"]{
+      background:var(--accent); color:#fff; border-color:var(--accent);
+    }
+    main{max-width:900px; margin:0 auto; padding:64px 16px 96px}
+    h1{margin:0 0 28px; color:var(--accent); font-size:clamp(36px,5vw,54px); text-align:center}
+    .news-card{
+      max-width:700px; margin:0 auto; padding:32px;
+      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
+      text-align:center;
+    }
+    .news-card h2{margin:0 0 12px; color:var(--accent)}
+    .news-card p{margin:0}
+    footer{padding:28px 0; border-top:1px solid var(--border); text-align:center; color:#355}
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="brand"><a href="/" aria-label="Chiara Beretta — Home"><img class="brand-signature" src="/img/firma-chiara-beretta.png?v=2" alt="Firma di Chiara Beretta"></a></div>
+      <div class="menu">
+        <a href="/news.html" aria-current="page">News!</a>
+        <a href="/istruzione.html">Istruzione</a>
+        <a href="/progetti-universitari.html">Progetti universitari</a>
+        <a href="/esperienze-lavorative.html">Esperienze lavorative</a>
+        <a href="/passioni.html">Passioni</a>
+        <a href="/contact.html">Contatti</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <h1>News!</h1>
+    <section class="news-card">
+      <h2>Novità in arrivo</h2>
+      <p>Qui condividerò aggiornamenti, nuovi progetti ed esperienze.</p>
+    </section>
+  </main>
+
+  <footer>© <span id="year"></span> Chiara Beretta</footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>
