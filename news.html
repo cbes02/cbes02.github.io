@@ -55,7 +55,14 @@
     .news-card h2{margin:0 0 12px; color:var(--accent)}
     .news-card p{margin:0}
     footer{padding:28px 0; border-top:1px solid var(--border); text-align:center; color:#355}
-  </style>
+
+    /* FOOTER */
+    .site-footer{margin-top:48px; border-top:1px solid var(--border); background:rgba(90,62,43,.06); color:var(--accent)}
+    .site-footer-inner{max-width:1100px; margin:0 auto; padding:18px 16px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:12px}
+    .site-footer-links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
+    .site-footer a{color:var(--accent); text-decoration:none}
+    .site-footer a:hover,.site-footer a:focus-visible{text-decoration:underline}
+</style>
 </head>
 <body>
   <nav class="nav">
@@ -80,7 +87,16 @@
     </section>
   </main>
 
-  <footer>© <span id="year"></span> Chiara Beretta</footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+  <footer class="site-footer">
+    <div class="site-footer-inner">
+      <span>© 2026 Chiara Beretta</span>
+      <div class="site-footer-links">
+        <a href="mailto:beretta.chiara02@outlook.com">Email</a>
+        <a href="https://www.linkedin.com/in/chiara-beretta-8436ab327" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://github.com/cbes02" target="_blank" rel="noopener">GitHub</a>
+        <a href="#" aria-label="Torna all'inizio della pagina">Torna su ↑</a>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>
