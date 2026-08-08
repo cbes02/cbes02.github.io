@@ -141,6 +141,7 @@
     .postits{display:flex; flex-direction:column; gap:18px; align-items:center}
     .postit{
       --note:#dcefcf;
+      --tilt:0deg;
       position:relative; width:145px; min-height:112px;
       padding:28px 14px 16px;
       border:0; border-radius:3px;
@@ -149,15 +150,26 @@
       text-align:center; cursor:pointer;
       box-shadow:0 10px 18px rgba(60,42,30,.15);
       transition:transform .2s ease, box-shadow .2s ease;
+      opacity:0;
     }
     .postit::before{
       content:""; position:absolute; top:-7px; left:50%;
       width:54px; height:16px; transform:translateX(-50%) rotate(-2deg);
       background:rgba(255,255,255,.58); box-shadow:0 1px 2px rgba(0,0,0,.08);
     }
-    .postit:nth-child(1){transform:rotate(-2deg)}
-    .postit:nth-child(2){transform:rotate(1.5deg)}
-    .postit:nth-child(3){transform:rotate(-1deg)}
+    .postit:nth-child(1){--tilt:-2deg}
+    .postit:nth-child(2){--tilt:1.5deg}
+    .postit:nth-child(3){--tilt:-1deg}
+    body.postits-ready .postit{
+      animation:postit-slide-in .72s cubic-bezier(.2,.85,.28,1.18) both;
+    }
+    body.postits-ready .postit:nth-child(2){animation-delay:.14s}
+    body.postits-ready .postit:nth-child(3){animation-delay:.28s}
+    @keyframes postit-slide-in{
+      0%{opacity:0; transform:translateX(190px) rotate(8deg)}
+      72%{opacity:1; transform:translateX(-9px) rotate(calc(var(--tilt) - 1deg))}
+      100%{opacity:1; transform:translateX(0) rotate(var(--tilt))}
+    }
     .postit:hover,.postit:focus-visible{transform:rotate(0) translateY(-4px); box-shadow:0 15px 24px rgba(60,42,30,.2)}
     .postit.green{--note:#dcefcf}
     .postit.blue{--note:#d9edf3}
@@ -223,6 +235,8 @@
     @media (prefers-reduced-motion:reduce){
       .loader-emblem::before{animation:none}
       .page-loader{transition:none}
+      .postit{opacity:1; transform:rotate(var(--tilt))}
+      body.postits-ready .postit{animation:none}
     }
 
     @media (max-width: 860px){
@@ -341,6 +355,7 @@
         setTimeout(() => {
           loader.classList.add('is-hidden');
           document.body.classList.remove('is-loading');
+          document.body.classList.add('postits-ready');
         }, 450);
       };
       if (document.readyState === 'complete') hideLoader();
