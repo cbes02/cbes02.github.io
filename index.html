@@ -9,7 +9,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -97,10 +97,37 @@
     }
 
     .avatar-wrap{display:flex; justify-content:flex-end}
+    .avatar-orbit{
+      position:relative;
+      width:min(360px, 88vw);
+      aspect-ratio:1;
+      color:var(--accent);
+    }
     .avatar{
-      width:300px; height:300px;
+      position:absolute; inset:30px;
+      width:calc(100% - 60px); height:calc(100% - 60px);
       border-radius:50%; object-fit:cover;
       border:3px solid #fff; box-shadow:0 16px 36px rgba(0,0,0,.16);
+    }
+    .avatar-code-ring{
+      position:absolute; inset:0;
+      width:100%; height:100%; overflow:visible;
+    }
+    .avatar-code-ring .orbit-line{
+      fill:none; stroke:currentColor; stroke-width:1; opacity:.18;
+    }
+    .avatar-code-ring text{
+      fill:currentColor;
+      font-family:'Share Tech Mono', ui-monospace, monospace;
+      font-size:15px; letter-spacing:1.1px; opacity:.78;
+    }
+    .avatar-code-ring .rotating-code{
+      transform-origin:200px 200px;
+      animation:code-orbit 19s linear infinite;
+    }
+    @keyframes code-orbit{to{transform:rotate(360deg)}}
+    @media (prefers-reduced-motion:reduce){
+      .avatar-code-ring .rotating-code{animation:none}
     }
 
     footer{
@@ -156,7 +183,20 @@
         </div>
       </div>
       <div class="avatar-wrap">
-        <img class="avatar" src="/img/avatar.png" alt="Ritratto di Chiara Beretta">
+        <div class="avatar-orbit">
+          <img class="avatar" src="/img/avatar.png" alt="Ritratto di Chiara Beretta">
+          <svg class="avatar-code-ring" viewBox="0 0 400 400" aria-hidden="true">
+            <defs>
+              <path id="avatar-code-circle" d="M200,28 a172,172 0 1,1 -0.1,0"></path>
+            </defs>
+            <circle class="orbit-line" cx="200" cy="200" r="171"></circle>
+            <g class="rotating-code">
+              <text>
+                <textPath href="#avatar-code-circle" startOffset="0%">&lt;div class="creative"&gt; · &lt;img src="avatar.png"&gt; · &lt;/div&gt; · &lt;div class="creative"&gt; · &lt;img src="avatar.png"&gt; · &lt;/div&gt; · </textPath>
+              </text>
+            </g>
+          </svg>
+        </div>
       </div>
     </section>
   </div>
