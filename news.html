@@ -97,6 +97,12 @@
     .note-modal.is-open .note-dialog{transform:scale(1) rotate(-1deg)}
     .note-dialog h2{margin:0 0 20px;font-size:31px}.note-dialog p{margin:0;font-size:17px;line-height:1.65}
     .note-dialog .pin{width:25px;height:25px}.note-close{position:absolute;right:15px;top:14px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.48);color:var(--accent);font-size:26px;cursor:pointer}
+    .mini-comment{display:none;margin-top:24px;text-align:left}
+    .note-dialog.has-comment{min-height:430px}
+    .note-dialog.has-comment .mini-comment{display:block}
+    .mini-comment label{display:block;margin-bottom:7px;font-size:13px;font-weight:800}
+    .mini-comment textarea{display:block;width:100%;min-height:72px;max-height:120px;resize:vertical;padding:10px 12px;border:1px solid rgba(90,62,43,.3);border-radius:9px;background:rgba(255,255,255,.58);color:var(--text);font:13px/1.4 'Montserrat',sans-serif}
+    .mini-comment button{display:block;margin:10px auto 0;padding:9px 18px;border:0;border-radius:9px;background:var(--accent);color:#fff;font:700 13px 'Montserrat',sans-serif;cursor:pointer}
     body.modal-open{overflow:hidden}
     @media(max-width:800px){.cork-board{padding:46px 30px;border-width:12px}.notes-grid{grid-template-columns:repeat(2,1fr);gap:38px 28px}}
     @media(max-width:520px){.notes-grid{grid-template-columns:1fr}.news-note{min-height:165px}}
@@ -184,7 +190,7 @@
     <h1>News!</h1>
     <section class="cork-board" aria-label="Bacheca delle news">
       <div class="notes-grid">
-        <button class="news-note" type="button" data-title="Rinnovamento del sito portfolio" data-copy="Ho provato a rinnovare e migliorare proprio questo sito, rendendolo più vicino al settore in cui vorrei lavorare: quello dell'analisi e dell'innovazione. Che cosa ne pensate?" data-color="#fff0a8"><span class="pin" aria-hidden="true"></span>Rinnovamento del sito portfolio</button>
+        <button class="news-note" type="button" data-comments="true" data-title="Rinnovamento del sito portfolio" data-copy="Ho provato a rinnovare e migliorare proprio questo sito, rendendolo più vicino al settore in cui vorrei lavorare: quello dell'analisi e dell'innovazione. Che cosa ne pensate?" data-color="#fff0a8"><span class="pin" aria-hidden="true"></span>Rinnovamento del sito portfolio</button>
         <button class="news-note" type="button" data-title="Mi sono laureata con 110 e lode!" data-copy="Il 17 luglio mi sono laureata con una tesi in Probabilità e statistica per il marketing, dal titolo «L'importanza delle variabili nella regressione lineare: un'analisi comparativa su dati sanitari»." data-color="#cfe8d1"><span class="pin" aria-hidden="true"></span>Mi sono laureata con 110 e lode!</button>
         <button class="news-note" type="button" data-title="Conclusione dei primi progetti lavorativi" data-copy="Ho presentato ad altri team il lavoro svolto sulla customer journey e sull'analisi semantica delle conversazioni WhatsApp: un'importante occasione di confronto e condivisione." data-color="#cfe6f3"><span class="pin" aria-hidden="true"></span>Conclusione dei primi progetti lavorativi</button>
         <button class="news-note" type="button" data-title="Un nome per la mia pagina di gioielli" data-copy="Vorrei trovare un nome d'impatto per la mia pagina di gioielli, ma non mi è ancora venuta l'idea giusta. Avete qualche consiglio? Scrivetemi!" data-color="#f2d1da"><span class="pin" aria-hidden="true"></span>Un nome per la mia pagina di gioielli</button>
@@ -200,6 +206,12 @@
       <button class="note-close" type="button" aria-label="Chiudi">×</button>
       <h2 id="note-title"></h2>
       <p id="note-copy"></p>
+      <form class="mini-comment" action="https://formspree.io/f/mldzeydz" method="POST">
+        <input type="hidden" name="oggetto" value="Commento anonimo sul sito portfolio">
+        <label for="news-comment">Lascia un commento anonimo</label>
+        <textarea id="news-comment" name="messaggio" placeholder="Che cosa ne pensi?" required></textarea>
+        <button type="submit">Invia commento</button>
+      </form>
     </article>
   </div>
 
@@ -243,6 +255,7 @@
       const openNote=button=>{
         lastTrigger=button; title.textContent=button.dataset.title; copy.textContent=button.dataset.copy;
         dialog.style.setProperty('--paper',button.dataset.color);
+        dialog.classList.toggle('has-comment',button.dataset.comments==='true');
         modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false');
         document.body.classList.add('modal-open'); closeButton.focus();
       };
