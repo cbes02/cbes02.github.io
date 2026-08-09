@@ -121,10 +121,17 @@
       font-weight:800;
       display:inline-block;
     }
-    .skills.code-skills{gap:8px 18px}
-    .code-skills .skill-badge{
-      font-size:15px;
+    .skills-cloud{
+      display:flex; flex-wrap:wrap; align-items:center; justify-content:center;
+      gap:14px 18px; margin:30px auto 58px; padding:25px 22px;
+      max-width:980px;
     }
+    .skills-cloud .skill-badge{animation:skill-float 4.8s ease-in-out infinite}
+    .skills-cloud .skill-badge:nth-child(3n+2){animation-delay:-1.6s}
+    .skills-cloud .skill-badge:nth-child(3n){animation-delay:-3.1s}
+    .skills-cloud .skill-badge.tech{font-size:18px;padding:10px 24px}
+    @keyframes skill-float{0%,100%{transform:translateY(0) rotate(-.4deg)}50%{transform:translateY(-6px) rotate(.5deg)}}
+    @media (prefers-reduced-motion:reduce){.skills-cloud .skill-badge{animation:none}}
 
     /* LOADER */
     body.is-loading{overflow:hidden}
@@ -226,6 +233,28 @@
       </ul>
     </section>
 
+    <section class="skills-cloud" aria-label="Competenze sviluppate nelle esperienze lavorative">
+      <span class="skill-badge tech">Analisi semantica</span>
+      <span class="skill-badge tech">Automazione</span>
+      <span class="skill-badge tech">Dashboard interattive</span>
+      <span class="skill-badge tech">Datalake</span>
+      <span class="skill-badge tech">Vibe coding</span>
+      <span class="skill-badge tech">SEO</span>
+      <span class="skill-badge tech">Shopify</span>
+      <span class="skill-badge tech">Prompt Engineering</span>
+      <span class="skill-badge tech">Excel</span>
+      <span class="skill-badge">Innovazione</span>
+      <span class="skill-badge">Problem solving</span>
+      <span class="skill-badge">Copywriting</span>
+      <span class="skill-badge">Organizzazione del tempo e priorità</span>
+      <span class="skill-badge">Lavorare in team</span>
+      <span class="skill-badge">Customer care</span>
+      <span class="skill-badge">Gestione del cliente</span>
+      <span class="skill-badge">Comunicazione</span>
+      <span class="skill-badge">Precisione</span>
+      <span class="skill-badge">Empatia</span>
+    </section>
+
     <!-- ===================== ESPERIENZA 1 ===================== -->
     <h2 id="exp-1" class="exp-title">DATA ANALYSIS &amp; INNOVATION INTERN PRESSO CBM ITALIA<br>(03/2026 - PRESENTE)</h2>
 
@@ -247,16 +276,6 @@
           Oltre ai progetti gestiti in autonomia, ho collaborato con altri colleghi ad attività di <span class="bold-text">analisi geografica</span>, finalizzate a individuare le aree sulle quali concentrare maggiormente gli sforzi di comunicazione. Ho inoltre partecipato alla costruzione del <span class="bold-text">Datalake aziendale</span> e alla progettazione di un'interfaccia semplice e intuitiva, pensata per rendere i dati accessibili anche al personale non tecnico.
         </p>
       </div>
-    </div>
-
-    <div class="skills code-skills" aria-label="Competenze sviluppate presso CBM Italia">
-      <span class="skill-badge">Analisi semantica</span>
-      <span class="skill-badge">Automazione</span>
-      <span class="skill-badge">Dashboard interattive</span>
-      <span class="skill-badge">Datalake</span>
-      <span class="skill-badge">Vibe coding</span>
-      <span class="skill-badge">Innovazione</span>
-      <span class="skill-badge">Problem solving</span>
     </div>
 
     <!-- ===================== ESPERIENZA 2 ===================== -->
@@ -291,13 +310,6 @@
           <span class="bold-text">creativa, tecnica e orientata ai risultati</span>.
         </p>
       </div>
-    </div>
-
-    <div class="skills">
-      <span class="skill-badge">SEO</span>
-      <span class="skill-badge">Shopify</span>
-      <span class="skill-badge">Copywriting</span>
-      <span class="skill-badge">Prompt Engineering</span>
     </div>
 
     <!-- ===================== ESPERIENZA 3 ===================== -->
@@ -335,13 +347,6 @@
       </div>
     </div>
 
-    <div class="skills">
-      <span class="skill-badge">Organizzazione del tempo e priorità</span>
-      <span class="skill-badge">Lavorare in team</span>
-      <span class="skill-badge">Customer care</span>
-      <span class="skill-badge">Problem solving</span>
-    </div>
-
     <!-- ===================== ESPERIENZA 4 ===================== -->
     <h2 id="exp-4" class="exp-title">HOSTESS PRESSO YOUNIQUE LUGANO</h2>
 
@@ -366,11 +371,6 @@
       </div>
     </div>
 
-    <div class="skills">
-      <span class="skill-badge">Problem-solving</span>
-      <span class="skill-badge">Gestione del cliente</span>
-    </div>
-
     <!-- ===================== ESPERIENZA 5 ===================== -->
     <h2 id="exp-5" class="exp-title">ALTERNANZA SCUOLA LAVORO ISTITUTO DEI TUMORI<br>(01/2020)</h2>
 
@@ -388,13 +388,6 @@
           Un'esperienza breve ma significativa, che mi ha insegnato il valore della precisione, dell'ascolto e della collaborazione all'interno di un contesto strutturato.
         </p>
       </div>
-    </div>
-
-    <div class="skills">
-      <span class="skill-badge">Excel</span>
-      <span class="skill-badge">Comunicazione</span>
-      <span class="skill-badge">Precisione</span>
-      <span class="skill-badge">Empatia</span>
     </div>
 
   </main>
