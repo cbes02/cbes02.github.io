@@ -81,6 +81,26 @@
     }
 
     /* FOOTER */
+    /* CODICE VERTICALE DELLA PAGINA */
+    .code-rail{
+      position:fixed; z-index:0; top:118px; bottom:22px;
+      width:38px; overflow:hidden; color:var(--accent);
+      opacity:.42; pointer-events:none;
+      font:18px/1 'Share Tech Mono',ui-monospace,monospace;
+    }
+    .code-rail.left{left:18px}
+    .code-rail.right{right:18px}
+    .code-rail-track{
+      display:flex; align-items:center; gap:28px;
+      height:max-content; writing-mode:vertical-rl;
+      white-space:nowrap; letter-spacing:1px;
+      animation:code-rail-scroll 24s linear infinite;
+    }
+    .code-rail.left .code-rail-track{animation-direction:reverse}
+    @keyframes code-rail-scroll{to{transform:translateY(-50%)}}
+    @media (max-width:1280px){.code-rail{display:none}}
+    @media (prefers-reduced-motion:reduce){.code-rail-track{animation:none}}
+
     .site-footer{margin-top:48px; border-top:1px solid var(--border); background:#eadfd3; color:var(--accent)}
     .site-footer-inner{max-width:1100px; margin:0 auto; padding:18px 16px; display:flex; align-items:center; justify-content:space-between; gap:14px; flex-wrap:wrap; font-size:12px}
     .site-footer-links{display:flex; gap:14px; align-items:center; flex-wrap:wrap}
@@ -95,6 +115,9 @@
       <img class="loader-signature" src="/img/firma-chiara-beretta.png?v=2" alt="">
     </div>
   </div>
+
+  <div class="code-rail left" aria-hidden="true"><div class="code-rail-track">&lt;main class="news-page"&gt; · &lt;h1&gt;News!&lt;/h1&gt; · &lt;section class="news-list"&gt; · &lt;article class="news-card"&gt; · &lt;time datetime="2026"&gt;2026&lt;/time&gt; · &lt;/article&gt; · &lt;/section&gt; · &lt;/main&gt; · &lt;main class="news-page"&gt; · &lt;h1&gt;News!&lt;/h1&gt; · &lt;section class="news-list"&gt; · &lt;article class="news-card"&gt; · &lt;time datetime="2026"&gt;2026&lt;/time&gt; · &lt;/article&gt; · &lt;/section&gt; · &lt;/main&gt; ·</div></div>
+  <div class="code-rail right" aria-hidden="true"><div class="code-rail-track">&lt;nav class="nav"&gt; · &lt;a href="/"&gt;Home&lt;/a&gt; · &lt;footer class="site-footer"&gt;Chiara Beretta&lt;/footer&gt; · &lt;script&gt;window.addEventListener("load", ready)&lt;/script&gt; · &lt;/nav&gt; · &lt;nav class="nav"&gt; · &lt;a href="/"&gt;Home&lt;/a&gt; · &lt;footer class="site-footer"&gt;Chiara Beretta&lt;/footer&gt; · &lt;script&gt;window.addEventListener("load", ready)&lt;/script&gt; · &lt;/nav&gt; ·</div></div>
 
   <nav class="nav">
     <div class="nav-inner">
