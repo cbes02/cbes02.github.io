@@ -160,7 +160,8 @@
     /* FOOTER */
     /* CODICE VERTICALE DELLA PAGINA */
     .code-rail{
-      position:fixed; z-index:0; top:118px; bottom:22px;
+      position:fixed; z-index:0;
+      top:var(--rail-top,105px); bottom:var(--rail-bottom,0px);
       width:38px; overflow:hidden; color:var(--accent);
       opacity:.42; pointer-events:none;
       font:18px/1 'Share Tech Mono',ui-monospace,monospace;
@@ -455,6 +456,25 @@
       if (document.readyState === 'complete') hideLoader();
       else window.addEventListener('load', hideLoader, { once:true });
       setTimeout(hideLoader, 1800);
+    })();
+  </script>
+  <script>
+    (() => {
+      const nav=document.querySelector('.nav');
+      const footer=document.querySelector('.site-footer');
+      let frame=null;
+      const alignCodeRails=()=>{
+        frame=null;
+        const top=nav?Math.max(0,nav.getBoundingClientRect().bottom):0;
+        const bottom=footer?Math.max(0,window.innerHeight-footer.getBoundingClientRect().top):0;
+        document.documentElement.style.setProperty('--rail-top',`${Math.round(top)}px`);
+        document.documentElement.style.setProperty('--rail-bottom',`${Math.round(bottom)}px`);
+      };
+      const requestAlignment=()=>{if(frame===null)frame=requestAnimationFrame(alignCodeRails)};
+      window.addEventListener('scroll',requestAlignment,{passive:true});
+      window.addEventListener('resize',requestAlignment);
+      window.addEventListener('load',requestAlignment);
+      alignCodeRails();
     })();
   </script>
 </body>
