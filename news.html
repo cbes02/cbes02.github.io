@@ -45,16 +45,61 @@
     .menu a[aria-current="page"]{
       background:var(--accent); color:#fff; border-color:var(--accent);
     }
-    main{max-width:900px; margin:0 auto; padding:64px 16px 96px}
+    main{max-width:1100px; margin:0 auto; padding:54px 16px 72px}
     h1{margin:0 0 28px; color:var(--accent); font-size:clamp(36px,5vw,54px); text-align:center}
-    .news-card{
-      max-width:700px; margin:0 auto; padding:32px;
-      background:#fff; border:1px solid var(--border); border-radius:var(--radius);
-      text-align:center;
+    .cork-board{
+      position:relative; padding:58px 54px;
+      border:18px solid #c89963; border-radius:5px;
+      background-color:#b97945;
+      background-image:
+        radial-gradient(circle at 18% 24%,rgba(84,43,19,.34) 0 1px,transparent 1.7px),
+        radial-gradient(circle at 72% 64%,rgba(245,202,143,.32) 0 1.2px,transparent 1.9px),
+        radial-gradient(circle at 42% 82%,rgba(83,43,21,.24) 0 1px,transparent 2px),
+        radial-gradient(circle at 88% 15%,rgba(255,221,166,.2) 0 1px,transparent 1.8px),
+        linear-gradient(115deg,rgba(255,255,255,.06),rgba(76,35,13,.08));
+      background-size:17px 19px,23px 21px,29px 25px,31px 27px,100% 100%;
+      box-shadow:inset 0 0 0 5px #e3bd87,inset 0 0 22px rgba(74,38,16,.35),0 18px 38px rgba(70,44,25,.2);
     }
-    .news-card h2{margin:0 0 12px; color:var(--accent)}
-    .news-card p{margin:0}
-    footer{padding:28px 0; border-top:1px solid var(--border); text-align:center; color:#355}
+    .notes-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:48px 42px; align-items:center}
+    .news-note{
+      --paper:#fff1a8; --tilt:0deg; --from-x:0px; --from-y:90px;
+      position:relative; min-height:190px; padding:48px 24px 26px;
+      border:0; border-radius:2px; background:var(--paper); color:var(--accent);
+      font:800 19px/1.3 'Montserrat',sans-serif; cursor:pointer; text-align:center;
+      box-shadow:5px 9px 15px rgba(64,35,17,.28); opacity:0;
+      transform:translate(var(--from-x),var(--from-y)) rotate(calc(var(--tilt) + 7deg));
+    }
+    body.board-ready .news-note{animation:note-arrival .72s cubic-bezier(.2,.82,.25,1.18) both}
+    body.board-ready .news-note:nth-child(2){animation-delay:.11s}
+    body.board-ready .news-note:nth-child(3){animation-delay:.22s}
+    body.board-ready .news-note:nth-child(4){animation-delay:.33s}
+    body.board-ready .news-note:nth-child(5){animation-delay:.44s}
+    body.board-ready .news-note:nth-child(6){animation-delay:.55s}
+    .news-note:nth-child(1){--paper:#fff0a8;--tilt:-3deg;--from-x:-130px}
+    .news-note:nth-child(2){--paper:#cfe8d1;--tilt:2deg;--from-y:-110px}
+    .news-note:nth-child(3){--paper:#cfe6f3;--tilt:-1.5deg;--from-x:130px}
+    .news-note:nth-child(4){--paper:#f2d1da;--tilt:2.5deg;--from-x:-130px}
+    .news-note:nth-child(5){--paper:#e2d5f2;--tilt:-2deg;--from-y:120px}
+    .news-note:nth-child(6){--paper:#f5d4b7;--tilt:3deg;--from-x:130px}
+    @keyframes note-arrival{
+      0%{opacity:0;transform:translate(var(--from-x),var(--from-y)) rotate(calc(var(--tilt) + 8deg)) scale(.82)}
+      72%{opacity:1;transform:translate(0,-7px) rotate(calc(var(--tilt) - 1deg)) scale(1.03)}
+      100%{opacity:1;transform:translate(0,0) rotate(var(--tilt)) scale(1)}
+    }
+    .news-note:hover,.news-note:focus-visible{transform:translateY(-6px) rotate(0)!important;box-shadow:7px 14px 20px rgba(64,35,17,.34)}
+    .pin{position:absolute;top:13px;left:50%;width:20px;height:20px;transform:translateX(-50%) rotate(8deg);border-radius:50%;background:#b83e3e;box-shadow:inset -4px -4px 5px rgba(70,0,0,.25),2px 3px 4px rgba(50,20,10,.35)}
+    .news-note:nth-child(2n) .pin{background:#397aa5;transform:translateX(-50%) rotate(-11deg)}
+    .news-note:nth-child(3n) .pin{background:#d49c22}
+    .pin::after{content:"";position:absolute;left:9px;top:16px;width:2px;height:15px;background:#777;transform:rotate(-9deg);transform-origin:top}
+    .note-modal{position:fixed;inset:0;z-index:5000;display:grid;place-items:center;padding:24px;background:rgba(28,20,15,.72);opacity:0;visibility:hidden;pointer-events:none;transition:.25s}
+    .note-modal.is-open{opacity:1;visibility:visible;pointer-events:auto}
+    .note-dialog{--paper:#fff0a8;position:relative;width:min(500px,92vw);min-height:370px;padding:76px 48px 48px;display:flex;flex-direction:column;justify-content:center;text-align:center;background:var(--paper);color:var(--accent);box-shadow:0 30px 80px rgba(0,0,0,.42);transform:scale(.82) rotate(-2deg);transition:transform .28s ease}
+    .note-modal.is-open .note-dialog{transform:scale(1) rotate(-1deg)}
+    .note-dialog h2{margin:0 0 20px;font-size:31px}.note-dialog p{margin:0;font-size:17px;line-height:1.65}
+    .note-dialog .pin{width:25px;height:25px}.note-close{position:absolute;right:15px;top:14px;width:40px;height:40px;border:0;border-radius:50%;background:rgba(255,255,255,.48);color:var(--accent);font-size:26px;cursor:pointer}
+    body.modal-open{overflow:hidden}
+    @media(max-width:800px){.cork-board{padding:46px 30px;border-width:12px}.notes-grid{grid-template-columns:repeat(2,1fr);gap:38px 28px}}
+    @media(max-width:520px){.notes-grid{grid-template-columns:1fr}.news-note{min-height:165px}}
 
     /* LOADER */
     body.is-loading{overflow:hidden}
@@ -78,6 +123,8 @@
     @media (prefers-reduced-motion:reduce){
       .loader-emblem::before{animation:none}
       .page-loader{transition:none}
+      .news-note{opacity:1;transform:rotate(var(--tilt))}
+      body.board-ready .news-note{animation:none}
     }
 
     /* FOOTER */
@@ -135,11 +182,26 @@
 
   <main>
     <h1>News!</h1>
-    <section class="news-card">
-      <h2>Novità in arrivo</h2>
-      <p>Qui condividerò aggiornamenti, nuovi progetti ed esperienze.</p>
+    <section class="cork-board" aria-label="Bacheca delle news">
+      <div class="notes-grid">
+        <button class="news-note" type="button" data-title="News 01" data-copy="Testo provvisorio della prima news. Qui inseriremo il contenuto definitivo." data-color="#fff0a8"><span class="pin" aria-hidden="true"></span>News 01</button>
+        <button class="news-note" type="button" data-title="News 02" data-copy="Testo provvisorio della seconda news. Qui inseriremo il contenuto definitivo." data-color="#cfe8d1"><span class="pin" aria-hidden="true"></span>News 02</button>
+        <button class="news-note" type="button" data-title="News 03" data-copy="Testo provvisorio della terza news. Qui inseriremo il contenuto definitivo." data-color="#cfe6f3"><span class="pin" aria-hidden="true"></span>News 03</button>
+        <button class="news-note" type="button" data-title="News 04" data-copy="Testo provvisorio della quarta news. Qui inseriremo il contenuto definitivo." data-color="#f2d1da"><span class="pin" aria-hidden="true"></span>News 04</button>
+        <button class="news-note" type="button" data-title="News 05" data-copy="Testo provvisorio della quinta news. Qui inseriremo il contenuto definitivo." data-color="#e2d5f2"><span class="pin" aria-hidden="true"></span>News 05</button>
+        <button class="news-note" type="button" data-title="News 06" data-copy="Testo provvisorio della sesta news. Qui inseriremo il contenuto definitivo." data-color="#f5d4b7"><span class="pin" aria-hidden="true"></span>News 06</button>
+      </div>
     </section>
   </main>
+
+  <div class="note-modal" id="note-modal" aria-hidden="true">
+    <article class="note-dialog" role="dialog" aria-modal="true" aria-labelledby="note-title">
+      <span class="pin" aria-hidden="true"></span>
+      <button class="note-close" type="button" aria-label="Chiudi">×</button>
+      <h2 id="note-title"></h2>
+      <p id="note-copy"></p>
+    </article>
+  </div>
 
   <footer class="site-footer">
     <div class="site-footer-inner">
@@ -162,11 +224,36 @@
         setTimeout(() => {
           loader.classList.add('is-hidden');
           document.body.classList.remove('is-loading');
+          document.body.classList.add('board-ready');
         }, 450);
       };
       if (document.readyState === 'complete') hideLoader();
       else window.addEventListener('load', hideLoader, { once:true });
       setTimeout(hideLoader, 1800);
+    })();
+  </script>
+  <script>
+    (() => {
+      const modal=document.getElementById('note-modal');
+      const dialog=modal.querySelector('.note-dialog');
+      const title=document.getElementById('note-title');
+      const copy=document.getElementById('note-copy');
+      const closeButton=modal.querySelector('.note-close');
+      let lastTrigger=null;
+      const openNote=button=>{
+        lastTrigger=button; title.textContent=button.dataset.title; copy.textContent=button.dataset.copy;
+        dialog.style.setProperty('--paper',button.dataset.color);
+        modal.classList.add('is-open'); modal.setAttribute('aria-hidden','false');
+        document.body.classList.add('modal-open'); closeButton.focus();
+      };
+      const closeNote=()=>{
+        modal.classList.remove('is-open'); modal.setAttribute('aria-hidden','true');
+        document.body.classList.remove('modal-open'); if(lastTrigger)lastTrigger.focus();
+      };
+      document.querySelectorAll('.news-note').forEach(button=>button.addEventListener('click',()=>openNote(button)));
+      closeButton.addEventListener('click',closeNote);
+      modal.addEventListener('click',event=>{if(event.target===modal)closeNote()});
+      document.addEventListener('keydown',event=>{if(event.key==='Escape'&&modal.classList.contains('is-open'))closeNote()});
     })();
   </script>
 </body>
