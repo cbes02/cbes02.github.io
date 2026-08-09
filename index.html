@@ -67,7 +67,7 @@
     .hero{
       position:relative; z-index:1;
       max-width:1100px; margin:0 auto; padding:64px 16px;
-      display:grid; grid-template-columns:minmax(0,1.5fr) minmax(290px,.65fr); gap:40px; align-items:start;
+      display:grid; grid-template-columns:minmax(0,1fr) minmax(390px,430px); gap:44px; align-items:start;
     }
     .hero h1{
       margin:0 0 12px; color:var(--accent);
@@ -96,10 +96,13 @@
       box-shadow: 0 2px 4px rgba(90,62,43,0.2);
     }
 
-    .avatar-wrap{display:flex; justify-content:flex-end}
+    .avatar-wrap{
+      display:flex; flex-direction:column; align-items:flex-end;
+      justify-content:flex-start; margin-top:64px; transform:translateX(24px);
+    }
     .avatar-orbit{
       position:relative;
-      width:min(360px, 88vw);
+      width:min(430px, 88vw);
       aspect-ratio:1;
       color:var(--accent);
     }
@@ -135,6 +138,17 @@
     @keyframes code-orbit{to{transform:rotate(360deg)}}
     @media (prefers-reduced-motion:reduce){
       .avatar-code-ring .rotating-code{animation:none}
+    }
+
+    .code-hint{width:315px;margin:5px 10px 0 0;color:#111;pointer-events:none}
+    .code-hint-arrow{display:block;width:170px;height:120px;margin:0 0 -8px auto;overflow:visible}
+    .code-hint-arrow path{fill:none;stroke:#111;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+    .code-hint-note{
+      margin:0; padding:18px 22px; background:#94d35d; color:#17210f;
+      font-size:14px; font-style:italic; font-weight:600; line-height:1.45;
+      text-align:center;
+      clip-path:polygon(0 5%,5% 4%,5% 0,11% 3%,17% 0,23% 3%,29% 0,35% 3%,41% 0,47% 3%,53% 0,59% 3%,65% 0,71% 3%,77% 0,83% 3%,89% 0,95% 3%,100% 2%,98% 12%,100% 22%,98% 32%,100% 42%,98% 52%,100% 62%,98% 72%,100% 82%,98% 92%,100% 100%,94% 97%,88% 100%,82% 97%,76% 100%,70% 97%,64% 100%,58% 97%,52% 100%,46% 97%,40% 100%,34% 97%,28% 100%,22% 97%,16% 100%,10% 97%,4% 100%,0 97%,2% 87%,0 77%,2% 67%,0 57%,2% 47%,0 37%,2% 27%,0 17%);
+      box-shadow:0 9px 18px rgba(55,76,35,.16);
     }
 
     /* CODICE VERTICALE NEI MARGINI */
@@ -187,7 +201,9 @@
 
     @media (max-width: 860px){
       .hero{grid-template-columns:1fr; padding:48px 16px}
-      .avatar-wrap{justify-content:center; margin-top:12px}
+      .avatar-wrap{align-items:center; justify-content:center; margin-top:12px; transform:none}
+      .avatar-orbit{width:min(360px,88vw)}
+      .code-hint{display:none}
       .code-rail{display:none}
     }
 
@@ -268,6 +284,13 @@
             </g>
           </svg>
         </div>
+        <aside class="code-hint" aria-label="Indicazione sul codice HTML laterale">
+          <svg class="code-hint-arrow" viewBox="0 0 170 120" aria-hidden="true">
+            <path d="M18 111 C24 66 66 29 148 18"></path>
+            <path d="M132 9 L150 18 L138 34"></path>
+          </svg>
+          <p class="code-hint-note">Qui troverai il codice HTML di ogni pagina che scorre :)</p>
+        </aside>
       </div>
     </section>
   </div>
