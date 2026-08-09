@@ -9,7 +9,7 @@
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -120,6 +120,14 @@
       font-weight:600;
       display:inline-block;
     }
+    .skills.code-skills{gap:8px 18px}
+    .code-skills .skill-badge{
+      padding:3px 0; border-radius:0; background:transparent;
+      color:var(--accent); font-family:'Share Tech Mono',ui-monospace,monospace;
+      font-size:16px; font-weight:800;
+    }
+    .code-skills .skill-badge::before{content:"< ";opacity:.65}
+    .code-skills .skill-badge::after{content:" />";opacity:.65}
 
     /* LOADER */
     body.is-loading{overflow:hidden}
@@ -213,7 +221,7 @@
     <!-- INDICE -->
     <section class="index-wrap" aria-label="Indice esperienze">
       <ul class="clean-ul">
-        <li><a class="index-link" href="#exp-1">Data Analysis Intern presso CBM Italia (03/2026 - presente)</a></li>
+        <li><a class="index-link" href="#exp-1">Data Analysis &amp; Innovation Intern presso CBM Italia (03/2026 - presente)</a></li>
         <li><a class="index-link" href="#exp-2">Ottimizzazione SEO del catalogo per Madonnina Resell (10/2025 - 03/2026)</a></li>
         <li><a class="index-link" href="#exp-3">Cameriera presso "Bestia Milano" (06/2022 - 08/2024)</a></li>
         <li><a class="index-link" href="#exp-4">Hostess presso Younique Lugano</a></li>
@@ -222,18 +230,36 @@
     </section>
 
     <!-- ===================== ESPERIENZA 1 ===================== -->
-    <h2 id="exp-1" class="exp-title">DATA ANALYSIS INTERN PRESSO CBM ITALIA<br>(03/2026 - PRESENTE)</h2>
+    <h2 id="exp-1" class="exp-title">DATA ANALYSIS &amp; INNOVATION INTERN PRESSO CBM ITALIA<br>(03/2026 - PRESENTE)</h2>
 
     <div class="card">
       <div class="muted">
         <p>
-          Da marzo 2026 svolgo il ruolo di <span class="bold-text">Data Analysis Intern presso CBM Italia</span>.
+          Come tirocinio curricolare, a conclusione del mio percorso di studi, sono entrata in <span class="bold-text">CBM Italia</span> nel ruolo di <span class="bold-text">Data Analysis &amp; Innovation Intern</span>. Questa esperienza mi ha permesso di seguire in prima persona diversi progetti particolarmente importanti per la mia formazione, sviluppando soluzioni potenzialmente replicabili anche in altri contesti orientati all'innovazione e alla crescita.
+        </p>
+        <p>
+          Tra i progetti che ho sviluppato in autonomia rientra l'<span class="bold-text">analisi semantica delle conversazioni WhatsApp</span>: ho utilizzato tecniche di embedding e TF-IDF per trasformare un grande volume di messaggi in spazi semantici, individuare le principali aree tematiche e raggruppare gli utenti in cluster sulla base delle caratteristiche delle loro conversazioni.
+        </p>
+        <p>
+          Mi sono inoltre occupata dell'<span class="bold-text">automazione dell'analisi delle risposte alle campagne WhatsApp</span>. Attraverso script Python e un orchestratore, ho trasformato le risposte qualitative in dati quantitativi. Partendo da un dataset iniziale, ho generato gli embedding dei commenti e li ho classificati come positivi, negativi o neutri. Dopo aver addestrato e confrontato diversi modelli, il Random Forest ha ottenuto l'accuratezza migliore ed è stato quindi applicato alle campagne successive, considerando una finestra temporale di 72 ore dal loro avvio.
+        </p>
+        <p>
+          Per entrambi i progetti ho realizzato <span class="bold-text">dashboard interattive in HTML e JavaScript</span>, pubblicate su SharePoint, con l'obiettivo di rendere i risultati facilmente consultabili e aggiornabili con cadenza mensile. Ho anche contribuito all'<span class="bold-text">automazione dei flussi verso il Datalake</span> tramite Power Automate, semplificando i processi di acquisizione e trasferimento dei dati.
+        </p>
+        <p>
+          Oltre ai progetti gestiti in autonomia, ho collaborato con altri colleghi ad attività di <span class="bold-text">analisi geografica</span>, finalizzate a individuare le aree sulle quali concentrare maggiormente gli sforzi di comunicazione. Ho inoltre partecipato alla costruzione del <span class="bold-text">Datalake aziendale</span> e alla progettazione di un'interfaccia semplice e intuitiva, pensata per rendere i dati accessibili anche al personale non tecnico.
         </p>
       </div>
     </div>
 
-    <div class="skills">
-      <span class="skill-badge">Data Analysis</span>
+    <div class="skills code-skills" aria-label="Competenze sviluppate presso CBM Italia">
+      <span class="skill-badge">Analisi semantica</span>
+      <span class="skill-badge">Automazione</span>
+      <span class="skill-badge">Dashboard interattive</span>
+      <span class="skill-badge">Datalake</span>
+      <span class="skill-badge">Vibe coding</span>
+      <span class="skill-badge">Innovazione</span>
+      <span class="skill-badge">Problem solving</span>
     </div>
 
     <!-- ===================== ESPERIENZA 2 ===================== -->
